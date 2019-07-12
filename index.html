@@ -1,1214 +1,203 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=7.0.1">
-
-
-  <link rel="mask-icon" href="/images/avatar.png?v=7.0.1" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="千里之行始于足下">
-<meta name="keywords" content="随笔记录，技术分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="轻微儿的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="轻微儿的博客">
-<meta property="og:description" content="千里之行始于足下">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="轻微儿的博客">
-<meta name="twitter:description" content="千里之行始于足下">
-
-
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>轻微儿的博客</title>
-  
-
-
-
-
-
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?1b58ef033840fd8cdbdaabfe37f18e82";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">轻微儿的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
-      
-        <p class="site-subtitle">轻微儿的博客</p>
-      
-    
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+<html>
+    <head><meta name="generator" content="Hexo 3.8.0">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <title>轻微儿的博客</title>
+        
+        <link rel="alternate" href="/atom.xml" title="轻微儿的博客" type="application/atom+xml">
+        
+        
+        <link rel="icon" href="//favicon.png">
+        
+        <link rel="stylesheet" href="/css/normalize.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/common.css">
+        <link rel="stylesheet" href="/css/markdown.css">
+    </head>
+    <body onscroll="scrollYListener()">
+        <div class="wrapper">
+            <div class="mobile_menu_btn">
+  <button id="mobile_menu_btn" class="c-hamburger c-hamburger--htx">
+  <span>toggle menu</span>
+  </button>
 </div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+<div class="slide_menu">
+  <nav class="nav_scroll">
+    <ul class="clearfix">
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home menu-item-active">
-
-    
-    
-    
       
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
+      <li class="active"> <a href="/">主页</a> </li>
       
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
       
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
+      <li class> <a href="/archives">归档</a> </li>
       
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
+    </ul>
+  </nav>
+  <div class="social">
+    <ul class="clearfix">
       
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-
+      
+      <li> <a href="http://github.com/cheng-kang" target="_blank"> <img src="/img/GitHub.png"> </a> </li>
+      
+      
+      
+      <li> <a href="http://www.weibo.com/progrant" target="_blank"> <img src="/img/Weibo.png"> </a> </li>
+      
+      
+      
+      <li> <a href="https://twitter.com/ScotlAnt" target="_blank"> <img src="/img/Twitter.png"> </a> </li>
+      
+      
       
       
     </ul>
-  
-
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
+  </div>
+  <div class="copyright">
+    &copy; 2019 轻微儿的博客 | Provided By  <a title="liqw" href="http://chengkang.me/" target="_blank">liqw</a>
+  </div>
 </div>
-    </header>
-
+<header>
+  <div class="mobile_navbar clearfix">
     
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/工作随笔/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="轻微儿的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/工作随笔/" class="post-title-link" itemprop="url">工作随笔</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 11:04:04 / 修改时间：13:32:06" itemprop="dateCreated datePublished" datetime="2019-06-28T11:04:04+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/06/28/工作随笔/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/28/工作随笔/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。</p>
-<p>​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的文件，那样会比较乱，尽量相同的东西写在一篇文章里，然后不定期的整理更新。</p>
-<p>​        现在在做的一个项目是非常传统的项目，没有用到什么大数据，nosql, 分布式，微服务，区块链等等的技术。用的有数据库oracle sql查询统计，后端 spring mvc, 前端jquery 用的比较多，然后是模版技术 freemarker，这个用的不好，大部分还是用jquery 拼接的页面。这几天自己的感觉自己的基础倒是巩固了不少。因为目前是一个已经做好的一个项目，计划下个月做二期，所以从这个项目中也发现了很多不足，期望在二期中能吸取经验教训，做的更好一些。二期计划用的工作流来处理业务的状态变化了，对我来说还是一个挑战，因为之前只是听说过，但是从来没有用过，也没有见别人用的好的。自己也看了一些工作流的实例， 就是感觉很繁琐，除了oa 系统以外不知道还有什么业务场景能适合。</p>
-<p>​        前些时间有点堕落因为心情不是很好，因为和我一起入职的优秀的小伙伴因为各种原因都离职了。本来都变得熟悉的公司瞬间又陌生了起来。每天自己挤地铁挤公交，来到公司，发现熟悉的面孔仿佛就在昨天 但是心里却知道再也看不到了。毕竟才认识两个月，还不是那么的熟悉，走了也就走了，以后真的可能再也见不着了。可能是自己足够的孤独，才导致这么的伤感吧。怪就怪自己不够优秀，没有自信的和他们多说说话聊聊天，一起吃个饭，也许就都是我的真正的好朋友了。唉 年龄大了</p>
-<p>​        今天好像一天都没有什么重要的事情，就多写一会。因为岁数也不小了，所以越来越感受到时间的宝贵。现在的每一分每一秒，都会成为过往。所有的感受，除了此时此刻，也绝对不会再重复。所以，对自己负责一点。让自己每一分都成为下个时间的铺垫，一步一步的进步而不是堕落。</p>
-<p>​        善于表达的人用语言倾诉自己的内心，优秀的人不用说话用作品来表达自己的能力，成大业者不必自己表达，自然有人把他铭记史册。人总不能默默的活着，我们需要向其他的人分享自己的内心展示自己的能力。这也是我们生存的意义，也是我想把这个文章发布出去的意义，即便我知道不会有几个人看到，我也应当抓紧一切机会表达自己。</p>
-
-          
-        
-      
+    <div class="logo">
+      <a href="/">轻微儿的博客</a>
     </div>
-
     
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/30/面试一周总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="轻微儿的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/30/面试一周总结/" class="post-title-link" itemprop="url">面试一周总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-30 11:04:20 / 修改时间：14:36:31" itemprop="dateCreated datePublished" datetime="2019-03-30T11:04:20+08:00">2019-03-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/30/面试一周总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/30/面试一周总结/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          暂时先加个密，别说坏话被面试的公司看到了，虽然担心有点多余.
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/30/面试一周总结/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
+  <div class="row clearfix no_form">
+    <div class="logo">
+      <a href="/">轻微儿的博客</a>
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <nav class="nav_scroll">
+      <ul class="clearfix">
       
       
-        <div class="post-eof"></div>
+      <li class="active"> <a href="/">主页</a> </li>
       
-    </footer>
+      
+      <li class> <a href="/archives">归档</a> </li>
+      
+      </ul>
+    </nav>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/在公司的最后一天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="轻微儿的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/20/在公司的最后一天/" class="post-title-link" itemprop="url">在公司的最后一天</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-20 15:11:09" itemprop="dateCreated datePublished" datetime="2019-03-20T15:11:09+08:00">2019-03-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-21 10:11:43" itemprop="dateModified" datetime="2019-03-21T10:11:43+08:00">2019-03-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/20/在公司的最后一天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/20/在公司的最后一天/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天是在公司的最后一天，早上一来我就和人事沟通了走之前最后需要做的事情</p>
-<p>其实像往常一样，早上还没到公司就有人找解决问题，到公司后我都尽量把它交给我的交接人来解决</p>
-<p>中午像往常一样和同事一起去吃饭，发现路边的刚开不久的花已经谢了。同事说，这么快花就谢了，我说“是啊~”</p>
-<p>吃饭的路上，一个同事还是一如既往的热情的和我介绍：去**玩吧，来一场说走就走的旅行，放松一下</p>
-<p>“不是我不想，一没钱二没有人陪三没有信仰，我怕我饿死在半路都没人知道。”</p>
-<p>吃完饭和同事去阳台打乒乓球，旁边几个同事在开黑玩王者，天气还有点闷热</p>
-<p>到了下午，天气逐渐变得阴暗起来。不一会儿，从工位上看见窗外下起了蒙蒙的细雨，这应该是春天的第一场雨。细雨绵绵。</p>
-<p>下午，开了几次会，做最后的遗留工作确认</p>
-<p>oa 上的交接流程等到最后没有走到头，还有一个财务经理没有批，电话也打不通，应该是太忙了。人事看了下还是爽快地给打印让我签了字（感激她）</p>
-<p>下班了，旁边的同事下班时间过了没一会，三三两两的都回家了</p>
-<p>我也收拾好东西，跟加班同事最后道别，像往常一样打卡下班</p>
-<p>只是这次，不会再来了</p>
-<p><code>&#39;走了就别再回来了，这个我每天打卡上班的地方&#39;</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-
-
-          </div>
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="liqw">
-            
-              <p class="site-author-name" itemprop="name">liqw</p>
-              <div class="site-description motion-element" itemprop="description">千里之行始于足下</div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">3</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-
-      
-
-    </div>
-  </aside>
-  
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">liqw</span>
-
-  
-
-  
+</header>
+            <div class="section" id="Search">
+	<div class="section_content">
+		<h3>
+		Search
+		<br>
+		Find out if your question is answered here
+		</h3>
+		<div id="search-content" class="search-content-modal unexpanded">
+			<div id="search-view">
+				<div class="search-info box">
+					<input type="text" id="search-input" placeholder="输入关键词">
+					<div class="magnifying-glass" id="search-button">
+						<svg xmlns="https://www.w3.org/2000/svg" viewbox="0 0 500 500">
+						<path fill="none" stroke="#fff" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/>
+					</svg>
+				</div>
+			</div>
+			<div class="modal" id="search-result" style="display:none">
+				<h2 id="search-result-title">Found 0 match(es):</h2>
+				<ul id="search-result-list">
+				</ul>
+				<span>
+					<button onclick="dismissSearchResultModal()">×</button>
+				</span>
+			</div>
+		</div>
+	</div>
 </div>
 
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+var path = "/search.xml";
+searchFunc(path, 'search-input', 'search-result-list');
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
-
-
-
-
-  
-
-  
-
-
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
-
-
-  
-
-  
-
-  
-
-  
-  
-
-<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
-
-
-
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
 <script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'RxdwgckxDp0FG8Yh4HotAi0V-gzGzoHsz',
-    appKey: 'dWXIvRvjs1nLBTJzz53XxFc3',
-    placeholder: '^_^',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: '' || 'zh-cn'
-  });
+function dismissSearchResultModal() {
+	document.getElementById("search-result").style.display = "none";
+}
 </script>
+</div>
+<div class="section" id="PostList">
+	<h2 class="center">Latest List</h2>
+	<div class="post-list">
+		
+		<p class="post-title"><a href="/2019/07/09/工作随笔2/">1. 工作随笔</a></p>
+		
+		<p class="post-title"><a href="/2019/06/28/工作随笔/">2. 工作随笔</a></p>
+		
+		<p class="post-title"><a href="/2019/03/30/面试一周总结/">3. 面试一周总结</a></p>
+		
+		<p class="post-title"><a href="/2019/03/20/在公司的最后一天/">4. 在公司的最后一天</a></p>
+		
+	</div>
+</div>
 
+	
+	
+	
 
-
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+            <footer>
+	<div class="footer_wrap">
+		<div class="social">
+			<ul class="clearfix">
+				
+				
+				<li> <a href="http://github.com/cheng-kang" target="_blank"> <img src="/img/GitHub.png"> </a> </li>
+				
+				
+				
+				<li> <a href="http://www.weibo.com/progrant" target="_blank"> <img src="/img/Weibo.png"> </a> </li>
+				
+				
+				
+				<li> <a href="https://twitter.com/ScotlAnt" target="_blank"> <img src="/img/Twitter.png"> </a> </li>
+				
+				
+				
+				
+			</ul>
+		</div>
+		<img src="/img/line.jpg">
+		<div class="copyright">
+			&copy; 2019 轻微儿的博客 | Provided By  <a title="liqw" href="http://chengkang.me/" target="_blank">liqw</a>
+		</div>
+	</div>
+</footer>
+        </div>
+        <script type="text/javascript">
+        function scrollYListener() {
+        var searchHeight = parseInt(getComputedStyle(document.getElementById("Search")).height)
+        var width = document.documentElement.clientWidth;
+        var supportPageOffset = window.pageXOffset !== undefined;
+        var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+        var scrollY = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+        if (scrollY >= searchHeight-10) {
+        document.getElementsByTagName('header')[0].style.backgroundColor = "#cd4b4b";
+        document.getElementsByClassName('logo')[0].style.backgroundColor = "#cd4b4b";
+        } else {
+        document.getElementsByTagName('header')[0].style.backgroundColor = "#4f8e8e";
+        document.getElementsByClassName('logo')[0].style.backgroundColor = "#4f8e8e";
+        }
+        }
+        var isMenuExpanded = false;
+        document.getElementById("mobile_menu_btn").onclick = function toggleMobileMenu() {
+        if (isMenuExpanded) {
+        document.getElementsByClassName('slide_menu')[0].className = "slide_menu";
+        } else {
+        document.getElementsByClassName('slide_menu')[0].className += " mobile_menu_active";
+        }
+        isMenuExpanded = !isMenuExpanded;
+        }
+        </script>
+        
+        
+    </body>
 </html>
