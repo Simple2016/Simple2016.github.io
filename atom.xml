@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>liqwer</title>
+  
+  <subtitle>闲看庭前花开花落 漫随天际云卷云舒</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-07-25T06:50:24.825Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>liqw</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis下载</title>
+    <link href="http://yoursite.com/2019/07/25/%E6%8A%80%E6%9C%AF/redis%20%E4%B8%8B%E8%BD%BD/"/>
+    <id>http://yoursite.com/2019/07/25/技术/redis 下载/</id>
+    <published>2019-07-25T06:44:00.000Z</published>
+    <updated>2019-07-25T06:50:24.825Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">https://github.com/MSOpenTech/redis/releases</a></p><p><img src="assets/1564037157249.png" alt="1564037157249"></p><h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><p>找到文件名为：<code>redis.windows-service.conf</code></p><p>打开后用<code>Ctrl + F</code>查找：<code>requirepass</code></p><h4 id="IP绑定"><a href="#IP绑定" class="headerlink" title="IP绑定"></a>IP绑定</h4><p><code>Ctrl + F</code>搜索<code>127.0.0.1</code></p><p>我们一般就绑定内网，默认是内网外网都可以访问</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;下载地址&quot;&gt;&lt;a href=&quot;#下载地址&quot; class=&quot;headerlink&quot; title=&quot;下载地址&quot;&gt;&lt;/a&gt;下载地址&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/MSOpenTech/redis/releases&quot; target=
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="redis" scheme="http://yoursite.com/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人生的一道道迷</title>
+    <link href="http://yoursite.com/2019/07/23/%E6%97%A5%E8%AE%B0/%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E9%81%93%E9%81%93%E8%B0%9C/"/>
+    <id>http://yoursite.com/2019/07/23/日记/人生的一道道谜/</id>
+    <published>2019-07-23T06:23:00.000Z</published>
+    <updated>2019-08-02T09:15:35.879Z</updated>
+    
+    <content type="html"><![CDATA[<p>我把自己的人生比作一道道的谜题。</p><p>不管是工作生活学习，我都遇到了各种难题。怎么去面对，去解决，这就是我的人生需要去做的事情</p><p>希望自己在清醒着的时候，记录下这些想法，当自己迷茫的时候能拉自己一把，让自己重新振作起来</p><p>有些问题，自己还没有找到答案，以后会持续更新</p><ol><li><p>管不住自己，总是想玩。玩过之后又觉得对不起自几。 有时候定好的目标，但是稍微一点松懈，就放纵了。</p><blockquote><p>自律，真的不是一个容易得到的东西，身边的环境，自己的思想境界，身体的健康程度，对未来的预判，都决定了自己能不能坚持，持续地去做一件有意义的事情，以及这个事情在未来看确实有意义</p></blockquote></li><li><p>如何看待生活中的不平等。比如</p><ol><li><p>有让人提不起来干劲的：有的人当着你的面说你快写，写完了让我抄一下。你快做，做好了教教我怎么做。他们理智气壮，仿佛这就是你该做的。</p><blockquote><p>立地成佛，普度众生。如果自己做自己擅长的事情，还能给别人带来帮助，何乐而不为。但是前提确实是帮助了对方，这个判断就不是我自己的责任了。最终的结果好坏是大家的选择，我愿意做，你也要愿意承担结果</p></blockquote></li><li><p>你可能奋斗了好几年赞一个首付，别人拆迁分了好几套</p><blockquote><p>虽然我有时候也跟自己说“做个俗人，贪财好色”， 但是，金钱、财富、荣誉、权势、地位等等都不过是身外之物，生不带来，死不带去。 </p></blockquote></li><li><p>父母辛辛苦苦工作才让自己上学，最后出来才证几千块，别人从小不缺钱花，也不上学，最后是你的老板，给你发工资，你替他干活。</p><blockquote><p>如果说活在当下的话， 当下我选择认命。还能怎么办，现在让我超过他们，不如死的痛快</p></blockquote></li></ol></li><li><p>怎么看待人际关系，有的人生来就善于交际，说话办事特别好使，而像我这样不会交际人，和一群这样的人在一起的时候感觉自己就是别人眼里的傻子。</p><blockquote><p>1 不必羡慕，也不要总是做自己不擅长的事情，知道自己不善于交际，就把时间花在自己擅长的事情上去。2 突破自己，不能完全活在自己的世界里，但是也不随波逐流，有选择的社交。</p></blockquote></li><li><p>为什么定下的计划总是实现不了，想好的东西只是想想罢了</p><blockquote><p>坚持不下去，只是自己还没有达到那个水平.</p></blockquote></li><li><p>梦想是永恒的，但时间不是。喜欢像小孩一样的活着，喜欢单纯美好的事情。但是生活却不是这样的</p><blockquote><p>就像一颗树，生命有春天也有冬天，最后总有枯萎的那一刻。这是一个过程，我也是人世间的一颗树，所以我也要经历这些，生老病死，我不能把时间定格在某一刻。我的思想是我身体的一部分，我的身体在一天天的变化，我的思想也是。所以今天的我不是昨天的我也不是下一刻的我。</p></blockquote></li><li><p>为什么要活着，生活的意义到底是什么，这个问了一千遍的问题，总是不能给自己一个永恒的答案</p><blockquote><p>首先，在大多数情况下，并不是你活着，你就存在了。只有当大家数人数的时候，才会算你一个，在其他别的情况下，自己可能根本就没有存在的余地。如果真想要继续存在的时候，</p></blockquote></li></ol><p>   ​    </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我把自己的人生比作一道道的谜题。&lt;/p&gt;
+&lt;p&gt;不管是工作生活学习，我都遇到了各种难题。怎么去面对，去解决，这就是我的人生需要去做的事情&lt;/p&gt;
+&lt;p&gt;希望自己在清醒着的时候，记录下这些想法，当自己迷茫的时候能拉自己一把，让自己重新振作起来&lt;/p&gt;
+&lt;p&gt;有些问题，自己还没
+      
+    
+    </summary>
+    
+      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>时间，到底有多长</title>
+    <link href="http://yoursite.com/2019/07/17/%E6%97%A5%E8%AE%B0/%E6%97%B6%E9%97%B4%EF%BC%8C%E5%88%B0%E5%BA%95%E6%9C%89%E5%A4%9A%E9%95%BF/"/>
+    <id>http://yoursite.com/2019/07/17/日记/时间，到底有多长/</id>
+    <published>2019-07-17T07:16:00.000Z</published>
+    <updated>2019-07-17T09:02:35.803Z</updated>
+    
+    <content type="html"><![CDATA[<p>时间，对于我来说到底有多长呢？</p><a id="more"></a><blockquote><p>我想，时间的长短，取决于犹豫不决了多久</p></blockquote><p>喜欢在不知道怎么做的时候给自己一点时间，浏览下自己收藏的博客。从来我都觉得，这些人都是一群有灵魂的人。好几年前的我20出头，技术能力不怎么样，也想自己搭建博客，但是都败给了不成熟和贪玩。现在快三十岁，看到了好看的博客，发现博主也是当年自己的年纪，不由得心生感慨，时间都用在了哪里</p><p>有果必有因，怕已经结了果，还不知道因在哪里</p><h4 id="懵懂"><a href="#懵懂" class="headerlink" title="懵懂"></a>懵懂</h4><p>时间什么时候变短了那，可能就是我在上大学的时候。 第一次通宵，无数次熬夜，早上晚起，夜里不睡，让时间对我来说完全变成了不够用。一起床就是十点多，一玩起来就到了凌晨。放纵，从而变得虚无。那些之前的梦想，全部变成了压箱底的废纸。</p><h4 id="迷失"><a href="#迷失" class="headerlink" title="迷失"></a>迷失</h4><p>回首过往，我一直在时间里迷失。小时候的我就对任何东西都感兴趣，我也在想，是不什么都懂的人什么也不精通，逐渐变成了没有主见和个性的人。担忧并不是没有道理的，我就成为了这样的人，起码我是这么认为的。 其实环境原因起到了很大的作用，但是又能说什么呢，比起环境，你能要求自己出生在什么地方吗？所以，我也是讲道理的人，我不想把自己的过往问题归结到自己无能为力改变的事情上。我只想让我的过去变得清晰起来。因为，我一直觉的我的过去是一个谜团，我不知道该怎么办，我也不知道为什么，总之前途一片迷茫。我看不到未来，未来的我也看不到那些过去</p><h4 id="追梦"><a href="#追梦" class="headerlink" title="追梦"></a>追梦</h4><p>追梦，如果我有的话。时间可以让梦变成现实，也可以让现实沉浸在梦里。我幻想自己成为画家或者是演奏家或者是书法家或者是设计师甚至是游戏职业玩家。所以我现在什么也不是，哈哈。这些梦想，都变成了我的羡慕对象。如果你的职业是其中的一个，那么你肯定过着我向往到人生。</p><h4 id="无聊"><a href="#无聊" class="headerlink" title="无聊"></a>无聊</h4><p>最后的最后，我就是现在的样子。一天的时间对我来说真的好短。每天早上疯了似得上班去，下班后像个丢了 魂的野鬼走回家。什么都不敢做，一做就11点，不做又发慌，衣服要洗，东西要整理。又想学习，又想玩。玩完了就会空虚，一学习就会觉得无聊。直到深夜，想到再不睡明天起不来要迟到，躺床强迫自己睡，最终一事无成，像极了人生。</p><h4 id="反省"><a href="#反省" class="headerlink" title="反省"></a>反省</h4><p>所以时间对我来说，真的不够用，时间没有变短，是我变得太消耗时间了。</p><p>我是什么，这是个问题，如果我不是画家，不是我想成为的一切，那我又成为了什么。</p><p>我有没有持之以恒的去做一件事， 我有没有尽心尽力的把自己的时间充分的利用，我有没有好好对待我做的每一件事情。如果我做到了，那么这些事情就说明了我是一个什么样的人吧。</p><p>我之前说过不经意间做的事情，才是我想做的，如果我做事情没有发现时间的存在，那么时间对我来说就真的充分利用了吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;时间，对于我来说到底有多长呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>渴望与恐惧</title>
+    <link href="http://yoursite.com/2019/07/09/%E6%97%A5%E8%AE%B0/%E6%B8%B4%E6%9C%9B%E4%B8%8E%E6%81%90%E6%83%A7/"/>
+    <id>http://yoursite.com/2019/07/09/日记/渴望与恐惧/</id>
+    <published>2019-07-09T06:45:00.000Z</published>
+    <updated>2019-07-17T06:27:18.416Z</updated>
+    
+    <content type="html"><![CDATA[<p>​    我一直都在渴望的一种境界就是，不知道而为之。就是在不知不觉中自己已经把一件事完成了。</p><a id="more"></a><p>​    很多事不是我不知道该去做，而是我知道的太多了。我要去做的事情有很多，多到我开始迷茫，哪个我都想去做，哪个我也都想去做好，我在思想上给了自己重大的包袱，我从一开始做一件事的时候就感到了累。我把自己时间许诺给这些事情，但是当时间到来时，在不知道从何下手和先休息一下我选择了后者。我又让我娱乐欲望把时间挥霍掉，我对自己说我没有办法把其中任何一件事情做好。时间久了，也就干脆不做了。</p><p>​    我一直在整理自己的东西，可是无奈的是东西怎么整理都整理不完。我现在住的是一个合租房，自己的空间只有原来住的地方的一半再小一点，一个床两张桌子，一个柜子，就已经把地方基本占满。租的时候主要考虑的是距离公司比较近，还有的想法是，先有一个住的地方，等以后有钱了，再换个大的。但是那些东西只是自己骗自己。我曾经有过无数的美好的想法，但凡其中任何一个实现了，也不至于现在的样子。</p><p>​    我的东西为什么那么多呢，因为我在不停的给自己目标，我想完成自己以前想要去做，可是没有去做的东西。但是最终的结果就是，买来了，就放在那里吃灰。 书，手工，乐器，厨具 以上的这些东西是我对自己最大的谎言。而且这些东西花了我不少的钱，我更没有理由仍掉他们。还有一些乱七八糟的东西则代表了我的过往，我也不想仍掉他们，或者是我没有办法面对现在的自己 。最终，我整理来整理去东西不见少。</p><p>​    我恐惧自己的东西不见了，我恐惧自己之前的东西找不到了，我从小就害怕掉东西，我丢过钥匙，丢过钱，他们都让我丢了自信，丢了快乐。我不敢面对没有了之前的东西的自己，我感觉那不是自己。我非常不适应空白的时间。我不知道自己该做什么并不是我没有事情去做，而是我提不起兴趣去做。那些在我想去做的时候分分钟就做好的东西，在那个时刻就像是一个高墙，树立在了我的面前，而我只能站在那里，不知道怎么办。而玩耍则不是的，我可以自己玩到困到倒床睡觉。但是玩是消耗品，玩后就发现自己已经消耗不起。</p><p>​    未完待续</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;​    我一直都在渴望的一种境界就是，不知道而为之。就是在不知不觉中自己已经把一件事完成了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>工作了快三个月</title>
+    <link href="http://yoursite.com/2019/06/28/%E6%97%A5%E8%AE%B0/%E5%B7%A5%E4%BD%9C%E4%BA%86%E5%BF%AB%E4%B8%89%E4%B8%AA%E6%9C%88/"/>
+    <id>http://yoursite.com/2019/06/28/日记/工作了快三个月/</id>
+    <published>2019-06-28T03:04:04.455Z</published>
+    <updated>2019-07-17T06:23:20.323Z</updated>
+    
+    <content type="html"><![CDATA[<p>​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。</p><a id="more"></a><p>​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的文件，那样会比较乱，尽量相同的东西写在一篇文章里，然后不定期的整理更新。</p><p>​        现在在做的一个项目是非常传统的项目，没有用到什么大数据，nosql, 分布式，微服务，区块链等等的技术。用的有数据库oracle sql查询统计，后端 spring mvc, 前端jquery 用的比较多，然后是模版技术 freemarker，这个用的不好，大部分还是用jquery 拼接的页面。这几天自己的感觉自己的基础倒是巩固了不少。因为目前是一个已经做好的一个项目，计划下个月做二期，所以从这个项目中也发现了很多不足，期望在二期中能吸取经验教训，做的更好一些。二期计划用的工作流来处理业务的状态变化了，对我来说还是一个挑战，因为之前只是听说过，但是从来没有用过，也没有见别人用的好的。自己也看了一些工作流的实例， 就是感觉很繁琐，除了oa 系统以外不知道还有什么业务场景能适合。</p><p>​        前些时间有点堕落因为心情不是很好，因为和我一起入职的优秀的小伙伴因为各种原因都离职了。本来都变得熟悉的公司瞬间又陌生了起来。每天自己挤地铁挤公交，来到公司，发现熟悉的面孔仿佛就在昨天 但是心里却知道再也看不到了。毕竟才认识两个月，还不是那么的熟悉，走了也就走了，以后真的可能再也见不着了。可能是自己足够的孤独，才导致这么的伤感吧。怪就怪自己不够优秀，没有自信的和他们多说说话聊聊天，一起吃个饭，也许就都是我的真正的好朋友了。唉 年龄大了</p><p>​        今天好像一天都没有什么重要的事情，就多写一会。因为岁数也不小了，所以越来越感受到时间的宝贵。现在的每一分每一秒，都会成为过往。所有的感受，除了此时此刻，也绝对不会再重复。所以，对自己负责一点。让自己每一分都成为下个时间的铺垫，一步一步的进步而不是堕落。</p><p>​        善于表达的人用语言倾诉自己的内心，优秀的人不用说话用作品来表达自己的能力，成大业者不必自己表达，自然有人把他铭记史册。人总不能默默的活着，我们需要向其他的人分享自己的内心展示自己的能力。这也是我们生存的意义，也是我想把这个文章发布出去的意义，即便我知道不会有几个人看到，我也应当抓紧一切机会表达自己。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>面试一周总结</title>
+    <link href="http://yoursite.com/2019/03/30/%E6%97%A5%E8%AE%B0/%E9%9D%A2%E8%AF%95%E4%B8%80%E5%91%A8%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2019/03/30/日记/面试一周总结/</id>
+    <published>2019-03-30T03:04:20.000Z</published>
+    <updated>2019-07-17T06:26:27.763Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/crypto-js.js"></script><script src="/mcommon.js"></script><h3 id="encrypt-message">请输入密码.</h3><link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> <div id="security"> <div> <div class="input-group"> <input type="password" class="form-control" aria-label="Enter the password." id="pass"/> <div class="input-group-btn"> <button type="button" class="btn btn-default" onclick="decryptAES()">确定</button> </div> </div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div>]]></content>
+    
+    <summary type="html">
+    
+      自己写写得了.没有参考价值（加密了，看不了）
+    
+    </summary>
+    
+      <category term="note" scheme="http://yoursite.com/categories/note/"/>
+    
+    
+      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在公司的最后一天</title>
+    <link href="http://yoursite.com/2019/03/20/%E6%97%A5%E8%AE%B0/%E5%9C%A8%E5%85%AC%E5%8F%B8%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/"/>
+    <id>http://yoursite.com/2019/03/20/日记/在公司的最后一天/</id>
+    <published>2019-03-20T07:11:09.000Z</published>
+    <updated>2019-07-17T06:22:42.930Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天是在公司的最后一天，早上一来我就和人事沟通了走之前最后需要做的事情</p><a id="more"></a><p>其实像往常一样，早上还没到公司就有人找解决问题，到公司后我都尽量把它交给我的交接人来解决</p><p>中午像往常一样和同事一起去吃饭，发现路边的刚开不久的花已经谢了。同事说，这么快花就谢了，我说“是啊~”</p><p>吃饭的路上，一个同事还是一如既往的热情的和我介绍：去**玩吧，来一场说走就走的旅行，放松一下</p><p>“不是我不想，一没钱二没有人陪三没有信仰，我怕我饿死在半路都没人知道。”</p><p>吃完饭和同事去阳台打乒乓球，旁边几个同事在开黑玩王者，天气还有点闷热</p><p>到了下午，天气逐渐变得阴暗起来。不一会儿，从工位上看见窗外下起了蒙蒙的细雨，这应该是春天的第一场雨。细雨绵绵。</p><p>下午，开了几次会，做最后的遗留工作确认</p><p>oa 上的交接流程等到最后没有走到头，还有一个财务经理没有批，电话也打不通，应该是太忙了。人事看了下还是爽快地给打印让我签了字（感激她）</p><p>下班了，旁边的同事下班时间过了没一会，三三两两的都回家了</p><p>我也收拾好东西，跟加班同事最后道别，像往常一样打卡下班</p><p>只是这次，不会再来了</p><p><code>&#39;走了就别再回来了，这个我每天打卡上班的地方&#39;</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天是在公司的最后一天，早上一来我就和人事沟通了走之前最后需要做的事情&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="note" scheme="http://yoursite.com/categories/note/"/>
+    
+    
+      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>技术须知</title>
+    <link href="http://yoursite.com/2019/01/01/%E6%8A%80%E6%9C%AF/%EF%BC%81%E6%8A%80%E6%9C%AF%E9%A1%BB%E7%9F%A5/"/>
+    <id>http://yoursite.com/2019/01/01/技术/！技术须知/</id>
+    <published>2018-12-31T17:56:00.000Z</published>
+    <updated>2019-07-17T06:03:56.338Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>这里记录了技术的成长，而不是废物是怎么炼成的</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;这里记录了技术的成长，而不是废物是怎么炼成的&lt;/li&gt;
+&lt;/ol&gt;
+
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>仓库须知</title>
+    <link href="http://yoursite.com/2019/01/01/%E4%BB%93%E5%BA%93/%EF%BC%81%E4%BB%93%E5%BA%93%E9%A1%BB%E7%9F%A5/"/>
+    <id>http://yoursite.com/2019/01/01/仓库/！仓库须知/</id>
+    <published>2018-12-31T17:50:00.000Z</published>
+    <updated>2019-07-17T06:35:03.393Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>这里是仓库，而不是一片圣地，但也不是垃圾堆</li><li>希望所有的想法都可以实现</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;这里是仓库，而不是一片圣地，但也不是垃圾堆&lt;/li&gt;
+&lt;li&gt;希望所有的想法都可以实现&lt;/li&gt;
+&lt;/ol&gt;
+
+      
+    
+    </summary>
+    
+      <category term="仓库" scheme="http://yoursite.com/categories/%E4%BB%93%E5%BA%93/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>爱好须知</title>
+    <link href="http://yoursite.com/2019/01/01/%E7%88%B1%E5%A5%BD/%EF%BC%81%E7%88%B1%E5%A5%BD%E9%A1%BB%E7%9F%A5/"/>
+    <id>http://yoursite.com/2019/01/01/爱好/！爱好须知/</id>
+    <published>2018-12-31T17:50:00.000Z</published>
+    <updated>2019-07-17T06:04:09.334Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>这里不是仓库，而是一片圣地</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;这里不是仓库，而是一片圣地&lt;/li&gt;
+&lt;/ol&gt;
+
+      
+    
+    </summary>
+    
+      <category term="爱好" scheme="http://yoursite.com/categories/%E7%88%B1%E5%A5%BD/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>想要注册的域名</title>
+    <link href="http://yoursite.com/2019/01/01/%E4%BB%93%E5%BA%93/%E6%83%B3%E8%A6%81%E6%B3%A8%E5%86%8C%E7%9A%84%E5%9F%9F%E5%90%8D/"/>
+    <id>http://yoursite.com/2019/01/01/仓库/想要注册的域名/</id>
+    <published>2018-12-31T17:50:00.000Z</published>
+    <updated>2019-07-17T06:37:24.815Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>xingli.com  （姓李） 这个域名2001 年注册 2019年10月到期。估计肯定有人续租的，相似的后缀有xingli.art 也可以</li><li></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;xingli.com  （姓李） 这个域名2001 年注册 2019年10月到期。估计肯定有人续租的，相似的后缀有xingli.art 也可以&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+      
+    
+    </summary>
+    
+      <category term="仓库" scheme="http://yoursite.com/categories/%E4%BB%93%E5%BA%93/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日记须知</title>
+    <link href="http://yoursite.com/2019/01/01/%E6%97%A5%E8%AE%B0/%EF%BC%81%E6%97%A5%E8%AE%B0%E9%A1%BB%E7%9F%A5/"/>
+    <id>http://yoursite.com/2019/01/01/日记/！日记须知/</id>
+    <published>2018-12-31T16:11:09.000Z</published>
+    <updated>2019-07-17T06:01:52.436Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>什么都可以记录，但是需要注意言辞</li><li>这里是你的品德存放的地方</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;什么都可以记录，但是需要注意言辞&lt;/li&gt;
+&lt;li&gt;这里是你的品德存放的地方&lt;/li&gt;
+&lt;/ol&gt;
+
+      
+    
+    </summary>
+    
+      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+</feed>
