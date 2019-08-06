@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/08/06/技术/关于hexo/1565069237465.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/06/技术/关于hexo/1565071459765.png">
-<meta property="og:updated_time" content="2019-08-06T06:53:05.714Z">
+<meta property="og:updated_time" content="2019-08-06T09:26:26.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于hexo">
 <meta name="twitter:description" content="如何在文章中引入图片先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下 1 首先，现在网上找了下，全是一样的不知道谁是原创的文章，要安装一个插件">
@@ -431,7 +431,7 @@
                 
               
 
-              <time title="创建时间：2019-08-06 10:48:00 / 修改时间：14:53:05" itemprop="dateCreated datePublished" datetime="2019-08-06T10:48:00+08:00">2019-08-06</time>
+              <time title="创建时间：2019-08-06 10:48:00 / 修改时间：17:26:26" itemprop="dateCreated datePublished" datetime="2019-08-06T10:48:00+08:00">2019-08-06</time>
             
 
             
@@ -525,6 +525,17 @@
 <p>3</p>
 <pre class=" language-javascript"><code class="language-javascript">npm install https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>CodeFalling<span class="token operator">/</span>hexo<span class="token operator">-</span>asset<span class="token operator">-</span>image <span class="token operator">--</span>save
 </code></pre>
+<h4 id="如何设置背景图片"><a href="#如何设置背景图片" class="headerlink" title="如何设置背景图片"></a>如何设置背景图片</h4><p>打开文档下themes\next\source\css\ _custom\custom.styl</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">// 设置背景图片
+body </span><span class="token punctuation">{</span>
+    <span class="token property">background</span><span class="token punctuation">:</span><span class="token url">url(/imgs/16pic_5550571_b.jpg)</span><span class="token punctuation">;</span>
+    <span class="token property">background-repeat</span><span class="token punctuation">:</span> repeat<span class="token punctuation">;</span>
+    <span class="token property">background-attachment</span><span class="token punctuation">:</span>fixed<span class="token punctuation">;</span>
+    <span class="token property">background-position</span><span class="token punctuation">:</span><span class="token number">50%</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+    <span class="token property">background-size</span><span class="token punctuation">:</span><span class="token number">200</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>其他一些样式也可以在这文件里设置</p>
 
       
     </div>
@@ -739,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何在文章中引入图片"><span class="nav-number">1.</span> <span class="nav-text">如何在文章中引入图片</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何在文章中引入图片"><span class="nav-number">1.</span> <span class="nav-text">如何在文章中引入图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何设置背景图片"><span class="nav-number">2.</span> <span class="nav-text">如何设置背景图片</span></a></li></ol></div>
             
 
           </div>
