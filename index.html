@@ -386,6 +386,949 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/09/技术/公租房项目重构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/09/技术/公租房项目重构/" class="post-title-link" itemprop="url">公租房项目重构</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-09 11:04:00 / 修改时间：17:32:24" itemprop="dateCreated datePublished" datetime="2019-08-09T11:04:00+08:00">2019-08-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/09/技术/公租房项目重构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/09/技术/公租房项目重构/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="layer-layui"><a href="#layer-layui" class="headerlink" title="layer/layui"></a>layer/layui</h3><h4 id="layer-打开弹出层"><a href="#layer-打开弹出层" class="headerlink" title="layer 打开弹出层"></a>layer 打开弹出层</h4><p>前提是后台使用的模板技术，模板页面经过数据赋值之后返回到前端，没有把dom 隐藏在同一个页面中，因为感觉页面会很乱，所以采用下边的这两种方法。</p>
+<p>这是第一种方式，iframe 的方式。</p>
+<p>缺点：1 父页面的按钮不能操作 iframe内的元素。所以iframe 里边的东西太多，需要下拉才能看到提交按钮。没有办法把按钮挪到</p>
+<p>2 iframe 操作完后反馈的成功失败的消息不容易发送到父页面。</p>
+<p>3 假如页面过期被被重定向了，iframe 可能会出现页面嵌套（因为我没有测试过）</p>
+<pre class=" language-JavaScript"><code class="language-JavaScript">layer.open({
+            type: 2, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+            title: '信息核验',
+            shadeClose: true,
+            shade: 0.3,
+            offset: "20%",
+            shadeClose: false,
+            area: ['1100px', '300px'],
+            content: common.ctx + "/qualificationCheck/check"
+            ,btn: ['全部关闭']               
+            ,yes: function(){
+                layer.closeAll();
+            }
+             ,success:function (layero1) {
+                alert(JSON.stringify(layero1.find("#cname111")));
+            }
+        });
+</code></pre>
+<p>第二种方法</p>
+<p>实现原理不是iframe ，所以其实显示的是在一个页面中的。所以可以使用layer 的btn 来操作弹出框内部的元素。</p>
+<p>提交数据方式比较灵活，请求后的返回容易获取并提示到父页面。重定向问题有解决方案，参考后续更新</p>
+<pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>common<span class="token punctuation">.</span>ctx <span class="token operator">+</span> <span class="token string">"/houseBaseInfo/communityData"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">var</span> layero <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            layer<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                type<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）</span>
+                content<span class="token punctuation">:</span> str <span class="token comment" spellcheck="true">//注意，如果str是object，那么需要字符拼接。</span>
+                <span class="token punctuation">,</span>area<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'900px'</span><span class="token punctuation">,</span> <span class="token string">'400px'</span><span class="token punctuation">]</span>
+                <span class="token punctuation">,</span>success<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span>layero1<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 页面加载成功后执行</span>
+                    layero <span class="token operator">=</span> layero1<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token punctuation">,</span>btn<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'提交'</span><span class="token punctuation">,</span><span class="token string">'关闭'</span><span class="token punctuation">]</span>
+                <span class="token punctuation">,</span>btn1<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">alert</span><span class="token punctuation">(</span>layero<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"#cname111"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 这里可以也使用jquery 直接操作元素</span>
+                    layer<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span>layer<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这里自动计算关闭最后一个打开的layer</span>
+                <span class="token punctuation">}</span>
+                <span class="token punctuation">,</span>btn2<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'关闭'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    layer<span class="token punctuation">.</span><span class="token function">closeAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 这里是关闭所有打开的layer</span>
+                <span class="token punctuation">}</span>
+                <span class="token punctuation">,</span>btnAlign<span class="token punctuation">:</span> <span class="token string">'c'</span> <span class="token comment" spellcheck="true">//按钮居中 l 居左 r 居右</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p><a href="https://www.layui.com/doc/modules/layer.html" title="layer 弹层组件开发文档" target="_blank" rel="noopener">layer 弹层组件开发文档</a></p>
+</blockquote>
+<h4 id="怎么正确引用css"><a href="#怎么正确引用css" class="headerlink" title="怎么正确引用css"></a>怎么正确引用css</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${request.contextPath}/cqgzfs/css/communityMangeNew.css<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+</code></pre>
+<p>注意一定要加 rel=”stylesheet”， 否则流量器不会加载这个css</p>
+<h3 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h3><h4 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[type='text']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"border"</span><span class="token punctuation">,</span><span class="token string">"1px solid #ccc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//设置某种type的input的样式</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='isgjj"</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//获取某个name 的input的值</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='FFWTS"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//获取被选中的值</span>
+</code></pre>
+<h4 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h4><pre class=" language-javascript"><code class="language-javascript">jQuery<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#rId0"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//前后空格</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#ccompany"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token string">"/g,"</span><span class="token operator">&amp;</span>quot<span class="token punctuation">;</span>"<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 文字替换</span>
+</code></pre>
+<h4 id="DOM-操作"><a href="#DOM-操作" class="headerlink" title="DOM 操作"></a>DOM 操作</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".tbodyUpload tr"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"td"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//第i个tr 第4个td 的属性data的值</span>
+</code></pre>
+<h3 id="freemarker"><a href="#freemarker" class="headerlink" title="freemarker"></a>freemarker</h3><h4 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h4><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 插入单个值 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Welcome ${user}!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 遍历list --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#list</span> <span class="token attr-name">animals</span> <span class="token attr-name">as</span> <span class="token attr-name">being</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>${being.name} for ${being.price} 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#list</span><span class="token punctuation">></span></span>
+</code></pre>
+<h4 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h4><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 如果2&lt;3 为true ,显示adsf --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#if</span> <span class="token attr-name">2</span> <span class="token attr-name">&lt;</span> <span class="token attr-name">3</span><span class="token punctuation">></span></span>    
+    adsf
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">></span></span>
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/技术/oracle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/08/技术/oracle/" class="post-title-link" itemprop="url">oracle</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-08 17:29:00" itemprop="dateCreated datePublished" datetime="2019-08-08T17:29:00+08:00">2019-08-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-09 11:14:44" itemprop="dateModified" datetime="2019-08-09T11:14:44+08:00">2019-08-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/08/技术/oracle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/08/技术/oracle/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="查询两个时间相差的秒"><a href="#查询两个时间相差的秒" class="headerlink" title="查询两个时间相差的秒"></a>查询两个时间相差的秒</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 查询两个时间相差的秒</span>
+<span class="token keyword">select</span> extract<span class="token punctuation">(</span>day <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span>
+       extract<span class="token punctuation">(</span>hour <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span> extract<span class="token punctuation">(</span>minute <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span>
+       extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token string">"seconds"</span> <span class="token keyword">from</span>
+  <span class="token punctuation">(</span>
+    <span class="token keyword">select</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:23.281000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span> <span class="token operator">-</span>
+           to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:22.984000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span> inter <span class="token keyword">from</span> dual
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">-- 或者  </span>
+  <span class="token keyword">select</span> extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:23.281000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>
+       extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:22.984000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span> 
+</code></pre>
+<h4 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">--查询 当前库中运行的 job ；</span>
+<span class="token keyword">SELECT</span> t<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span>  dba_jobs t
+<span class="token comment" spellcheck="true">--创建一个 定时任务 job</span>
+<span class="token keyword">declare</span>
+  job number<span class="token punctuation">;</span>
+<span class="token keyword">BEGIN</span>
+  DBMS_JOB<span class="token punctuation">.</span>SUBMIT<span class="token punctuation">(</span>  
+        JOB <span class="token operator">=</span><span class="token operator">></span> job<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*自动生成JOB_ID*/</span>  
+        WHAT <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'GET_WARNING_INFO(2, 202, '</span><span class="token string">'2,44,11'</span><span class="token string">');'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*需要执行的存储过程名称或SQL语句*/</span>  
+        NEXT_DATE <span class="token operator">=</span><span class="token operator">></span> sysdate<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*初次执行时间-立即执行*/</span>  
+        INTERVAL <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'trunc(sysdate,'</span><span class="token string">'mi'</span><span class="token string">')+1/(24*60)'</span> <span class="token comment" spellcheck="true">/*每隔1分钟执行一次*/</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  <span class="token keyword">commit</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+</code></pre>
+<p>相当详细，不想抄了</p>
+<p><a href="https://blog.csdn.net/sinat_35626559/article/details/78912828" target="_blank" rel="noopener">https://blog.csdn.net/sinat_35626559/article/details/78912828</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/日记/也许是明天也许是永远/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/08/日记/也许是明天也许是永远/" class="post-title-link" itemprop="url">也许是明天也许是永远</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-08 14:42:00 / 修改时间：17:07:50" itemprop="dateCreated datePublished" datetime="2019-08-08T14:42:00+08:00">2019-08-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日记/" itemprop="url" rel="index"><span itemprop="name">日记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/08/日记/也许是明天也许是永远/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/08/日记/也许是明天也许是永远/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>简单的事情不想做，复杂的事情做不了，这就是我现在的状态。</p>
+</blockquote>
+<p>要么现在就去做，要么永远都做不了。我所有的经历，都在诉说着这么一个观点。</p>
+<p>我想着要整理我的房间，但是每一次一拖再拖。我都开始怀疑自己，到底有没有可能完成这个工作。</p>
+<p>每次我整理的时候，总是会遇到各种困难。我是在是一个太有情怀的人了，各种东西，文件，还是上学时留下的。还有没有完成的手办。一遇到这些，我就整理不下去了。 就像整理书籍一样。想仍一本书，就开始读了起来，读着读着发现这个书不能扔，然后花了好长时间就整理了几本书。</p>
+<p>我要是整理东西，就该站在整理的层面。那些东西就算之前没有做完，也不能要了。没有做完的事情多着呢，整理就是把那些自己没有用的东西扔掉，好留下时间做更需要的东西。之前没有完成的东西就给自己一个教训。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/技术/关于idea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/08/技术/关于idea/" class="post-title-link" itemprop="url">关于ideaIDE</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-08 14:24:00 / 修改时间：15:27:02" itemprop="dateCreated datePublished" datetime="2019-08-08T14:24:00+08:00">2019-08-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/08/技术/关于idea/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/08/技术/关于idea/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="我自己觉得比较好用的插件"><a href="#我自己觉得比较好用的插件" class="headerlink" title="我自己觉得比较好用的插件"></a>我自己觉得比较好用的插件</h4><p>lombok(自动get set)</p>
+<p>rainbow brackets(彩虹括号)</p>
+<p>Free Mybatis plugin (mapper跳转)</p>
+<p>Maven helper(右键maven选项)</p>
+<p>Background Image plus(设置背景)</p>
+<p>Alibaba Java Coding Guidelines(阿里巴巴编码手册)</p>
+<h4 id="最近的一个项目问题"><a href="#最近的一个项目问题" class="headerlink" title="最近的一个项目问题"></a>最近的一个项目问题</h4><p>controller里 点击模板字符串 不能跳转到模版了，目前没有找到问题。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/技术/关于hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -907,7 +1850,7 @@ body </span><span class="token punctuation">{</span>
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-17 14:23:20" itemprop="dateModified" datetime="2019-07-17T14:23:20+08:00">2019-07-17</time>
+                <time title="修改时间：2019-08-08 14:12:29" itemprop="dateModified" datetime="2019-08-08T14:12:29+08:00">2019-08-08</time>
               
             
           </span>
@@ -1001,16 +1944,15 @@ body </span><span class="token punctuation">{</span>
 
       
         
-          <p>​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。</p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/28/日记/工作了快三个月/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
+            <p>​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。</p>
+<p>​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的文件，那样会比较乱，尽量相同的东西写在一篇文章里，然后不定期的整理更新。</p>
+<p>​        现在在做的一个项目是非常传统的项目，没有用到什么大数据，nosql, 分布式，微服务，区块链等等的技术。用的有数据库oracle sql查询统计，后端 spring mvc, 前端jquery 用的比较多，然后是模版技术 freemarker，这个用的不好，大部分还是用jquery 拼接的页面。这几天自己的感觉自己的基础倒是巩固了不少。因为目前是一个已经做好的一个项目，计划下个月做二期，所以从这个项目中也发现了很多不足，期望在二期中能吸取经验教训，做的更好一些。二期计划用的工作流来处理业务的状态变化了，对我来说还是一个挑战，因为之前只是听说过，但是从来没有用过，也没有见别人用的好的。自己也看了一些工作流的实例， 就是感觉很繁琐，除了oa 系统以外不知道还有什么业务场景能适合。</p>
+<p>​        前些时间有点堕落因为心情不是很好，因为和我一起入职的优秀的小伙伴因为各种原因都离职了。本来都变得熟悉的公司瞬间又陌生了起来。每天自己挤地铁挤公交，来到公司，发现熟悉的面孔仿佛就在昨天 但是心里却知道再也看不到了。毕竟才认识两个月，还不是那么的熟悉，走了也就走了，以后真的可能再也见不着了。可能是自己足够的孤独，才导致这么的伤感吧。怪就怪自己不够优秀，没有自信的和他们多说说话聊聊天，一起吃个饭，也许就都是我的真正的好朋友了。唉 年龄大了</p>
+<p>​        今天好像一天都没有什么重要的事情，就多写一会。因为岁数也不小了，所以越来越感受到时间的宝贵。现在的每一分每一秒，都会成为过往。所有的感受，除了此时此刻，也绝对不会再重复。所以，对自己负责一点。让自己每一分都成为下个时间的铺垫，一步一步的进步而不是堕落。</p>
+<p>​        善于表达的人用语言倾诉自己的内心，优秀的人不用说话用作品来表达自己的能力，成大业者不必自己表达，自然有人把他铭记史册。人总不能默默的活着，我们需要向其他的人分享自己的内心展示自己的能力。这也是我们生存的意义，也是我想把这个文章发布出去的意义，即便我知道不会有几个人看到，我也应当抓紧一切机会表达自己。</p>
+
           
-          <!--/noindex-->
         
       
     </div>
@@ -1507,879 +2449,6 @@ body </span><span class="token punctuation">{</span>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/仓库/关于炉石/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/仓库/关于炉石/" class="post-title-link" itemprop="url">关于炉石</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 01:50:00" itemprop="dateCreated datePublished" datetime="2019-01-01T01:50:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-06 10:22:35" itemprop="dateModified" datetime="2019-08-06T10:22:35+08:00">2019-08-06</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/仓库/" itemprop="url" rel="index"><span itemprop="name">仓库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/01/01/仓库/关于炉石/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/仓库/关于炉石/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这个游戏其实从一出来我就接触了。断断续续玩到了现在。<br>1 充钱<br>首先说这个游戏的核心是什么，那就是充钱。游戏里边的卡对于大多数人来说性价比不高。以前也听说过那种纸的卡片也挺贵的，所以怎么说呢，虽然是合理的但是还是接受不了。就拿现在最新的更新包来说吧，488块. 买的只是一个更新包。 而在别的平台上可以买一个不错的游戏了。而我更愿意买一件中意的衣服或鞋子。<br>2 随机<br>你花钱了还是不行的，你要花很多的钱才可以。 因为开卡是随机的。可能你开到的卡能不能用上全看脸。<br>就算你凑够了一个卡组，能不能赢也是有很大随机性的。因为可操作东西不多。一个自己发牌员的随机和对方发牌员的随机。你胡的时候对面刚好针对你。<br>所以玩这个游戏，千万不要认真。重要是体验那种赌博的快感。没错就是赌博。简直和那种赌博差不多，都是由发牌员发牌，然后比大小。<br>对手职业不确定，对手的牌库类型不确定，牌序不确定，还有很多卡牌的效果也是随机的。所以这个游戏的娱乐性是显而易见的。 当然也不能说没有技术可言，就是赌就行了。<br>3 积累<br>如果你是一个坚持的人，可以每天完成任务积累金币，那也还好。但我不是，我也不想。我曾经这么试过积累金币的过程太变态了。我不是一个能坚持下去的人、<br>4 封闭游戏<br>没有社交功能，游戏也不温不火，我的朋友圈没有人玩，就我自己玩。</p>
-<p>总结，<br>这个游戏真的不能认真，不然能气死自己。还记得我刚开始玩的心态是，不管自己的还是对面随机的牌不错了都会觉得不可思议。所以我有一次的弃坑了。这几天一直在想要不要488买一下最新的扩展包，因为玩了这么久，还是没有上传说。最后还是算了，因为实在不想自娱自乐地玩游戏了。而且我一输就心态崩溃，尤其是我现在的时间这么宝贵，所以不能浪费钱又浪费时间。我还是多把时间放到学习、设计和交朋友上。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/仓库/想要注册的域名/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/仓库/想要注册的域名/" class="post-title-link" itemprop="url">想要注册的域名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 01:50:00" itemprop="dateCreated datePublished" datetime="2019-01-01T01:50:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-17 14:37:24" itemprop="dateModified" datetime="2019-07-17T14:37:24+08:00">2019-07-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/仓库/" itemprop="url" rel="index"><span itemprop="name">仓库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/01/01/仓库/想要注册的域名/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/仓库/想要注册的域名/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>xingli.com  （姓李） 这个域名2001 年注册 2019年10月到期。估计肯定有人续租的，相似的后缀有xingli.art 也可以</li>
-<li></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/仓库/！仓库须知/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/仓库/！仓库须知/" class="post-title-link" itemprop="url">仓库须知</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 01:50:00" itemprop="dateCreated datePublished" datetime="2019-01-01T01:50:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-17 14:35:03" itemprop="dateModified" datetime="2019-07-17T14:35:03+08:00">2019-07-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/仓库/" itemprop="url" rel="index"><span itemprop="name">仓库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/01/01/仓库/！仓库须知/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/仓库/！仓库须知/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>这里是仓库，而不是一片圣地，但也不是垃圾堆</li>
-<li>希望所有的想法都可以实现</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/爱好/！爱好须知/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/爱好/！爱好须知/" class="post-title-link" itemprop="url">爱好须知</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 01:50:00" itemprop="dateCreated datePublished" datetime="2019-01-01T01:50:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-17 14:04:09" itemprop="dateModified" datetime="2019-07-17T14:04:09+08:00">2019-07-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/爱好/" itemprop="url" rel="index"><span itemprop="name">爱好</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/01/01/爱好/！爱好须知/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/爱好/！爱好须知/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>这里不是仓库，而是一片圣地</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/日记/！日记须知/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2648,11 +2717,7 @@ body </span><span class="token punctuation">{</span>
                     
                       
                     
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2677,7 +2742,9 @@ body </span><span class="token punctuation">{</span>
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

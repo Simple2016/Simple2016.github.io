@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[公租房项目重构]]></title>
+    <url>%2F2019%2F08%2F09%2F%E6%8A%80%E6%9C%AF%2F%E5%85%AC%E7%A7%9F%E6%88%BF%E9%A1%B9%E7%9B%AE%E9%87%8D%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[layer/layuilayer 打开弹出层前提是后台使用的模板技术，模板页面经过数据赋值之后返回到前端，没有把dom 隐藏在同一个页面中，因为感觉页面会很乱，所以采用下边的这两种方法。 这是第一种方式，iframe 的方式。 缺点：1 父页面的按钮不能操作 iframe内的元素。所以iframe 里边的东西太多，需要下拉才能看到提交按钮。没有办法把按钮挪到 2 iframe 操作完后反馈的成功失败的消息不容易发送到父页面。 3 假如页面过期被被重定向了，iframe 可能会出现页面嵌套（因为我没有测试过） layer.open({ type: 2, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层） title: '信息核验', shadeClose: true, shade: 0.3, offset: "20%", shadeClose: false, area: ['1100px', '300px'], content: common.ctx + "/qualificationCheck/check" ,btn: ['全部关闭'] ,yes: function(){ layer.closeAll(); } ,success:function (layero1) { alert(JSON.stringify(layero1.find("#cname111"))); } }); 第二种方法 实现原理不是iframe ，所以其实显示的是在一个页面中的。所以可以使用layer 的btn 来操作弹出框内部的元素。 提交数据方式比较灵活，请求后的返回容易获取并提示到父页面。重定向问题有解决方案，参考后续更新 $.post(common.ctx + "/houseBaseInfo/communityData", {}, function(str){ var layero = {}; layer.open({ type: 1, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层） content: str //注意，如果str是object，那么需要字符拼接。 ,area: ['900px', '400px'] ,success:function (layero1) {// 页面加载成功后执行 layero = layero1; } ,btn: ['提交','关闭'] ,btn1:function () { alert(layero.find("#cname111").val());// 这里可以也使用jquery 直接操作元素 layer.close(layer.index);//这里自动计算关闭最后一个打开的layer } ,btn2:function () { alert('关闭'); layer.closeAll();// 这里是关闭所有打开的layer } ,btnAlign: 'c' //按钮居中 l 居左 r 居右 }); }); layer 弹层组件开发文档 怎么正确引用css&lt;link rel="stylesheet" href="${request.contextPath}/cqgzfs/css/communityMangeNew.css"/> 注意一定要加 rel=”stylesheet”， 否则流量器不会加载这个css jquery获取元素$("input[type='text']").css("border","1px solid #ccc");//设置某种type的input的样式 $("input[name='isgjj" + i + "']:checked").val()//获取某个name 的input的值 $("input[name='FFWTS" + (i + 1) + "']:checked").val(); //获取被选中的值 字符串处理jQuery.trim($("#rId0").val()) //前后空格 $("#ccompany" + (i + 1)).val().replace(/"/g,"&amp;quot;")// 文字替换 DOM 操作$(".tbodyUpload tr").eq(i).find("td").eq(4).attr("data") //第i个tr 第4个td 的属性data的值 freemarker插值&lt;!-- 插入单个值 --> &lt;h1>Welcome ${user}!&lt;/h1> &lt;!-- 遍历list --> &lt;#list animals as being> &lt;li>${being.name} for ${being.price} &lt;/#list> 判断&lt;!-- 如果2&lt;3 为true ,显示adsf --> &lt;#if 2 &lt; 3> adsf &lt;/#if>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[oracle]]></title>
+    <url>%2F2019%2F08%2F08%2F%E6%8A%80%E6%9C%AF%2Foracle%2F</url>
+    <content type="text"><![CDATA[查询两个时间相差的秒-- 查询两个时间相差的秒 select extract(day from inter) * 24 * 60 * 60 + extract(hour from inter) * 60 * 60 + extract(minute from inter) * 60 + extract(second from inter) "seconds" from ( select to_timestamp('2011-09-14 12:34:23.281000000', 'yyyy-mm-dd hh24:mi:ss.ff') - to_timestamp('2011-09-14 12:34:22.984000000', 'yyyy-mm-dd hh24:mi:ss.ff') inter from dual ); -- 或者 select extract(second from to_timestamp('2011-09-14 12:34:23.281000000', 'yyyy-mm-dd hh24:mi:ss.ff'))- extract(second from to_timestamp('2011-09-14 12:34:22.984000000', 'yyyy-mm-dd hh24:mi:ss.ff')) from dual; 定时任务--查询 当前库中运行的 job ； SELECT t.* FROM dba_jobs t --创建一个 定时任务 job declare job number; BEGIN DBMS_JOB.SUBMIT( JOB => job, /*自动生成JOB_ID*/ WHAT => 'GET_WARNING_INFO(2, 202, ''2,44,11'');', /*需要执行的存储过程名称或SQL语句*/ NEXT_DATE => sysdate, /*初次执行时间-立即执行*/ INTERVAL => 'trunc(sysdate,''mi'')+1/(24*60)' /*每隔1分钟执行一次*/ ); commit; end; 相当详细，不想抄了 https://blog.csdn.net/sinat_35626559/article/details/78912828]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>oracle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[也许是明天也许是永远]]></title>
+    <url>%2F2019%2F08%2F08%2F%E6%97%A5%E8%AE%B0%2F%E4%B9%9F%E8%AE%B8%E6%98%AF%E6%98%8E%E5%A4%A9%E4%B9%9F%E8%AE%B8%E6%98%AF%E6%B0%B8%E8%BF%9C%2F</url>
+    <content type="text"><![CDATA[简单的事情不想做，复杂的事情做不了，这就是我现在的状态。 要么现在就去做，要么永远都做不了。我所有的经历，都在诉说着这么一个观点。 我想着要整理我的房间，但是每一次一拖再拖。我都开始怀疑自己，到底有没有可能完成这个工作。 每次我整理的时候，总是会遇到各种困难。我是在是一个太有情怀的人了，各种东西，文件，还是上学时留下的。还有没有完成的手办。一遇到这些，我就整理不下去了。 就像整理书籍一样。想仍一本书，就开始读了起来，读着读着发现这个书不能扔，然后花了好长时间就整理了几本书。 我要是整理东西，就该站在整理的层面。那些东西就算之前没有做完，也不能要了。没有做完的事情多着呢，整理就是把那些自己没有用的东西扔掉，好留下时间做更需要的东西。之前没有完成的东西就给自己一个教训。]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于ideaIDE]]></title>
+    <url>%2F2019%2F08%2F08%2F%E6%8A%80%E6%9C%AF%2F%E5%85%B3%E4%BA%8Eidea%2F</url>
+    <content type="text"><![CDATA[我自己觉得比较好用的插件lombok(自动get set) rainbow brackets(彩虹括号) Free Mybatis plugin (mapper跳转) Maven helper(右键maven选项) Background Image plus(设置背景) Alibaba Java Coding Guidelines(阿里巴巴编码手册) 最近的一个项目问题controller里 点击模板字符串 不能跳转到模版了，目前没有找到问题。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>ideaIDE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于hexo]]></title>
     <url>%2F2019%2F08%2F06%2F%E6%8A%80%E6%9C%AF%2F%E5%85%B3%E4%BA%8Ehexo%2F</url>
     <content type="text"><![CDATA[如何在文章中引入图片先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下 1 首先，现在网上找了下，全是一样的不知道谁是原创的文章，要安装一个插件 npm install hexo-asset-image –save 不好使，卸载 npm uninstall hexo-asset-image 2 官网看看 https://hexo.io/zh-cn/docs/asset-folders 两种解决方式。 第一种很简单，在about相同层级新建images 目录，然后所有文章都引用里边的图片，缺点就是需要手动的向images 目录里放文件。 第二种使用标签插件，，，，，看都不想看。看完了发现是比较难受的方式，就是md 不支持的语法，必须要生成页面后才能看到效果 3 最后的解决办法，1 不用手动拷贝图片，2 就用md 的语法，这样md编辑器里也可以看到效果。 其实还是第一种解决办法，只是第一种的插件在hexo 3 里过期了，需用用另个一github上的 解决步骤： 1 修改配置文件_config.yml 为 post_asset_folder: true 2 我使用的是typora . 文件-&gt; 偏好设置 3 npm install https://github.com/CodeFalling/hexo-asset-image --save 如何设置背景图片打开文档下themes\next\source\css\ _custom\custom.styl // 设置背景图片 body { background:url(/imgs/16pic_5550571_b.jpg); background-repeat: repeat; background-attachment:fixed; background-position:50% 50%; background-size:200px; } 其他一些样式也可以在这文件里设置]]></content>
@@ -47,41 +88,6 @@
     <content type="text"><![CDATA[这里记录了技术的成长，而不是废物是怎么炼成的]]></content>
       <categories>
         <category>技术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[关于炉石]]></title>
-    <url>%2F2019%2F01%2F01%2F%E4%BB%93%E5%BA%93%2F%E5%85%B3%E4%BA%8E%E7%82%89%E7%9F%B3%2F</url>
-    <content type="text"><![CDATA[这个游戏其实从一出来我就接触了。断断续续玩到了现在。1 充钱首先说这个游戏的核心是什么，那就是充钱。游戏里边的卡对于大多数人来说性价比不高。以前也听说过那种纸的卡片也挺贵的，所以怎么说呢，虽然是合理的但是还是接受不了。就拿现在最新的更新包来说吧，488块. 买的只是一个更新包。 而在别的平台上可以买一个不错的游戏了。而我更愿意买一件中意的衣服或鞋子。2 随机你花钱了还是不行的，你要花很多的钱才可以。 因为开卡是随机的。可能你开到的卡能不能用上全看脸。就算你凑够了一个卡组，能不能赢也是有很大随机性的。因为可操作东西不多。一个自己发牌员的随机和对方发牌员的随机。你胡的时候对面刚好针对你。所以玩这个游戏，千万不要认真。重要是体验那种赌博的快感。没错就是赌博。简直和那种赌博差不多，都是由发牌员发牌，然后比大小。对手职业不确定，对手的牌库类型不确定，牌序不确定，还有很多卡牌的效果也是随机的。所以这个游戏的娱乐性是显而易见的。 当然也不能说没有技术可言，就是赌就行了。3 积累如果你是一个坚持的人，可以每天完成任务积累金币，那也还好。但我不是，我也不想。我曾经这么试过积累金币的过程太变态了。我不是一个能坚持下去的人、4 封闭游戏没有社交功能，游戏也不温不火，我的朋友圈没有人玩，就我自己玩。 总结，这个游戏真的不能认真，不然能气死自己。还记得我刚开始玩的心态是，不管自己的还是对面随机的牌不错了都会觉得不可思议。所以我有一次的弃坑了。这几天一直在想要不要488买一下最新的扩展包，因为玩了这么久，还是没有上传说。最后还是算了，因为实在不想自娱自乐地玩游戏了。而且我一输就心态崩溃，尤其是我现在的时间这么宝贵，所以不能浪费钱又浪费时间。我还是多把时间放到学习、设计和交朋友上。]]></content>
-      <categories>
-        <category>仓库</category>
-      </categories>
-      <tags>
-        <tag>炉石</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[想要注册的域名]]></title>
-    <url>%2F2019%2F01%2F01%2F%E4%BB%93%E5%BA%93%2F%E6%83%B3%E8%A6%81%E6%B3%A8%E5%86%8C%E7%9A%84%E5%9F%9F%E5%90%8D%2F</url>
-    <content type="text"><![CDATA[xingli.com （姓李） 这个域名2001 年注册 2019年10月到期。估计肯定有人续租的，相似的后缀有xingli.art 也可以]]></content>
-      <categories>
-        <category>仓库</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[仓库须知]]></title>
-    <url>%2F2019%2F01%2F01%2F%E4%BB%93%E5%BA%93%2F%EF%BC%81%E4%BB%93%E5%BA%93%E9%A1%BB%E7%9F%A5%2F</url>
-    <content type="text"><![CDATA[这里是仓库，而不是一片圣地，但也不是垃圾堆 希望所有的想法都可以实现]]></content>
-      <categories>
-        <category>仓库</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[爱好须知]]></title>
-    <url>%2F2019%2F01%2F01%2F%E7%88%B1%E5%A5%BD%2F%EF%BC%81%E7%88%B1%E5%A5%BD%E9%A1%BB%E7%9F%A5%2F</url>
-    <content type="text"><![CDATA[这里不是仓库，而是一片圣地]]></content>
-      <categories>
-        <category>爱好</category>
       </categories>
   </entry>
   <entry>
