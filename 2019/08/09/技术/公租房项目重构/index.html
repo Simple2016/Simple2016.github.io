@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="liqwer">
 <meta property="og:description" content="layer/layuilayer 打开弹出层前提是后台使用的模板技术，模板页面经过数据赋值之后返回到前端，没有把dom 隐藏在同一个页面中，因为感觉页面会很乱，所以采用下边的这两种方法。 这是第一种方式，iframe 的方式。 缺点：1 父页面的按钮不能操作 iframe内的元素。所以iframe 里边的东西太多，需要下拉才能看到提交按钮。没有办法把按钮挪到 2 iframe 操作完后反馈的成功失">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-09T09:32:24.839Z">
+<meta property="og:updated_time" content="2019-08-13T06:53:59.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="公租房项目重构">
 <meta name="twitter:description" content="layer/layuilayer 打开弹出层前提是后台使用的模板技术，模板页面经过数据赋值之后返回到前端，没有把dom 隐藏在同一个页面中，因为感觉页面会很乱，所以采用下边的这两种方法。 这是第一种方式，iframe 的方式。 缺点：1 父页面的按钮不能操作 iframe内的元素。所以iframe 里边的东西太多，需要下拉才能看到提交按钮。没有办法把按钮挪到 2 iframe 操作完后反馈的成功失">
@@ -428,12 +428,24 @@
                 
               
 
-              <time title="创建时间：2019-08-09 11:04:00 / 修改时间：17:32:24" itemprop="dateCreated datePublished" datetime="2019-08-09T11:04:00+08:00">2019-08-09</time>
+              <time title="创建时间：2019-08-09 11:04:00" itemprop="dateCreated datePublished" datetime="2019-08-09T11:04:00+08:00">2019-08-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-13 14:53:59" itemprop="dateModified" datetime="2019-08-13T14:53:59+08:00">2019-08-13</time>
               
             
           </span>
@@ -552,6 +564,7 @@
 <p>第二种方法</p>
 <p>实现原理不是iframe ，所以其实显示的是在一个页面中的。所以可以使用layer 的btn 来操作弹出框内部的元素。</p>
 <p>提交数据方式比较灵活，请求后的返回容易获取并提示到父页面。重定向问题有解决方案，参考后续更新</p>
+<p>注意： 1. 模版中的css和js 会动态加载，所以可以在模版里引用css js，但是由于不是iframe 所以会影响主页面。</p>
 <pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>common<span class="token punctuation">.</span>ctx <span class="token operator">+</span> <span class="token string">"/houseBaseInfo/communityData"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">var</span> layero <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
             layer<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -570,16 +583,33 @@
                     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'关闭'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     layer<span class="token punctuation">.</span><span class="token function">closeAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 这里是关闭所有打开的layer</span>
                 <span class="token punctuation">}</span>
-                <span class="token punctuation">,</span>btnAlign<span class="token punctuation">:</span> <span class="token string">'c'</span> <span class="token comment" spellcheck="true">//按钮居中 l 居左 r 居右</span>
+                <span class="token punctuation">,</span>btnAlign<span class="token punctuation">:</span> <span class="token string">'c'</span> <span class="token comment" spellcheck="true">//按钮居中 l 居左 默认居右</span>
+                <span class="token punctuation">,</span>title<span class="token punctuation">:</span><span class="token string">"验收不通过"</span><span class="token comment" spellcheck="true">// 弹框标题</span>
+                <span class="token punctuation">,</span>resize<span class="token punctuation">:</span><span class="token boolean">false</span> <span class="token comment" spellcheck="true">//鼠标缩放</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <blockquote>
 <p><a href="https://www.layui.com/doc/modules/layer.html" title="layer 弹层组件开发文档" target="_blank" rel="noopener">layer 弹层组件开发文档</a></p>
 </blockquote>
+<h4 id="layer-全局配置"><a href="#layer-全局配置" class="headerlink" title="layer 全局配置"></a>layer 全局配置</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 设置layer 弹框的颜色</span>
+layer<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">{</span>skin<span class="token punctuation">:</span> <span class="token string">'layui-layer-lan'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>出现问题， 设置完skin , 按钮不按照配置的居中了。发现是skin 的样式覆盖了配置的样式。 手动修改layer.css</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.layui-layer-btn-c</span></span><span class="token punctuation">{</span><span class="token property">text-align</span><span class="token punctuation">:</span> center <span class="token important">!important</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+</code></pre>
+<p>👌 了</p>
 <h4 id="怎么正确引用css"><a href="#怎么正确引用css" class="headerlink" title="怎么正确引用css"></a>怎么正确引用css</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${request.contextPath}/cqgzfs/css/communityMangeNew.css<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 </code></pre>
-<p>注意一定要加 rel=”stylesheet”， 否则流量器不会加载这个css</p>
+<ol>
+<li><p>注意一定要加 rel=”stylesheet”， 否则流量器不会加载这个css</p>
+</li>
+<li><p>加载顺序靠后的css 的权重更大，会覆盖先加载的css 。所以如果自己设置的样式没有起作用，看看是不是被后边的覆盖了。</p>
+</li>
+</ol>
+<blockquote>
+<p><a href="https://www.cnblogs.com/cnblogs-jcy/p/8574177.html" target="_blank" rel="noopener">css的优先级 和 权重</a></p>
+</blockquote>
 <h3 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h3><h4 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[type='text']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"border"</span><span class="token punctuation">,</span><span class="token string">"1px solid #ccc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//设置某种type的input的样式</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='isgjj"</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//获取某个name 的input的值</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='FFWTS"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//获取被选中的值</span>
@@ -807,7 +837,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#layer-layui"><span class="nav-number">1.</span> <span class="nav-text">layer/layui</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#layer-打开弹出层"><span class="nav-number">1.1.</span> <span class="nav-text">layer 打开弹出层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么正确引用css"><span class="nav-number">1.2.</span> <span class="nav-text">怎么正确引用css</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery"><span class="nav-number">2.</span> <span class="nav-text">jquery</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取元素"><span class="nav-number">2.1.</span> <span class="nav-text">获取元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串处理"><span class="nav-number">2.2.</span> <span class="nav-text">字符串处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-操作"><span class="nav-number">2.3.</span> <span class="nav-text">DOM 操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#freemarker"><span class="nav-number">3.</span> <span class="nav-text">freemarker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插值"><span class="nav-number">3.1.</span> <span class="nav-text">插值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断"><span class="nav-number">3.2.</span> <span class="nav-text">判断</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#layer-layui"><span class="nav-number">1.</span> <span class="nav-text">layer/layui</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#layer-打开弹出层"><span class="nav-number">1.1.</span> <span class="nav-text">layer 打开弹出层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layer-全局配置"><span class="nav-number">1.2.</span> <span class="nav-text">layer 全局配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么正确引用css"><span class="nav-number">1.3.</span> <span class="nav-text">怎么正确引用css</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery"><span class="nav-number">2.</span> <span class="nav-text">jquery</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取元素"><span class="nav-number">2.1.</span> <span class="nav-text">获取元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串处理"><span class="nav-number">2.2.</span> <span class="nav-text">字符串处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-操作"><span class="nav-number">2.3.</span> <span class="nav-text">DOM 操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#freemarker"><span class="nav-number">3.</span> <span class="nav-text">freemarker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插值"><span class="nav-number">3.1.</span> <span class="nav-text">插值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断"><span class="nav-number">3.2.</span> <span class="nav-text">判断</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -431,12 +431,24 @@
                 
               
 
-              <time title="创建时间：2019-08-09 11:04:00 / 修改时间：17:32:24" itemprop="dateCreated datePublished" datetime="2019-08-09T11:04:00+08:00">2019-08-09</time>
+              <time title="创建时间：2019-08-09 11:04:00" itemprop="dateCreated datePublished" datetime="2019-08-09T11:04:00+08:00">2019-08-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-13 14:53:59" itemprop="dateModified" datetime="2019-08-13T14:53:59+08:00">2019-08-13</time>
               
             
           </span>
@@ -557,6 +569,7 @@
 <p>第二种方法</p>
 <p>实现原理不是iframe ，所以其实显示的是在一个页面中的。所以可以使用layer 的btn 来操作弹出框内部的元素。</p>
 <p>提交数据方式比较灵活，请求后的返回容易获取并提示到父页面。重定向问题有解决方案，参考后续更新</p>
+<p>注意： 1. 模版中的css和js 会动态加载，所以可以在模版里引用css js，但是由于不是iframe 所以会影响主页面。</p>
 <pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>common<span class="token punctuation">.</span>ctx <span class="token operator">+</span> <span class="token string">"/houseBaseInfo/communityData"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">var</span> layero <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
             layer<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -575,16 +588,33 @@
                     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'关闭'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     layer<span class="token punctuation">.</span><span class="token function">closeAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 这里是关闭所有打开的layer</span>
                 <span class="token punctuation">}</span>
-                <span class="token punctuation">,</span>btnAlign<span class="token punctuation">:</span> <span class="token string">'c'</span> <span class="token comment" spellcheck="true">//按钮居中 l 居左 r 居右</span>
+                <span class="token punctuation">,</span>btnAlign<span class="token punctuation">:</span> <span class="token string">'c'</span> <span class="token comment" spellcheck="true">//按钮居中 l 居左 默认居右</span>
+                <span class="token punctuation">,</span>title<span class="token punctuation">:</span><span class="token string">"验收不通过"</span><span class="token comment" spellcheck="true">// 弹框标题</span>
+                <span class="token punctuation">,</span>resize<span class="token punctuation">:</span><span class="token boolean">false</span> <span class="token comment" spellcheck="true">//鼠标缩放</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <blockquote>
 <p><a href="https://www.layui.com/doc/modules/layer.html" title="layer 弹层组件开发文档" target="_blank" rel="noopener">layer 弹层组件开发文档</a></p>
 </blockquote>
+<h4 id="layer-全局配置"><a href="#layer-全局配置" class="headerlink" title="layer 全局配置"></a>layer 全局配置</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 设置layer 弹框的颜色</span>
+layer<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">{</span>skin<span class="token punctuation">:</span> <span class="token string">'layui-layer-lan'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>出现问题， 设置完skin , 按钮不按照配置的居中了。发现是skin 的样式覆盖了配置的样式。 手动修改layer.css</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.layui-layer-btn-c</span></span><span class="token punctuation">{</span><span class="token property">text-align</span><span class="token punctuation">:</span> center <span class="token important">!important</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+</code></pre>
+<p>👌 了</p>
 <h4 id="怎么正确引用css"><a href="#怎么正确引用css" class="headerlink" title="怎么正确引用css"></a>怎么正确引用css</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${request.contextPath}/cqgzfs/css/communityMangeNew.css<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 </code></pre>
-<p>注意一定要加 rel=”stylesheet”， 否则流量器不会加载这个css</p>
+<ol>
+<li><p>注意一定要加 rel=”stylesheet”， 否则流量器不会加载这个css</p>
+</li>
+<li><p>加载顺序靠后的css 的权重更大，会覆盖先加载的css 。所以如果自己设置的样式没有起作用，看看是不是被后边的覆盖了。</p>
+</li>
+</ol>
+<blockquote>
+<p><a href="https://www.cnblogs.com/cnblogs-jcy/p/8574177.html" target="_blank" rel="noopener">css的优先级 和 权重</a></p>
+</blockquote>
 <h3 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h3><h4 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[type='text']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"border"</span><span class="token punctuation">,</span><span class="token string">"1px solid #ccc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//设置某种type的input的样式</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='isgjj"</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//获取某个name 的input的值</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='FFWTS"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//获取被选中的值</span>
@@ -726,7 +756,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-09 11:14:44" itemprop="dateModified" datetime="2019-08-09T11:14:44+08:00">2019-08-09</time>
+                <time title="修改时间：2019-08-13 17:18:03" itemprop="dateModified" datetime="2019-08-13T17:18:03+08:00">2019-08-13</time>
               
             
           </span>
@@ -834,23 +864,119 @@
   <span class="token keyword">select</span> extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:23.281000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>
        extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:22.984000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span> 
 </code></pre>
-<h4 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">--查询 当前库中运行的 job ；</span>
-<span class="token keyword">SELECT</span> t<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span>  dba_jobs t
-<span class="token comment" spellcheck="true">--创建一个 定时任务 job</span>
+<h4 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 定义一个存储过程</span>
+<span class="token keyword">create</span> <span class="token operator">or</span> replace <span class="token keyword">procedure</span> YxtestJob <span class="token operator">is</span>
+<span class="token keyword">begin</span>
+  <span class="token keyword">insert</span> <span class="token keyword">into</span> TFF_TEST <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> ABS<span class="token punctuation">(</span>MOD<span class="token punctuation">(</span>DBMS_RANDOM<span class="token punctuation">.</span>RANDOM<span class="token punctuation">,</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> DUAL<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">-- 创建一个 定时任务 job</span>
 <span class="token keyword">declare</span>
   job number<span class="token punctuation">;</span>
 <span class="token keyword">BEGIN</span>
   DBMS_JOB<span class="token punctuation">.</span>SUBMIT<span class="token punctuation">(</span>  
         JOB <span class="token operator">=</span><span class="token operator">></span> job<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*自动生成JOB_ID*/</span>  
-        WHAT <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'GET_WARNING_INFO(2, 202, '</span><span class="token string">'2,44,11'</span><span class="token string">');'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*需要执行的存储过程名称或SQL语句*/</span>  
+        WHAT <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'YxtestJob();'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*需要执行的存储过程名称或SQL语句*/</span>  
         NEXT_DATE <span class="token operator">=</span><span class="token operator">></span> sysdate<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*初次执行时间-立即执行*/</span>  
         INTERVAL <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'trunc(sysdate,'</span><span class="token string">'mi'</span><span class="token string">')+1/(24*60)'</span> <span class="token comment" spellcheck="true">/*每隔1分钟执行一次*/</span>
       <span class="token punctuation">)</span><span class="token punctuation">;</span>  
   <span class="token keyword">commit</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- INTERVAL => 'ADD_MONTHS(trunc(sysdate,''yyyy''),12)+1/24 ' 每年1月1日凌晨1点执行</span>
+<span class="token comment" spellcheck="true">-- 查询 当前库中运行的 job ；获取JOB_ID</span>
+<span class="token keyword">SELECT</span> t<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span>  dba_jobs t
+
+<span class="token comment" spellcheck="true">-- 执行任务 </span>
+<span class="token keyword">begin</span>
+dbms_job<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token number">51</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">-- 51 => JOB_ID</span>
+<span class="token keyword">commit</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">-- 删除任务  </span>
+<span class="token keyword">begin</span>
+dbms_job<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">51</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">-- 51 => JOB_ID</span>
+<span class="token keyword">commit</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">-- 删除存储过程</span>
+<span class="token keyword">drop</span> <span class="token keyword">procedure</span> XXX
 </code></pre>
 <p>相当详细，不想抄了</p>
 <p><a href="https://blog.csdn.net/sinat_35626559/article/details/78912828" target="_blank" rel="noopener">https://blog.csdn.net/sinat_35626559/article/details/78912828</a></p>
+<p>自己使用中的一些问题</p>
+<ol>
+<li><p>以上sql中的分号千万不要漏写，出错时多检查一下</p>
+</li>
+<li><p>如果第一次执行时间设置的比当前时间早，那么在创建定时任务的时候会立即执行一次</p>
+</li>
+<li><p>如果不设置第一次执行时间，那么在创建定时任务的时候会立即执行一次</p>
+</li>
+<li><p>定时任务的执行时间不是那么准时，测试一下，实际入库时间总是差个几秒（2~5秒），实测不会影响到下次执行时间</p>
+</li>
+<li><p>如果数据库停机了一个小时，那么重启后这一个小时内本应该触发的定时任务会在重启后立即触发吗？</p>
+<p>会</p>
+<p>测试环境，windows 10 ,Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production.</p>
+<p>测试方法，新建定时任务每年执行一次，使用命令关闭oracle服务和监听,修改系统时间，时间过后一分钟重启服务，发现定时已经执行，执行时间和重启时间吻合。</p>
+<p>还不确定的是，如果宕机期间定时任务本应执行多次，重启后会执行一次还是多次。</p>
+</li>
+<li><p>如果定时任务在一个时间触发过了，那么手动把时间倒退，在同一的时间会再触发一次吗？</p>
+<p>不会，因为oracle 在执行任务后自动算出下次的执行时间。</p>
+</li>
+</ol>
+<h4 id="connect-by-的用法"><a href="#connect-by-的用法" class="headerlink" title="connect by 的用法"></a>connect by 的用法</h4><h4 id="oracle获取UUID-乱码"><a href="#oracle获取UUID-乱码" class="headerlink" title="oracle获取UUID 乱码"></a>oracle获取UUID 乱码</h4><p>SELECT rawtohex(sys_guid()) from dual;</p>
+<p>使用库函数对sys_guid()进行处理，则是标准UUID</p>
+<h4 id="oracle-服务的开启和关闭"><a href="#oracle-服务的开启和关闭" class="headerlink" title="oracle 服务的开启和关闭"></a>oracle 服务的开启和关闭</h4><h5 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h5><p> 需要管理员权限</p>
+<p>启动</p>
+<pre class=" language-powershell"><code class="language-powershell">lsnrctl <span class="token function">start</span>
+net <span class="token function">start</span> OracleServiceORCL
+</code></pre>
+<p>关闭</p>
+<pre class=" language-powershell"><code class="language-powershell">lsnrctl stop
+net stop OracleServiceORCL
+</code></pre>
+<h5 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h5><p>启动：</p>
+<pre class=" language-shell"><code class="language-shell">su – oracle
+
+lsnrctl start 
+
+sqlplus ``"/as sysdba"
+
+startup
+</code></pre>
+<p>关闭：</p>
+<pre class=" language-shell"><code class="language-shell">su – oracle
+
+lsnrctl stop
+
+sqlplus ``"/as sysdba"
+
+shutdown immediate
+
+
+</code></pre>
+<p>启动多实例：</p>
+<pre class=" language-shell"><code class="language-shell">su - oracle
+lsnrctl start
+
+假设一个实例是itsm
+export ORACLE_SID=itsm
+
+sqlplus / as sysdba
+startup
+
+quit
+export ORACLE_SID=test
+sqlplus / as sysdba
+startup
+quit
+</code></pre>
+<p>自启动第二个数据库实例</p>
+<p>在/etc/rc.local中设置</p>
+<pre class=" language-shell"><code class="language-shell">su - oracle <<eof export oracle_sid="test" sqlplus as sysdba startup quit eof < code></eof></code></pre>
+<h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><h5 id="ORA-00845-MEMORY-TARGET-not-supported-on-this-system报错解决"><a href="#ORA-00845-MEMORY-TARGET-not-supported-on-this-system报错解决" class="headerlink" title="ORA-00845: MEMORY_TARGET not supported on this system报错解决"></a>ORA-00845: MEMORY_TARGET not supported on this system报错解决</h5><p>在oracle 11g中新增的内存自动管理的参数MEMORY_TARGET,它能自动调整SGA和PGA，这个特性需要用到/dev/shm共享文件系统，而且要求/dev/shm必须大于MEMORY_TARGET，如果/dev/shm比MEMORY_TARGET小就会报错，/dev/shm没有挂载也会报错</p>
+<p>解决：</p>
+<pre class=" language-shell"><code class="language-shell">mount -o remount,size=12288M /dev/shm
+</code></pre>
 
           
         
@@ -1164,12 +1290,24 @@
                 
               
 
-              <time title="创建时间：2019-08-08 14:24:00 / 修改时间：15:27:02" itemprop="dateCreated datePublished" datetime="2019-08-08T14:24:00+08:00">2019-08-08</time>
+              <time title="创建时间：2019-08-08 14:24:00" itemprop="dateCreated datePublished" datetime="2019-08-08T14:24:00+08:00">2019-08-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-12 14:29:50" itemprop="dateModified" datetime="2019-08-12T14:29:50+08:00">2019-08-12</time>
               
             
           </span>
@@ -1264,12 +1402,7 @@
       
         
           
-            <h4 id="我自己觉得比较好用的插件"><a href="#我自己觉得比较好用的插件" class="headerlink" title="我自己觉得比较好用的插件"></a>我自己觉得比较好用的插件</h4><p>lombok(自动get set)</p>
-<p>rainbow brackets(彩虹括号)</p>
-<p>Free Mybatis plugin (mapper跳转)</p>
-<p>Maven helper(右键maven选项)</p>
-<p>Background Image plus(设置背景)</p>
-<p>Alibaba Java Coding Guidelines(阿里巴巴编码手册)</p>
+            <h4 id="我自己觉得比较好用的插件"><a href="#我自己觉得比较好用的插件" class="headerlink" title="我自己觉得比较好用的插件"></a>我自己觉得比较好用的插件</h4><p>Maven helper(右键maven选项)<br>Free Mybatis plugin (mapper跳转)<br>lombok(自动get set)<br>rainbow brackets(彩虹括号)<br>Background Image plus(设置背景)<br>Nyan Progress Bar （进度条美化成彩虹和猫）<br>Alibaba Java Coding Guidelines(阿里巴巴编码手册)</p>
 <h4 id="最近的一个项目问题"><a href="#最近的一个项目问题" class="headerlink" title="最近的一个项目问题"></a>最近的一个项目问题</h4><p>controller里 点击模板字符串 不能跳转到模版了，目前没有找到问题。</p>
 
           
