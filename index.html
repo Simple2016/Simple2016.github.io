@@ -386,7 +386,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/09/技术/公租房项目重构/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/01/日记/还债/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liqw">
@@ -406,7 +406,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/09/技术/公租房项目重构/" class="post-title-link" itemprop="url">公租房项目重构</a>
+                <a href="/2019/09/01/日记/还债/" class="post-title-link" itemprop="url">还债</a>
               
             
           </h1>
@@ -431,656 +431,7 @@
                 
               
 
-              <time title="创建时间：2019-08-09 11:04:00" itemprop="dateCreated datePublished" datetime="2019-08-09T11:04:00+08:00">2019-08-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-13 14:53:59" itemprop="dateModified" datetime="2019-08-13T14:53:59+08:00">2019-08-13</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/09/技术/公租房项目重构/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/09/技术/公租房项目重构/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="layer-layui"><a href="#layer-layui" class="headerlink" title="layer/layui"></a>layer/layui</h3><h4 id="layer-打开弹出层"><a href="#layer-打开弹出层" class="headerlink" title="layer 打开弹出层"></a>layer 打开弹出层</h4><p>前提是后台使用的模板技术，模板页面经过数据赋值之后返回到前端，没有把dom 隐藏在同一个页面中，因为感觉页面会很乱，所以采用下边的这两种方法。</p>
-<p>这是第一种方式，iframe 的方式。</p>
-<p>缺点：1 父页面的按钮不能操作 iframe内的元素。所以iframe 里边的东西太多，需要下拉才能看到提交按钮。没有办法把按钮挪到</p>
-<p>2 iframe 操作完后反馈的成功失败的消息不容易发送到父页面。</p>
-<p>3 假如页面过期被被重定向了，iframe 可能会出现页面嵌套（因为我没有测试过）</p>
-<pre class=" language-JavaScript"><code class="language-JavaScript">layer.open({
-            type: 2, //0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-            title: '信息核验',
-            shadeClose: true,
-            shade: 0.3,
-            offset: "20%",
-            shadeClose: false,
-            area: ['1100px', '300px'],
-            content: common.ctx + "/qualificationCheck/check"
-            ,btn: ['全部关闭']               
-            ,yes: function(){
-                layer.closeAll();
-            }
-             ,success:function (layero1) {
-                alert(JSON.stringify(layero1.find("#cname111")));
-            }
-        });
-</code></pre>
-<p>第二种方法</p>
-<p>实现原理不是iframe ，所以其实显示的是在一个页面中的。所以可以使用layer 的btn 来操作弹出框内部的元素。</p>
-<p>提交数据方式比较灵活，请求后的返回容易获取并提示到父页面。重定向问题有解决方案，参考后续更新</p>
-<p>注意： 1. 模版中的css和js 会动态加载，所以可以在模版里引用css js，但是由于不是iframe 所以会影响主页面。</p>
-<pre class=" language-javascript"><code class="language-javascript">$<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>common<span class="token punctuation">.</span>ctx <span class="token operator">+</span> <span class="token string">"/houseBaseInfo/communityData"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">var</span> layero <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-            layer<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                type<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）</span>
-                content<span class="token punctuation">:</span> str <span class="token comment" spellcheck="true">//注意，如果str是object，那么需要字符拼接。</span>
-                <span class="token punctuation">,</span>area<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'900px'</span><span class="token punctuation">,</span> <span class="token string">'400px'</span><span class="token punctuation">]</span>
-                <span class="token punctuation">,</span>success<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span>layero1<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 页面加载成功后执行</span>
-                    layero <span class="token operator">=</span> layero1<span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token punctuation">,</span>btn<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'提交'</span><span class="token punctuation">,</span><span class="token string">'关闭'</span><span class="token punctuation">]</span>
-                <span class="token punctuation">,</span>btn1<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token function">alert</span><span class="token punctuation">(</span>layero<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"#cname111"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 这里可以也使用jquery 直接操作元素</span>
-                    layer<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span>layer<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这里自动计算关闭最后一个打开的layer</span>
-                <span class="token punctuation">}</span>
-                <span class="token punctuation">,</span>btn2<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'关闭'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    layer<span class="token punctuation">.</span><span class="token function">closeAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 这里是关闭所有打开的layer</span>
-                <span class="token punctuation">}</span>
-                <span class="token punctuation">,</span>btnAlign<span class="token punctuation">:</span> <span class="token string">'c'</span> <span class="token comment" spellcheck="true">//按钮居中 l 居左 默认居右</span>
-                <span class="token punctuation">,</span>title<span class="token punctuation">:</span><span class="token string">"验收不通过"</span><span class="token comment" spellcheck="true">// 弹框标题</span>
-                <span class="token punctuation">,</span>resize<span class="token punctuation">:</span><span class="token boolean">false</span> <span class="token comment" spellcheck="true">//鼠标缩放</span>
-            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<blockquote>
-<p><a href="https://www.layui.com/doc/modules/layer.html" title="layer 弹层组件开发文档" target="_blank" rel="noopener">layer 弹层组件开发文档</a></p>
-</blockquote>
-<h4 id="layer-全局配置"><a href="#layer-全局配置" class="headerlink" title="layer 全局配置"></a>layer 全局配置</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 设置layer 弹框的颜色</span>
-layer<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">{</span>skin<span class="token punctuation">:</span> <span class="token string">'layui-layer-lan'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>出现问题， 设置完skin , 按钮不按照配置的居中了。发现是skin 的样式覆盖了配置的样式。 手动修改layer.css</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.layui-layer-btn-c</span></span><span class="token punctuation">{</span><span class="token property">text-align</span><span class="token punctuation">:</span> center <span class="token important">!important</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-</code></pre>
-<p>👌 了</p>
-<h4 id="怎么正确引用css"><a href="#怎么正确引用css" class="headerlink" title="怎么正确引用css"></a>怎么正确引用css</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${request.contextPath}/cqgzfs/css/communityMangeNew.css<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-</code></pre>
-<ol>
-<li><p>注意一定要加 rel=”stylesheet”， 否则流量器不会加载这个css</p>
-</li>
-<li><p>加载顺序靠后的css 的权重更大，会覆盖先加载的css 。所以如果自己设置的样式没有起作用，看看是不是被后边的覆盖了。</p>
-</li>
-</ol>
-<blockquote>
-<p><a href="https://www.cnblogs.com/cnblogs-jcy/p/8574177.html" target="_blank" rel="noopener">css的优先级 和 权重</a></p>
-</blockquote>
-<h3 id="jquery"><a href="#jquery" class="headerlink" title="jquery"></a>jquery</h3><h4 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[type='text']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"border"</span><span class="token punctuation">,</span><span class="token string">"1px solid #ccc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//设置某种type的input的样式</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='isgjj"</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//获取某个name 的input的值</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='FFWTS"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"']:checked"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//获取被选中的值</span>
-</code></pre>
-<h4 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h4><pre class=" language-javascript"><code class="language-javascript">jQuery<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#rId0"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//前后空格</span>
-<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#ccompany"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token string">"/g,"</span><span class="token operator">&amp;</span>quot<span class="token punctuation">;</span>"<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 文字替换</span>
-</code></pre>
-<h4 id="DOM-操作"><a href="#DOM-操作" class="headerlink" title="DOM 操作"></a>DOM 操作</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".tbodyUpload tr"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"td"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//第i个tr 第4个td 的属性data的值</span>
-</code></pre>
-<h3 id="freemarker"><a href="#freemarker" class="headerlink" title="freemarker"></a>freemarker</h3><h4 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h4><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 插入单个值 --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Welcome ${user}!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-<span class="token comment" spellcheck="true">&lt;!-- 遍历list --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#list</span> <span class="token attr-name">animals</span> <span class="token attr-name">as</span> <span class="token attr-name">being</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>${being.name} for ${being.price} 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#list</span><span class="token punctuation">></span></span>
-</code></pre>
-<h4 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h4><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 如果2&lt;3 为true ,显示adsf --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#if</span> <span class="token attr-name">2</span> <span class="token attr-name">&lt;</span> <span class="token attr-name">3</span><span class="token punctuation">></span></span>    
-    adsf
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">></span></span>
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/技术/oracle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/08/技术/oracle/" class="post-title-link" itemprop="url">oracle</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-08 17:29:00" itemprop="dateCreated datePublished" datetime="2019-08-08T17:29:00+08:00">2019-08-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-13 17:18:03" itemprop="dateModified" datetime="2019-08-13T17:18:03+08:00">2019-08-13</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/08/技术/oracle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/08/技术/oracle/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="查询两个时间相差的秒"><a href="#查询两个时间相差的秒" class="headerlink" title="查询两个时间相差的秒"></a>查询两个时间相差的秒</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 查询两个时间相差的秒</span>
-<span class="token keyword">select</span> extract<span class="token punctuation">(</span>day <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span>
-       extract<span class="token punctuation">(</span>hour <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span> extract<span class="token punctuation">(</span>minute <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span>
-       extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> inter<span class="token punctuation">)</span> <span class="token string">"seconds"</span> <span class="token keyword">from</span>
-  <span class="token punctuation">(</span>
-    <span class="token keyword">select</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:23.281000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span> <span class="token operator">-</span>
-           to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:22.984000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span> inter <span class="token keyword">from</span> dual
-  <span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">-- 或者  </span>
-  <span class="token keyword">select</span> extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:23.281000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>
-       extract<span class="token punctuation">(</span>second <span class="token keyword">from</span> to_timestamp<span class="token punctuation">(</span><span class="token string">'2011-09-14 12:34:22.984000000'</span><span class="token punctuation">,</span> <span class="token string">'yyyy-mm-dd hh24:mi:ss.ff'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span> 
-</code></pre>
-<h4 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 定义一个存储过程</span>
-<span class="token keyword">create</span> <span class="token operator">or</span> replace <span class="token keyword">procedure</span> YxtestJob <span class="token operator">is</span>
-<span class="token keyword">begin</span>
-  <span class="token keyword">insert</span> <span class="token keyword">into</span> TFF_TEST <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">SELECT</span> ABS<span class="token punctuation">(</span>MOD<span class="token punctuation">(</span>DBMS_RANDOM<span class="token punctuation">.</span>RANDOM<span class="token punctuation">,</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> DUAL<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">-- 创建一个 定时任务 job</span>
-<span class="token keyword">declare</span>
-  job number<span class="token punctuation">;</span>
-<span class="token keyword">BEGIN</span>
-  DBMS_JOB<span class="token punctuation">.</span>SUBMIT<span class="token punctuation">(</span>  
-        JOB <span class="token operator">=</span><span class="token operator">></span> job<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*自动生成JOB_ID*/</span>  
-        WHAT <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'YxtestJob();'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*需要执行的存储过程名称或SQL语句*/</span>  
-        NEXT_DATE <span class="token operator">=</span><span class="token operator">></span> sysdate<span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">/*初次执行时间-立即执行*/</span>  
-        INTERVAL <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'trunc(sysdate,'</span><span class="token string">'mi'</span><span class="token string">')+1/(24*60)'</span> <span class="token comment" spellcheck="true">/*每隔1分钟执行一次*/</span>
-      <span class="token punctuation">)</span><span class="token punctuation">;</span>  
-  <span class="token keyword">commit</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">-- INTERVAL => 'ADD_MONTHS(trunc(sysdate,''yyyy''),12)+1/24 ' 每年1月1日凌晨1点执行</span>
-<span class="token comment" spellcheck="true">-- 查询 当前库中运行的 job ；获取JOB_ID</span>
-<span class="token keyword">SELECT</span> t<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span>  dba_jobs t
-
-<span class="token comment" spellcheck="true">-- 执行任务 </span>
-<span class="token keyword">begin</span>
-dbms_job<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token number">51</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">-- 51 => JOB_ID</span>
-<span class="token keyword">commit</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span class="token punctuation">;</span> 
-
-<span class="token comment" spellcheck="true">-- 删除任务  </span>
-<span class="token keyword">begin</span>
-dbms_job<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">51</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">-- 51 => JOB_ID</span>
-<span class="token keyword">commit</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">-- 删除存储过程</span>
-<span class="token keyword">drop</span> <span class="token keyword">procedure</span> XXX
-</code></pre>
-<p>相当详细，不想抄了</p>
-<p><a href="https://blog.csdn.net/sinat_35626559/article/details/78912828" target="_blank" rel="noopener">https://blog.csdn.net/sinat_35626559/article/details/78912828</a></p>
-<p>自己使用中的一些问题</p>
-<ol>
-<li><p>以上sql中的分号千万不要漏写，出错时多检查一下</p>
-</li>
-<li><p>如果第一次执行时间设置的比当前时间早，那么在创建定时任务的时候会立即执行一次</p>
-</li>
-<li><p>如果不设置第一次执行时间，那么在创建定时任务的时候会立即执行一次</p>
-</li>
-<li><p>定时任务的执行时间不是那么准时，测试一下，实际入库时间总是差个几秒（2~5秒），实测不会影响到下次执行时间</p>
-</li>
-<li><p>如果数据库停机了一个小时，那么重启后这一个小时内本应该触发的定时任务会在重启后立即触发吗？</p>
-<p>会</p>
-<p>测试环境，windows 10 ,Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production.</p>
-<p>测试方法，新建定时任务每年执行一次，使用命令关闭oracle服务和监听,修改系统时间，时间过后一分钟重启服务，发现定时已经执行，执行时间和重启时间吻合。</p>
-<p>还不确定的是，如果宕机期间定时任务本应执行多次，重启后会执行一次还是多次。</p>
-</li>
-<li><p>如果定时任务在一个时间触发过了，那么手动把时间倒退，在同一的时间会再触发一次吗？</p>
-<p>不会，因为oracle 在执行任务后自动算出下次的执行时间。</p>
-</li>
-</ol>
-<h4 id="connect-by-的用法"><a href="#connect-by-的用法" class="headerlink" title="connect by 的用法"></a>connect by 的用法</h4><h4 id="oracle获取UUID-乱码"><a href="#oracle获取UUID-乱码" class="headerlink" title="oracle获取UUID 乱码"></a>oracle获取UUID 乱码</h4><p>SELECT rawtohex(sys_guid()) from dual;</p>
-<p>使用库函数对sys_guid()进行处理，则是标准UUID</p>
-<h4 id="oracle-服务的开启和关闭"><a href="#oracle-服务的开启和关闭" class="headerlink" title="oracle 服务的开启和关闭"></a>oracle 服务的开启和关闭</h4><h5 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h5><p> 需要管理员权限</p>
-<p>启动</p>
-<pre class=" language-powershell"><code class="language-powershell">lsnrctl <span class="token function">start</span>
-net <span class="token function">start</span> OracleServiceORCL
-</code></pre>
-<p>关闭</p>
-<pre class=" language-powershell"><code class="language-powershell">lsnrctl stop
-net stop OracleServiceORCL
-</code></pre>
-<h5 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h5><p>启动：</p>
-<pre class=" language-shell"><code class="language-shell">su – oracle
-
-lsnrctl start 
-
-sqlplus ``"/as sysdba"
-
-startup
-</code></pre>
-<p>关闭：</p>
-<pre class=" language-shell"><code class="language-shell">su – oracle
-
-lsnrctl stop
-
-sqlplus ``"/as sysdba"
-
-shutdown immediate
-
-
-</code></pre>
-<p>启动多实例：</p>
-<pre class=" language-shell"><code class="language-shell">su - oracle
-lsnrctl start
-
-假设一个实例是itsm
-export ORACLE_SID=itsm
-
-sqlplus / as sysdba
-startup
-
-quit
-export ORACLE_SID=test
-sqlplus / as sysdba
-startup
-quit
-</code></pre>
-<p>自启动第二个数据库实例</p>
-<p>在/etc/rc.local中设置</p>
-<pre class=" language-shell"><code class="language-shell">su - oracle <<eof export oracle_sid="test" sqlplus as sysdba startup quit eof < code></eof></code></pre>
-<h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><h5 id="ORA-00845-MEMORY-TARGET-not-supported-on-this-system报错解决"><a href="#ORA-00845-MEMORY-TARGET-not-supported-on-this-system报错解决" class="headerlink" title="ORA-00845: MEMORY_TARGET not supported on this system报错解决"></a>ORA-00845: MEMORY_TARGET not supported on this system报错解决</h5><p>在oracle 11g中新增的内存自动管理的参数MEMORY_TARGET,它能自动调整SGA和PGA，这个特性需要用到/dev/shm共享文件系统，而且要求/dev/shm必须大于MEMORY_TARGET，如果/dev/shm比MEMORY_TARGET小就会报错，/dev/shm没有挂载也会报错</p>
-<p>解决：</p>
-<pre class=" language-shell"><code class="language-shell">mount -o remount,size=12288M /dev/shm
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/日记/也许是明天也许是永远/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/08/日记/也许是明天也许是永远/" class="post-title-link" itemprop="url">也许是明天也许是永远</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-08 14:42:00 / 修改时间：17:07:50" itemprop="dateCreated datePublished" datetime="2019-08-08T14:42:00+08:00">2019-08-08</time>
+              <time title="创建时间：2019-09-01 21:23:00 / 修改时间：21:44:42" itemprop="dateCreated datePublished" datetime="2019-09-01T21:23:00+08:00">2019-09-01</time>
             
 
             
@@ -1121,8 +472,8 @@ quit
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/08/日记/也许是明天也许是永远/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/08/日记/也许是明天也许是永远/" itemprop="commentCount"></span>
+                <a href="/2019/09/01/日记/还债/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/01/日记/还债/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1180,13 +531,10 @@ quit
       
         
           
-            <blockquote>
-<p>简单的事情不想做，复杂的事情做不了，这就是我现在的状态。</p>
-</blockquote>
-<p>要么现在就去做，要么永远都做不了。我所有的经历，都在诉说着这么一个观点。</p>
-<p>我想着要整理我的房间，但是每一次一拖再拖。我都开始怀疑自己，到底有没有可能完成这个工作。</p>
-<p>每次我整理的时候，总是会遇到各种困难。我是在是一个太有情怀的人了，各种东西，文件，还是上学时留下的。还有没有完成的手办。一遇到这些，我就整理不下去了。 就像整理书籍一样。想仍一本书，就开始读了起来，读着读着发现这个书不能扔，然后花了好长时间就整理了几本书。</p>
-<p>我要是整理东西，就该站在整理的层面。那些东西就算之前没有做完，也不能要了。没有做完的事情多着呢，整理就是把那些自己没有用的东西扔掉，好留下时间做更需要的东西。之前没有完成的东西就给自己一个教训。</p>
+            <p>债有很多种, 金钱债，人情债，技术债..  我要还的，却是时间债。</p>
+<p>我每天都在透支着未来，因为在我的心中，我的未来是一个无比美好的世界。所以，我把太多的事情都放到了未来。每一天。我都说这个事情以后再做。直到今天我整理我电脑里的东西的时候，发现，我并不是什么都不知道，而是知道的太多了，却没有时间去做。我的电脑里嵌套的存放着各种文件，如果这些文件里的东西都是我之前完成过的作品的话，我一定是一个非常厉害的人，但是这些文件我自己都不记得他们什么时候放进来的。</p>
+<p>我的硬盘了保存着各种之前工作时候学习一般的工程，写了一个简单开头的demo,各种没有看过的书，以及以为以后会用，但是基本忘掉的安装包，以至于每次用到都不敢确定之前的是否能用，最后还是从网上下载。还有各种待整理的照片，还有一些好玩的小软件，比如用一个工具结合英伟达显卡把电脑的屏幕实时不延迟地同步显示在手机上，功能特别强大但从来没有用过的截图软件，制作视频的会声会影。</p>
+<p>以后我要简简单单的活着  ，把工作的基本技能做熟练，确保自己不会饿死的前提下，只看到下一个小时的事情，其他所有的愿望都是不能实现的，长久以来我的所作所为，已经对我来说证明了这一点。如果我在下一个小时完不成的事情，我就不能期望自己能够自觉的在将来的某一个时间点去把他完成。</p>
 
           
         
@@ -1245,7 +593,7 @@ quit
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/08/技术/关于idea/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/01/日记/鸡汤/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liqw">
@@ -1265,7 +613,7 @@ quit
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/08/技术/关于idea/" class="post-title-link" itemprop="url">关于ideaIDE</a>
+                <a href="/2019/09/01/日记/鸡汤/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -1290,7 +638,782 @@ quit
                 
               
 
-              <time title="创建时间：2019-08-08 14:24:00" itemprop="dateCreated datePublished" datetime="2019-08-08T14:24:00+08:00">2019-08-08</time>
+              <time title="创建时间：2019-09-01 21:20:54 / 修改时间：21:21:44" itemprop="dateCreated datePublished" datetime="2019-09-01T21:20:54+08:00">2019-09-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/09/01/日记/鸡汤/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/01/日记/鸡汤/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>人总是会皮。把鸡汤天天奉给自己，保持活力和危机感</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/日记/说话与心理防线/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/29/日记/说话与心理防线/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-29 14:37:58 / 修改时间：15:30:10" itemprop="dateCreated datePublished" datetime="2019-08-29T14:37:58+08:00">2019-08-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/29/日记/说话与心理防线/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/29/日记/说话与心理防线/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1 输与赢</p>
+<p>首先 ，不以成败论输赢。败者，若不服输，必定言语相激，此时若与他理论，未免与败者一样水平；若不和其理论，挫败了心智，窝心窝火。</p>
+<p>不要计较。不要受他人话语的影响。越是计较不过的人越爱计较。一旦陷入了这个圈子里 ，就会无限循环。让自己摆脱的办法，就是让自己陷入另一个圈里。那就是不计较。</p>
+<p>2 对待亲人</p>
+<p>宽容与仁慈。宽容，同样是不计较，但是还要关心。仁慈不等于放纵，而是要往善去引导。</p>
+<p>3 对待朋友</p>
+<p>舒服，分享，笑话。话语轻松不要太多字，太多字显得严肃认真（一本正经胡说八道除外），住哪啊，去哪啊，下班啦。个人习惯心的交流，就是说话不多，但是却明白对方的意思。</p>
+<p>4 表现</p>
+<p>当有人倾听的时候，一定是自己表现自己的时候，一定要抓住机会，好好表达自己的思想，不要嫌麻烦就放弃了。</p>
+<p>最好是随时随地找机会表达自己，但要考虑场合，自己的状态，对方的状态，以及可能产生的影响，所以需要自己去衡量，其实这也都算在表达能力里面。如果能在恰当的时间表达出自己想要的效果，那也是一种影响。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/日记/每天要给自己打鸡血/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/29/日记/每天要给自己打鸡血/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-29 14:14:14 / 修改时间：14:20:31" itemprop="dateCreated datePublished" datetime="2019-08-29T14:14:14+08:00">2019-08-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/29/日记/每天要给自己打鸡血/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/29/日记/每天要给自己打鸡血/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>太容易倦怠了，只有自己经历了才会知道， 这个时期的我有多么的颓废。每天要给自己打鸡血啊，能够脱离旋涡一点也好。</p>
+<p>我唯一的目标，这辈子好好活，安排好我的这辈子，别让我在痛苦中过完这一生。今天做明天的事，昨天的事都已经过去，不在去想。不确定的东西都抛掉，努力抓住生活中的希望。</p>
+<p>每一刻我的目标是，把下一刻的东西确定成为现实，然后写入历史。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/28/技术/python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/28/技术/python/" class="post-title-link" itemprop="url">python</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-28 09:26:00 / 修改时间：09:27:57" itemprop="dateCreated datePublished" datetime="2019-08-28T09:26:00+08:00">2019-08-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/28/技术/python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/28/技术/python/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>python 3.6</p>
+<h4 id="启动一个简单的http-服务"><a href="#启动一个简单的http-服务" class="headerlink" title="启动一个简单的http 服务"></a>启动一个简单的http 服务</h4><pre class=" language-python"><code class="language-python">python <span class="token operator">-</span>m http<span class="token punctuation">.</span>server <span class="token number">8000</span>
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/22/日记/我想偷偷的死去/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/22/日记/我想偷偷的死去/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-22 09:55:50" itemprop="dateCreated datePublished" datetime="2019-08-22T09:55:50+08:00">2019-08-22</time>
             
 
             
@@ -1307,29 +1430,11 @@ quit
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-12 14:29:50" itemprop="dateModified" datetime="2019-08-12T14:29:50+08:00">2019-08-12</time>
+                <time title="修改时间：2019-08-29 13:28:30" itemprop="dateModified" datetime="2019-08-29T13:28:30+08:00">2019-08-29</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1343,8 +1448,8 @@ quit
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/08/技术/关于idea/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/08/技术/关于idea/" itemprop="commentCount"></span>
+                <a href="/2019/08/22/日记/我想偷偷的死去/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/22/日记/我想偷偷的死去/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1402,8 +1507,19 @@ quit
       
         
           
-            <h4 id="我自己觉得比较好用的插件"><a href="#我自己觉得比较好用的插件" class="headerlink" title="我自己觉得比较好用的插件"></a>我自己觉得比较好用的插件</h4><p>Maven helper(右键maven选项)<br>Free Mybatis plugin (mapper跳转)<br>lombok(自动get set)<br>rainbow brackets(彩虹括号)<br>Background Image plus(设置背景)<br>Nyan Progress Bar （进度条美化成彩虹和猫）<br>Alibaba Java Coding Guidelines(阿里巴巴编码手册)</p>
-<h4 id="最近的一个项目问题"><a href="#最近的一个项目问题" class="headerlink" title="最近的一个项目问题"></a>最近的一个项目问题</h4><p>controller里 点击模板字符串 不能跳转到模版了，目前没有找到问题。</p>
+            <p>死亡到底是什么，它就像是一个 黑洞，让我渴望那一天的到来。</p>
+<p>每一天起床，我都会想，我为什么还活着。如果世界是一个虚构，那么究竟还要持续多久。既然我们不能看清世界的全面貌，那么终结就是一个迷。</p>
+<p>这是一个终点，每个人都有机会去了解。每个人也必须去了解。</p>
+<p>我之前为什么说世界是一个递归，因为，首先来说因为你自己是一个人，所以才有你所看所想的这些东西。这从根本上已经说明了接下来发生的事情就是一个递归。</p>
+<p>而且世界对于人来说，就是一个没有终点的递归，而死亡，就是中间的一个break，或许不是。</p>
+<p>递归的另外一个特点就是相似性。你怎么思考，就会做什么样的事情，就会过什么样的人生。 你在一件事情上的处理方式，反应了你的思维方法，同时影响了以后相似的问题的解决方法。</p>
+<p>递归的另一个特点就是循环，现在做的事情影响着下一个事情，然后不停的影响下去。比如今天因为之前的递归导致没有睡觉，就会困，困到想睡，夜里就有来了精神，接着不睡。这可以用来解释一切的事情，比如为什么没有会上厕所，为什么技术能力提高不上去，为什么不善于和别人说话。最简单的递归是， 因为我是人，所以我更是人。因为我爱说话，所以我就更爱说话。</p>
+<p>死亡常常令我着迷，人一旦死去，就好像没有来到过这个世界。</p>
+<p>如果放下所有的不甘，死，似乎是另一个世界的开启。 而我希望那里是永恒。</p>
+<p>死亡就如同这个世界的起源一样，那么令人着迷。</p>
+<p>如果说这个世界是神创造的，那又是谁创造了神呢。我生而为人，只能用人的角度去思考这个世界，如果我不死去可能永远也找不到答案。</p>
+<p>人会用人到方式留住你，圈住你，让你继续为他们做他们没有完成的工作，解决没有解决的问题。继续作为一个人活着。而且自己也是人，也要继续传承下去这种行为。我们不管是从情感上，还是感官上，都害怕死，拒绝痛苦。</p>
+<p>如果以这个世界就不曾存在过的角度思考这个世界，那么一切都是虚伪的，都是自圆其说，自己诠释自己。一旦你死了，所有顾忌都不在是顾忌。其实这个世界上所有的事情都是这样，因为你处在其中，所以思想就被困在当中。</p>
 
           
         
@@ -1462,7 +1578,7 @@ quit
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/技术/关于hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/技术/mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liqw">
@@ -1482,7 +1598,7 @@ quit
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/06/技术/关于hexo/" class="post-title-link" itemprop="url">关于hexo</a>
+                <a href="/2019/08/16/技术/mysql/" class="post-title-link" itemprop="url">mysql</a>
               
             
           </h1>
@@ -1507,7 +1623,7 @@ quit
                 
               
 
-              <time title="创建时间：2019-08-06 10:48:00 / 修改时间：17:26:26" itemprop="dateCreated datePublished" datetime="2019-08-06T10:48:00+08:00">2019-08-06</time>
+              <time title="创建时间：2019-08-16 15:11:00 / 修改时间：15:45:56" itemprop="dateCreated datePublished" datetime="2019-08-16T15:11:00+08:00">2019-08-16</time>
             
 
             
@@ -1548,8 +1664,8 @@ quit
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/06/技术/关于hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/06/技术/关于hexo/" itemprop="commentCount"></span>
+                <a href="/2019/08/16/技术/mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/16/技术/mysql/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1607,41 +1723,576 @@ quit
       
         
           
-            <p><img src="/2019/08/06/技术/关于hexo/1565069237465.png" alt="1565069237465"></p>
-<h4 id="如何在文章中引入图片"><a href="#如何在文章中引入图片" class="headerlink" title="如何在文章中引入图片"></a>如何在文章中引入图片</h4><p>先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下</p>
-<p>1</p>
-<p>首先，现在网上找了下，全是一样的不知道谁是原创的文章，要安装一个插件</p>
-<p> npm install hexo-asset-image –save</p>
-<p>不好使，卸载</p>
-<p>npm uninstall hexo-asset-image</p>
-<p>2</p>
-<p>官网看看 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/asset-folders</a></p>
-<p>两种解决方式。 第一种很简单，在about相同层级新建images 目录，然后所有文章都引用里边的图片，缺点就是需要手动的向images 目录里放文件。</p>
-<p>第二种使用标签插件，，，，，看都不想看。看完了发现是比较难受的方式，就是md 不支持的语法，必须要生成页面后才能看到效果</p>
-<p>3</p>
-<p>最后的解决办法，1 不用手动拷贝图片，2 就用md 的语法，这样md编辑器里也可以看到效果。</p>
-<p>其实还是第一种解决办法，只是第一种的插件在hexo 3 里过期了，需用用另个一github上的</p>
-<p>解决步骤：</p>
-<p>1</p>
-<p>修改配置文件_config.yml 为</p>
-<p>post_asset_folder: true</p>
-<p>2 </p>
-<p>我使用的是typora .  文件-&gt; 偏好设置</p>
-<p><img src="/2019/08/06/技术/关于hexo/1565071459765.png" alt="1565071459765"></p>
-<p>3</p>
-<pre class=" language-javascript"><code class="language-javascript">npm install https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>CodeFalling<span class="token operator">/</span>hexo<span class="token operator">-</span>asset<span class="token operator">-</span>image <span class="token operator">--</span>save
+            <ol>
+<li><p>mysql 5.7.11 , win 10</p>
+</li>
+<li><p>安装文件压缩包解压到C:\mysql-5.7.11-winx64</p>
+</li>
+<li><p>C:\mysql-5.7.11-winx64目录下新建配置文件 my.ini</p>
+<pre><code>[mysql]
+
+# 设置mysql客户端默认字符集
+
+default-character-set=utf8 
+
+[mysqld]
+
+#设置3306端口
+
+port = 3306 
+
+# 设置mysql的安装目录
+
+basedir=C:\mysql-5.7.11-winx64
+
+# 设置mysql数据库的数据的存放目录
+
+datadir=C:\mysql-5.7.11-winx64\data
+
+# 允许最大连接数
+
+max_connections=200
+
+# 服务端使用的字符集默认为8比特编码的latin1字符集
+
+character-set-server=utf8
+
+# 创建新表时将使用的默认存储引擎
+
+default-storage-engine=INNODB 
+</code></pre></li>
+</ol>
+<ol start="4">
+<li><p><strong>管理员</strong>运行cmd</p>
+</li>
+<li><p>C:\mysql-5.7.11-winx64\bin&gt;mysqld install</p>
+</li>
+<li><p>mysqld  –initialize</p>
+</li>
+<li><p>net start mysql</p>
+</li>
+<li><p>mysql -uroot -p 需要密码</p>
+</li>
+</ol>
+<ol start="9">
+<li><p>原因在于5.7版本在安装时自动给了一个随机密码，需要手动在mysql目录下搜索*.err，以文本形式打开才能看到如下内容：</p>
+<p>016-02-25T15:09:43.033062Z 1 [Note] A temporary password is generated for root@localhost: &gt;mso&lt;k70mrWe</p>
+<p>冒号后边即为第一次的登陆密码，记得加双引号。</p>
+</li>
+<li><p>登录成功后执行任何命令会提示</p>
+<pre><code>ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+</code></pre></li>
+</ol>
+<ol start="11">
+<li><p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+</li>
+<li></li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/技术/spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/16/技术/spring/" class="post-title-link" itemprop="url">spring</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-16 11:37:00 / 修改时间：13:12:35" itemprop="dateCreated datePublished" datetime="2019-08-16T11:37:00+08:00">2019-08-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/16/技术/spring/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/16/技术/spring/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h4><p>任意公共方法的执行：</p>
+<p>execution(public <em> </em>(..))</p>
+<p>任何一个以“set”开始的方法的执行：</p>
+<p>execution(<em> set</em>(..))</p>
+<p>AccountService 接口的任意方法的执行：</p>
+<p>execution(<em> com.xyz.service.AccountService.</em>(..))</p>
+<p>定义在service包里的任意方法的执行：</p>
+<p>execution(<em> com.xyz.service.</em>.*(..))</p>
+<p>定义在service包和所有子包里的任意类的任意方法的执行：</p>
+<p>execution(<em> com.xyz.service..</em>.*(..))</p>
+<p>定义在pointcutexp包和所有子包里的JoinPointObjP2类的任意方法的执行：</p>
+<p>execution(<em> com.test.spring.aop.pointcutexp..JoinPointObjP2.</em>(..))”)</p>
+<p><em>**&gt; 最靠近(..)的为方法名,靠近.</em>(..))的为类名或者接口名,如上例的JoinPointObjP2.*(..))</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/技术/java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/16/技术/java/" class="post-title-link" itemprop="url">java</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-16 11:35:00" itemprop="dateCreated datePublished" datetime="2019-08-16T11:35:00+08:00">2019-08-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-28 17:50:14" itemprop="dateModified" datetime="2019-08-28T17:50:14+08:00">2019-08-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/16/技术/java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/16/技术/java/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="java8-streams-操作数组"><a href="#java8-streams-操作数组" class="headerlink" title="java8  streams 操作数组"></a>java8  streams 操作数组</h3><pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>GzfHouse<span class="token operator">></span> inserthouse<span class="token operator">=</span>很多的GzfHouse省略
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+inserthouse<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+   <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>a <span class="token operator">-</span><span class="token operator">></span> rcodes<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">getHouseId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+   <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+   <span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>house<span class="token operator">-</span><span class="token operator">></span>
+      bz2Mapper<span class="token punctuation">.</span><span class="token function">insertMiddleDBHouseData</span><span class="token punctuation">(</span>house<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 这里是单条插入！！批量插入可能导致sql 长度过长问题</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="如何设置背景图片"><a href="#如何设置背景图片" class="headerlink" title="如何设置背景图片"></a>如何设置背景图片</h4><p>打开文档下themes\next\source\css\ _custom\custom.styl</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector">// 设置背景图片
-body </span><span class="token punctuation">{</span>
-    <span class="token property">background</span><span class="token punctuation">:</span><span class="token url">url(/imgs/16pic_5550571_b.jpg)</span><span class="token punctuation">;</span>
-    <span class="token property">background-repeat</span><span class="token punctuation">:</span> repeat<span class="token punctuation">;</span>
-    <span class="token property">background-attachment</span><span class="token punctuation">:</span>fixed<span class="token punctuation">;</span>
-    <span class="token property">background-position</span><span class="token punctuation">:</span><span class="token number">50%</span> <span class="token number">50%</span><span class="token punctuation">;</span>
-    <span class="token property">background-size</span><span class="token punctuation">:</span><span class="token number">200</span>px<span class="token punctuation">;</span>
+<h4 id="把一个数组切割"><a href="#把一个数组切割" class="headerlink" title="把一个数组切割"></a>把一个数组切割</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> List <span class="token function">sliceList1000</span><span class="token punctuation">(</span>List datalist<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 把列表切成1000个一打的列表，用于1000行提交一次</span>
+        List<span class="token operator">&lt;</span>List<span class="token operator">></span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> datalist<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">+=</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            List list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            list<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>datalist<span class="token punctuation">.</span><span class="token function">subList</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> i <span class="token operator">+</span> size <span class="token operator">></span> datalist<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> datalist<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token operator">:</span> i <span class="token operator">+</span> size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="new关键字和newInstance-方法的区别"><a href="#new关键字和newInstance-方法的区别" class="headerlink" title="new关键字和newInstance()方法的区别"></a><a href="https://www.cnblogs.com/yunger/p/5793669.html" target="_blank" rel="noopener">new关键字和newInstance()方法的区别</a></h4><p>这篇文章里说的newInstance 是Class.forName(className).newInstance()</p>
+<p>其实我想知道mybatisplus源码里的 一个普通的类里的一个方法newInstance() </p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SqlInfo</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * SQL 内容
+     */</span>
+    <span class="token keyword">private</span> String sql<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 是否排序
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> orderBy <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> SqlInfo <span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SqlInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getSql</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> sql<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> SqlInfo <span class="token function">setSql</span><span class="token punctuation">(</span>String sql<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>sql <span class="token operator">=</span> sql<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isOrderBy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> orderBy<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> SqlInfo <span class="token function">setOrderBy</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> orderBy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>orderBy <span class="token operator">=</span> orderBy<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>其他一些样式也可以在这文件里设置</p>
+<h4 id="json-字符串转带泛型的bean"><a href="#json-字符串转带泛型的bean" class="headerlink" title="json 字符串转带泛型的bean"></a>json 字符串转带泛型的bean</h4><p>fastJson</p>
+<pre class=" language-java"><code class="language-java">ThirdReturn<span class="token operator">&lt;</span>MarriageResult<span class="token operator">></span> thirdReturnData <span class="token operator">=</span> JSONObject<span class="token punctuation">.</span><span class="token function">parseObject</span><span class="token punctuation">(</span>returnStr<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TypeReference</span><span class="token operator">&lt;</span>ThirdReturn<span class="token operator">&lt;</span>MarriageResult<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>gson</p>
+<p>Response<tradeprecreateresponse> response2 = new Gson().fromJson(response, new TypeToken&lt;Response<tradeprecreateresponse>&gt;() {}.getType());</tradeprecreateresponse></tradeprecreateresponse></p>
+<h4 id="四舍五入"><a href="#四舍五入" class="headerlink" title="四舍五入"></a>四舍五入</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//---------------------------</span>
+<span class="token keyword">float</span> a <span class="token operator">=</span> <span class="token number">123.4567f</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//  这里的100就是2位小数点,如果要其它位,如4位,这里两个100改成10000</span>
+<span class="token keyword">float</span> b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span>a<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">100</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//---------------------------</span>
+<span class="token keyword">double</span> d <span class="token operator">=</span> <span class="token number">3.1415926</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//  %.表示小数点前任意位数;  2 表示两位小数;格式后的结果为f ,表示浮点型</span>
+String result <span class="token operator">=</span> String <span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%.2f"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
 
           
         
@@ -1700,7 +2351,7 @@ body </span><span class="token punctuation">{</span>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/技术/redis 下载/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/技术/页面级导出excel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liqw">
@@ -1720,7 +2371,7 @@ body </span><span class="token punctuation">{</span>
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/25/技术/redis 下载/" class="post-title-link" itemprop="url">redis下载</a>
+                <a href="/2019/08/16/技术/页面级导出excel/" class="post-title-link" itemprop="url">页面级导出excel</a>
               
             
           </h1>
@@ -1745,7 +2396,7 @@ body </span><span class="token punctuation">{</span>
                 
               
 
-              <time title="创建时间：2019-07-25 14:44:00" itemprop="dateCreated datePublished" datetime="2019-07-25T14:44:00+08:00">2019-07-25</time>
+              <time title="创建时间：2019-08-16 10:41:00" itemprop="dateCreated datePublished" datetime="2019-08-16T10:41:00+08:00">2019-08-16</time>
             
 
             
@@ -1762,7 +2413,7 @@ body </span><span class="token punctuation">{</span>
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-06 16:52:43" itemprop="dateModified" datetime="2019-08-06T16:52:43+08:00">2019-08-06</time>
+                <time title="修改时间：2019-08-19 09:41:45" itemprop="dateModified" datetime="2019-08-19T09:41:45+08:00">2019-08-19</time>
               
             
           </span>
@@ -1798,8 +2449,8 @@ body </span><span class="token punctuation">{</span>
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/25/技术/redis 下载/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/25/技术/redis 下载/" itemprop="commentCount"></span>
+                <a href="/2019/08/16/技术/页面级导出excel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/16/技术/页面级导出excel/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1857,893 +2508,184 @@ body </span><span class="token punctuation">{</span>
       
         
           
-            <h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">https://github.com/MSOpenTech/redis/releases</a></p>
-<p><img src="/2019/07/25/技术/redis 下载/1564037157249.png" alt="1564037157249"></p>
-<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><p>找到文件名为：<code>redis.windows-service.conf</code></p>
-<p>打开后用<code>Ctrl + F</code>查找：<code>requirepass</code></p>
-<h4 id="IP绑定"><a href="#IP绑定" class="headerlink" title="IP绑定"></a>IP绑定</h4><p><code>Ctrl + F</code>搜索<code>127.0.0.1</code></p>
-<p>我们一般就绑定内网，默认是内网外网都可以访问</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/日记/工作了快三个月/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/日记/工作了快三个月/" class="post-title-link" itemprop="url">工作了快三个月</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-28 11:04:04" itemprop="dateCreated datePublished" datetime="2019-06-28T11:04:04+08:00">2019-06-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-08 14:12:29" itemprop="dateModified" datetime="2019-08-08T14:12:29+08:00">2019-08-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日记/" itemprop="url" rel="index"><span itemprop="name">日记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/06/28/日记/工作了快三个月/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/28/日记/工作了快三个月/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。</p>
-<p>​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的文件，那样会比较乱，尽量相同的东西写在一篇文章里，然后不定期的整理更新。</p>
-<p>​        现在在做的一个项目是非常传统的项目，没有用到什么大数据，nosql, 分布式，微服务，区块链等等的技术。用的有数据库oracle sql查询统计，后端 spring mvc, 前端jquery 用的比较多，然后是模版技术 freemarker，这个用的不好，大部分还是用jquery 拼接的页面。这几天自己的感觉自己的基础倒是巩固了不少。因为目前是一个已经做好的一个项目，计划下个月做二期，所以从这个项目中也发现了很多不足，期望在二期中能吸取经验教训，做的更好一些。二期计划用的工作流来处理业务的状态变化了，对我来说还是一个挑战，因为之前只是听说过，但是从来没有用过，也没有见别人用的好的。自己也看了一些工作流的实例， 就是感觉很繁琐，除了oa 系统以外不知道还有什么业务场景能适合。</p>
-<p>​        前些时间有点堕落因为心情不是很好，因为和我一起入职的优秀的小伙伴因为各种原因都离职了。本来都变得熟悉的公司瞬间又陌生了起来。每天自己挤地铁挤公交，来到公司，发现熟悉的面孔仿佛就在昨天 但是心里却知道再也看不到了。毕竟才认识两个月，还不是那么的熟悉，走了也就走了，以后真的可能再也见不着了。可能是自己足够的孤独，才导致这么的伤感吧。怪就怪自己不够优秀，没有自信的和他们多说说话聊聊天，一起吃个饭，也许就都是我的真正的好朋友了。唉 年龄大了</p>
-<p>​        今天好像一天都没有什么重要的事情，就多写一会。因为岁数也不小了，所以越来越感受到时间的宝贵。现在的每一分每一秒，都会成为过往。所有的感受，除了此时此刻，也绝对不会再重复。所以，对自己负责一点。让自己每一分都成为下个时间的铺垫，一步一步的进步而不是堕落。</p>
-<p>​        善于表达的人用语言倾诉自己的内心，优秀的人不用说话用作品来表达自己的能力，成大业者不必自己表达，自然有人把他铭记史册。人总不能默默的活着，我们需要向其他的人分享自己的内心展示自己的能力。这也是我们生存的意义，也是我想把这个文章发布出去的意义，即便我知道不会有几个人看到，我也应当抓紧一切机会表达自己。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/日记/在公司的最后一天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/20/日记/在公司的最后一天/" class="post-title-link" itemprop="url">在公司的最后一天</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-20 15:11:09" itemprop="dateCreated datePublished" datetime="2019-03-20T15:11:09+08:00">2019-03-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-08 13:42:40" itemprop="dateModified" datetime="2019-08-08T13:42:40+08:00">2019-08-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日记/" itemprop="url" rel="index"><span itemprop="name">日记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/20/日记/在公司的最后一天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/20/日记/在公司的最后一天/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天是在公司的最后一天，早上一来我就和人事沟通了走之前最后需要做的事情</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/20/日记/在公司的最后一天/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/技术/！技术须知/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/技术/！技术须知/" class="post-title-link" itemprop="url">技术须知</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 01:56:00" itemprop="dateCreated datePublished" datetime="2019-01-01T01:56:00+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-17 14:03:56" itemprop="dateModified" datetime="2019-07-17T14:03:56+08:00">2019-07-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/01/01/技术/！技术须知/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/技术/！技术须知/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>这里记录了技术的成长，而不是废物是怎么炼成的</li>
+            <h3 id="最简单（最初）的方式"><a href="#最简单（最初）的方式" class="headerlink" title="最简单（最初）的方式"></a>最简单（最初）的方式</h3><ol>
+<li><p>支持ie8     </p>
+<ol>
+<li><p>ie8 需要设置table 属性 border=’1’ 导出的 excel 才有边框</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fixed-table_body<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fixed-table_bodyId<span class="token punctuation">"</span></span> <span class="token attr-name">cellspacing</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">cellpadding</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">border</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>ie8 的table标题不自动居中， 需要手动设置样式为居中，另外如果页面不想显示可以隐藏掉，不影响导出</p>
+</li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/日记/！日记须知/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/日记/！日记须知/" class="post-title-link" itemprop="url">日记须知</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 00:11:09" itemprop="dateCreated datePublished" datetime="2019-01-01T00:11:09+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-17 14:01:52" itemprop="dateModified" datetime="2019-07-17T14:01:52+08:00">2019-07-17</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日记/" itemprop="url" rel="index"><span itemprop="name">日记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/01/01/日记/！日记须知/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/日记/！日记须知/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数"></span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"></span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>什么都可以记录，但是需要注意言辞</li>
-<li>这里是你的品德存放的地方</li>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>caption</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bgbt<span class="token punctuation">"</span></span> <span class="token attr-name">align</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>top<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">42</span>px<span class="token punctuation">;</span><span class="token property">text-align</span><span class="token punctuation">:</span> center</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>表格标题<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>caption</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>可以指定保存文件名称 </p>
+</li>
 </ol>
+<p>myExcelExport.js</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> idTmr<span class="token punctuation">;</span>
 
+<span class="token keyword">function</span> <span class="token function">getExplorer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> explorer <span class="token operator">=</span> window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span>userAgent<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//ie</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>explorer<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"MSIE"</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'ie'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//firefox</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>explorer<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"Firefox"</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'Firefox'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//Chrome</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>explorer<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"Chrome"</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'Chrome'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//Opera</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>explorer<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"Opera"</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'Opera'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//Safari</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>explorer<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">"Safari"</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'Safari'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">exportExcel</span><span class="token punctuation">(</span>tableid<span class="token punctuation">,</span> fileName<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//整个表格拷贝到EXCEL中</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getExplorer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'ie'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> curTbl <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>tableid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> oXL <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">"Excel.Application"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//创建AX对象excel</span>
+        <span class="token keyword">var</span> oWB <span class="token operator">=</span> oXL<span class="token punctuation">.</span>Workbooks<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//获取workbook对象</span>
+        <span class="token keyword">var</span> xlsheet <span class="token operator">=</span> oWB<span class="token punctuation">.</span><span class="token function">Worksheets</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//激活当前sheet</span>
+        <span class="token keyword">var</span> sel <span class="token operator">=</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">createTextRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sel<span class="token punctuation">.</span><span class="token function">moveToElementText</span><span class="token punctuation">(</span>curTbl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//把表格中的内容移到TextRange中</span>
+        sel<span class="token punctuation">.</span>select<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//全选TextRange中内容</span>
+        sel<span class="token punctuation">.</span><span class="token function">execCommand</span><span class="token punctuation">(</span><span class="token string">"Copy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//复制TextRange中内容</span>
+        xlsheet<span class="token punctuation">.</span><span class="token function">Paste</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//粘贴到活动的EXCEL中</span>
+        oXL<span class="token punctuation">.</span>Visible <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//设置excel可见属性</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> fname <span class="token operator">=</span> oXL<span class="token punctuation">.</span>Application<span class="token punctuation">.</span><span class="token function">GetSaveAsFilename</span><span class="token punctuation">(</span>fileName <span class="token operator">+</span> <span class="token string">".xls"</span><span class="token punctuation">,</span> <span class="token string">"Excel Spreadsheets (*.xls), *.xls"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Nested catch caught "</span> <span class="token operator">+</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            oWB<span class="token punctuation">.</span><span class="token function">SaveAs</span><span class="token punctuation">(</span>fname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            oWB<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span>savechanges <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//xls.visible = false;</span>
+            oXL<span class="token punctuation">.</span><span class="token function">Quit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            oXL <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//结束excel进程，退出完成</span>
+            <span class="token comment" spellcheck="true">//window.setInterval("Cleanup();",1);</span>
+            idTmr <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token string">"Cleanup();"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">tableToExcel</span><span class="token punctuation">(</span>tableid<span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">,</span>fileName <span class="token operator">+</span> <span class="token string">".xls"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Cleanup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">clearInterval</span><span class="token punctuation">(</span>idTmr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">CollectGarbage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> tableToExcel <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> uri <span class="token operator">=</span> <span class="token string">'data:application/vnd.ms-excel;filename=exportData.doc;base64,'</span><span class="token punctuation">,</span>
+        template <span class="token operator">=</span> <span class="token string">'&lt;html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">&lt;head>&lt;!--[if gte mso 9]>&lt;xml>&lt;x:ExcelWorkbook>&lt;x:ExcelWorksheets>&lt;x:ExcelWorksheet>&lt;x:Name>{worksheet}&lt;/x:Name>&lt;x:WorksheetOptions>&lt;x:DisplayGridlines/>&lt;/x:WorksheetOptions>&lt;/x:ExcelWorksheet>&lt;/x:ExcelWorksheets>&lt;/x:ExcelWorkbook>&lt;/xml>&lt;![endif]-->'</span> <span class="token operator">+</span>
+            <span class="token string">' &lt;style type="text/css">'</span> <span class="token operator">+</span>
+            <span class="token string">'table td ,table th{'</span> <span class="token operator">+</span>
+            <span class="token string">'border: 0.5px solid #000000;'</span> <span class="token operator">+</span>
+            <span class="token comment" spellcheck="true">// 'width: 200px;' +</span>
+            <span class="token comment" spellcheck="true">// 'height: 30px;' +</span>
+            <span class="token comment" spellcheck="true">// ' text-align: center;' +</span>
+            <span class="token comment" spellcheck="true">// 'background-color: #4f891e;' +</span>
+            <span class="token comment" spellcheck="true">// 'color: #ffffff;' +</span>
+            <span class="token string">' }'</span> <span class="token operator">+</span>
+            <span class="token string">'&lt;/style>'</span> <span class="token operator">+</span>
+            <span class="token string">'&lt;/head>&lt;body>&lt;table>{table}&lt;/table>&lt;/body>&lt;/html>'</span><span class="token punctuation">,</span>
+        base64 <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> window<span class="token punctuation">.</span><span class="token function">btoa</span><span class="token punctuation">(</span><span class="token function">unescape</span><span class="token punctuation">(</span><span class="token function">encodeURIComponent</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        format <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>s<span class="token punctuation">,</span> c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/{(\w+)}/g</span><span class="token punctuation">,</span>
+                <span class="token keyword">function</span> <span class="token punctuation">(</span>m<span class="token punctuation">,</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> c<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>table<span class="token punctuation">,</span> name<span class="token punctuation">,</span>filename<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>table<span class="token punctuation">.</span>nodeType<span class="token punctuation">)</span> table <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> ctx <span class="token operator">=</span> <span class="token punctuation">{</span>worksheet<span class="token punctuation">:</span> name <span class="token operator">||</span> <span class="token string">'Worksheet'</span><span class="token punctuation">,</span> table<span class="token punctuation">:</span> table<span class="token punctuation">.</span>innerHTML<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// window.location.href = uri + base64(format(template, ctx))</span>
+        <span class="token comment" spellcheck="true">// var atag=document.createElement("a");</span>
+        <span class="token comment" spellcheck="true">// atag.href=uri + base64(format(template, ctx));</span>
+        <span class="token comment" spellcheck="true">// atag.download = filename;</span>
+        <span class="token comment" spellcheck="true">// atag.click();</span>
+        <span class="token comment" spellcheck="true">//</span>
+        <span class="token comment" spellcheck="true">// document.getElementById('downExcelChangeBtn').href = uri + base64(format(template, ctx));</span>
+        <span class="token comment" spellcheck="true">// document.getElementById('downExcelChangeBtn').download =filename;</span>
+
+        <span class="token function">download_csv_using_blob</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token function">format</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> ctx<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true">//获取当前时间，格式YYYY-MM-DD</span>
+<span class="token keyword">function</span> <span class="token function">getNowFormatDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> myDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> nowY <span class="token operator">=</span> myDate<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> nowM <span class="token operator">=</span> myDate<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> nowD <span class="token operator">=</span> myDate<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> enddate <span class="token operator">=</span> nowY <span class="token operator">+</span> <span class="token string">"-"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>nowM <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token string">"0"</span> <span class="token operator">+</span> nowM <span class="token punctuation">:</span> nowM<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"-"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>nowD <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token string">"0"</span> <span class="token operator">+</span> nowD <span class="token punctuation">:</span> nowD<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//当前日期</span>
+    <span class="token keyword">return</span> enddate<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> download_csv_using_blob <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>file_name<span class="token punctuation">,</span> content<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> csvData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Blob</span><span class="token punctuation">(</span><span class="token punctuation">[</span>content<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'text/csv'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// for IE</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>navigator <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span>msSaveOrOpenBlob<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span><span class="token function">msSaveOrOpenBlob</span><span class="token punctuation">(</span>csvData<span class="token punctuation">,</span> file_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// for Non-IE (chrome, firefox etc.)</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> a <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        a<span class="token punctuation">.</span>style <span class="token operator">=</span> <span class="token string">'display: none'</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> url <span class="token operator">=</span> window<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>csvData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        a<span class="token punctuation">.</span>href <span class="token operator">=</span>  url<span class="token punctuation">;</span>
+        a<span class="token punctuation">.</span>download <span class="token operator">=</span> file_name<span class="token punctuation">;</span>
+        a<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        a<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        window<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">revokeObjectURL</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre>
+<blockquote>
+<p>使用方法</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">downloadExcel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"开始导出excel"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token function">exportExcel</span><span class="token punctuation">(</span><span class="token string">"fixed-table_bodyId"</span><span class="token punctuation">,</span><span class="token string">"摇号批次统计"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</blockquote>
+<h3 id="datatables"><a href="#datatables" class="headerlink" title="datatables"></a>datatables</h3><ol>
+<li>页面 excel 导出的支持（ie8）- 支持</li>
+<li>如何通过js 调用导出 - 集成环境，只能结合表格使用</li>
+<li>设置复杂表头的方法（合计 小计，单元格合并）- 不支持</li>
+<li>如何使用自定义样式（与现有样式整合）- 不支持</li>
+</ol>
+<p>我真是高估了datatables。我以为既然ie8 导出这么难的难题都支持了，复杂表头和列合并也应该支持，然而事实狠狠打了自己。这样，这个本来打算一天完成的任务，估计要花更多的时间了</p>
+<h3 id="layui-的方式"><a href="#layui-的方式" class="headerlink" title="layui 的方式"></a>layui 的方式</h3>
           
         
       
@@ -2788,6 +2730,10 @@ body </span><span class="token punctuation">{</span>
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2829,7 +2775,7 @@ body </span><span class="token punctuation">{</span>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2877,7 +2823,19 @@ body </span><span class="token punctuation">{</span>
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
