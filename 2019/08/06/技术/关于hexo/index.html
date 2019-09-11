@@ -12,7 +12,7 @@
 
 
 
-<html class="theme-next pisces" lang="zh-CN">
+<html class="theme-next gemini" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,11 +70,11 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '7.0.1',
     sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
-    back2top_sidebar: false,
+    back2top_sidebar: true,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/08/06/技术/关于hexo/1565069237465.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/06/技术/关于hexo/1565071459765.png">
-<meta property="og:updated_time" content="2019-08-15T03:06:41.630Z">
+<meta property="og:updated_time" content="2019-09-11T03:35:14.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于hexo">
 <meta name="twitter:description" content="如何在文章中引入图片先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下 1 首先，先在网上找了，要安装一个插件  npm install hex">
@@ -413,6 +413,7 @@
         
 
         <div class="post-meta">
+          
           <span class="post-time">
 
             
@@ -448,7 +449,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-15 11:06:41" itemprop="dateModified" datetime="2019-08-15T11:06:41+08:00">2019-08-15</time>
+                <time title="修改时间：2019-09-11 11:35:14" itemprop="dateModified" datetime="2019-09-11T11:35:14+08:00">2019-09-11</time>
               
             
           </span>
@@ -507,7 +508,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.3k</span>
+                <span title="本文字数">5.9k</span>
               
 
               
@@ -521,7 +522,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -583,6 +584,23 @@ body </span><span class="token punctuation">{</span>
 <p>先把目录复制了一份备份。然后用idea 打开next 的目录（个人习惯了idea 的git 操作）,先stash change, 然后git pull ，再unstash，再合并冲突。好多的配置都冲突了，合并了大半天。</p>
 <p>跑起来后发现还是老样子，没看出来什么变化，搜索功能还不好使了。。</p>
 <p>把主题目录还原，更新失败告终。</p>
+<h4 id="字数统计与阅读时长"><a href="#字数统计与阅读时长" class="headerlink" title="字数统计与阅读时长"></a>字数统计与阅读时长</h4><p><a href="https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app" target="_blank" rel="noopener">https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app</a></p>
+<h4 id="如何置顶"><a href="#如何置顶" class="headerlink" title="如何置顶"></a>如何置顶</h4><p>$ npm uninstall hexo-generator-index –save<br>$ npm install hexo-generator-index-pin-top –save</p>
+<pre class=" language-markdown"><code class="language-markdown"><span class="token hr punctuation">---</span>
+title: hexo+GitHub博客搭建实战
+date: 2017-09-08 12:00:25
+categories: 博客搭建系列
+<span class="token title important">top: true
+<span class="token punctuation">---</span></span>
+</code></pre>
+<p>可有可无的操作：<br>打开：/blog/themes/next/layout/_macro 目录下的post.swig文件，定位到<code>&lt;div class=&quot;post-meta&quot;&gt;</code>标签下，插入如下代码：</p>
+<pre class=" language-javascript"><code class="language-javascript">      <span class="token punctuation">{</span><span class="token operator">%</span> <span class="token keyword">if</span> post<span class="token punctuation">.</span>top <span class="token operator">%</span><span class="token punctuation">}</span>
+        <span class="token operator">&lt;</span>i <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fa fa-thumb-tack"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>i<span class="token operator">></span>
+        <span class="token operator">&lt;</span>font color<span class="token operator">=</span><span class="token string">"7D26CD"</span><span class="token operator">></span>置顶<span class="token operator">&lt;</span><span class="token operator">/</span>font<span class="token operator">></span>
+        <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"post-meta-divider"</span><span class="token operator">></span><span class="token operator">|</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+      <span class="token punctuation">{</span><span class="token operator">%</span> endif <span class="token operator">%</span><span class="token punctuation">}</span>
+</code></pre>
+<p>参考：<br><a href="https://blog.csdn.net/qwerty200696/article/details/79010629" target="_blank" rel="noopener">https://blog.csdn.net/qwerty200696/article/details/79010629</a></p>
 
       
     </div>
@@ -706,7 +724,7 @@ body </span><span class="token punctuation">{</span>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -766,7 +784,19 @@ body </span><span class="token punctuation">{</span>
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -811,7 +841,7 @@ body </span><span class="token punctuation">{</span>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何在文章中引入图片"><span class="nav-number">1.</span> <span class="nav-text">如何在文章中引入图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何设置背景图片（next主题）"><span class="nav-number">2.</span> <span class="nav-text">如何设置背景图片（next主题）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试更新next-主题"><span class="nav-number">3.</span> <span class="nav-text">尝试更新next 主题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何在文章中引入图片"><span class="nav-number">1.</span> <span class="nav-text">如何在文章中引入图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何设置背景图片（next主题）"><span class="nav-number">2.</span> <span class="nav-text">如何设置背景图片（next主题）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试更新next-主题"><span class="nav-number">3.</span> <span class="nav-text">尝试更新next 主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字数统计与阅读时长"><span class="nav-number">4.</span> <span class="nav-text">字数统计与阅读时长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何置顶"><span class="nav-number">5.</span> <span class="nav-text">如何置顶</span></a></li></ol></div>
             
 
           </div>
@@ -819,6 +849,13 @@ body </span><span class="token punctuation">{</span>
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -844,7 +881,7 @@ body </span><span class="token punctuation">{</span>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">46k</span>
   
 
   
@@ -853,7 +890,7 @@ body </span><span class="token punctuation">{</span>
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">42 分钟</span>
   
 </div>
 
@@ -878,11 +915,6 @@ body </span><span class="token punctuation">{</span>
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -951,6 +983,7 @@ body </span><span class="token punctuation">{</span>
   <script src="/js/src/affix.js?v=7.0.1"></script>
 
   <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
 
 
 
