@@ -22,6 +22,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
 
 
 
@@ -369,6 +376,282 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/技术/关于hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/技术/关于hexo/" class="post-title-link" itemprop="url">关于hexo</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-06 10:48:00" itemprop="dateCreated datePublished" datetime="2019-08-06T10:48:00+08:00">2019-08-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-12 09:34:38" itemprop="dateModified" datetime="2019-09-12T09:34:38+08:00">2019-09-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/06/技术/关于hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/06/技术/关于hexo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.9k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/2019/08/06/技术/关于hexo/1565069237465.png" alt="1565069237465"></p>
+<h4 id="如何在文章中引入图片"><a href="#如何在文章中引入图片" class="headerlink" title="如何在文章中引入图片"></a>如何在文章中引入图片</h4><p>先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下</p>
+<p>1</p>
+<p>首先，先在网上找了，要安装一个插件</p>
+<p> npm install hexo-asset-image –save</p>
+<p>不好使，卸载</p>
+<p>npm uninstall hexo-asset-image</p>
+<p>2</p>
+<p>官网看看 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/asset-folders</a></p>
+<p>两种解决方式。</p>
+<p>第一种很简单，在about相同层级新建images 目录，然后所有文章都引用里边的图片。缺点是比较死板，image 文件都在一个目录下。</p>
+<p>第二种使用标签插件，比较陌生，看完了发现是令人难受的方式，使用 md 不支持的语法，必须要生成页面后才能看到效果</p>
+<p>3</p>
+<p>最后的解决办法，1 不用手动拷贝图片，2 就用md 的语法，这样md编辑器里也可以看到效果。</p>
+<p>其实还是第一种解决办法，只是第一种的插件在hexo 3 里过期了，需用用另个一github上的</p>
+<p>解决步骤：</p>
+<p>1</p>
+<p>修改配置文件_config.yml 为</p>
+<p>post_asset_folder: true</p>
+<p>2 </p>
+<p>我使用的是typora .  文件-&gt; 偏好设置</p>
+<p><img src="/2019/08/06/技术/关于hexo/1565071459765.png" alt="1565071459765"></p>
+<p>3</p>
+<pre class=" language-javascript"><code class="language-javascript">npm install https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>CodeFalling<span class="token operator">/</span>hexo<span class="token operator">-</span>asset<span class="token operator">-</span>image <span class="token operator">--</span>save
+</code></pre>
+<h4 id="如何设置背景图片（next主题）"><a href="#如何设置背景图片（next主题）" class="headerlink" title="如何设置背景图片（next主题）"></a>如何设置背景图片（next主题）</h4><p>别的主题应该也可以，方法思路就是这样的</p>
+<p>打开文档下themes\next\source\css\ _custom\custom.styl</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">// 设置背景图片
+body </span><span class="token punctuation">{</span>
+    <span class="token property">background</span><span class="token punctuation">:</span><span class="token url">url(/imgs/16pic_5550571_b.jpg)</span><span class="token punctuation">;</span>
+    <span class="token property">background-repeat</span><span class="token punctuation">:</span> repeat<span class="token punctuation">;</span>
+    <span class="token property">background-attachment</span><span class="token punctuation">:</span>fixed<span class="token punctuation">;</span>
+    <span class="token property">background-position</span><span class="token punctuation">:</span><span class="token number">50%</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+    <span class="token property">background-size</span><span class="token punctuation">:</span><span class="token number">200</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>其他一些样式也可以在这文件里设置</p>
+<h4 id="尝试更新next-主题"><a href="#尝试更新next-主题" class="headerlink" title="尝试更新next 主题"></a>尝试更新next 主题</h4><p>2019/8/15</p>
+<p>发现<a href="https://theme-next.org/archives/" target="_blank" rel="noopener">hexo 官网</a>的样式比较好看，是不是更新了就有了呢。</p>
+<p>先把目录复制了一份备份。然后用idea 打开next 的目录（个人习惯了idea 的git 操作）,先stash change, 然后git pull ，再unstash，再合并冲突。好多的配置都冲突了，合并了大半天。</p>
+<p>跑起来后发现还是老样子，没看出来什么变化，搜索功能还不好使了。。</p>
+<p>把主题目录还原，更新失败告终。</p>
+<p>原来把next主题样式改一下就是了。cnm 我什么也没有做，你什么也没看到！！！</p>
+<h4 id="字数统计与阅读时长"><a href="#字数统计与阅读时长" class="headerlink" title="字数统计与阅读时长"></a>字数统计与阅读时长</h4><p><a href="https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app" target="_blank" rel="noopener">https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app</a></p>
+<h4 id="如何置顶"><a href="#如何置顶" class="headerlink" title="如何置顶"></a>如何置顶</h4><p>$ npm uninstall hexo-generator-index –save<br>$ npm install hexo-generator-index-pin-top –save</p>
+<pre class=" language-markdown"><code class="language-markdown"><span class="token hr punctuation">---</span>
+title: hexo+GitHub博客搭建实战
+date: 2017-09-08 12:00:25
+categories: 博客搭建系列
+<span class="token title important">top: true
+<span class="token punctuation">---</span></span>
+</code></pre>
+<p>可有可无的操作：<br>打开：/blog/themes/next/layout/_macro 目录下的post.swig文件，定位到<code>&lt;div class=&quot;post-meta&quot;&gt;</code>标签下，插入如下代码：</p>
+<pre class=" language-javascript"><code class="language-javascript">      <span class="token punctuation">{</span><span class="token operator">%</span> <span class="token keyword">if</span> post<span class="token punctuation">.</span>top <span class="token operator">%</span><span class="token punctuation">}</span>
+        <span class="token operator">&lt;</span>i <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fa fa-thumb-tack"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>i<span class="token operator">></span>
+        <span class="token operator">&lt;</span>font color<span class="token operator">=</span><span class="token string">"7D26CD"</span><span class="token operator">></span>置顶<span class="token operator">&lt;</span><span class="token operator">/</span>font<span class="token operator">></span>
+        <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"post-meta-divider"</span><span class="token operator">></span><span class="token operator">|</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+      <span class="token punctuation">{</span><span class="token operator">%</span> endif <span class="token operator">%</span><span class="token punctuation">}</span>
+</code></pre>
+<p>参考：<br><a href="https://blog.csdn.net/qwerty200696/article/details/79010629" target="_blank" rel="noopener">https://blog.csdn.net/qwerty200696/article/details/79010629</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
     
     	
       		
@@ -1856,7 +2139,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1928,7 +2211,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2068,6 +2353,10 @@
 
 
 
+  
+  
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
 
 
 
@@ -2109,6 +2398,8 @@
 
   <script src="/js/src/next-boot.js?v=7.0.1"></script>
 
+
+  
 
   
 

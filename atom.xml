@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-11T02:10:49.249Z</updated>
+  <updated>2019-09-12T05:34:50.187Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于sonar</title>
+    <link href="http://yoursite.com/2019/09/12/%E6%8A%80%E6%9C%AF/sonar/"/>
+    <id>http://yoursite.com/2019/09/12/技术/sonar/</id>
+    <published>2019-09-12T02:33:02.711Z</published>
+    <updated>2019-09-12T05:34:50.187Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="关于sonar"><a href="#关于sonar" class="headerlink" title="关于sonar"></a>关于sonar</h4><p>个人很同意这一个人的看法，摘抄至此</p><blockquote><p>sonar 扫描代码并不是一件很容易的事。<br>为什么这么说呢，出结果出报告，相对来说很容易，但是谁去follow，谁是owner，优先级等等，背后是一个组织，而且是一个高效、认同、执行力强的组织。所以还是慎入。<a href="https://www.jianshu.com/p/2de96cfcff30" target="_blank" rel="noopener">原文链接</a></p></blockquote><p>自己刚来公司安装实践了一下，过了几个月也没有用上。这里只是说一下怎么使用，安装后的文件打包放到百度云盘上了。</p><p>首先这个东西非常吃内存</p><p>这个玩意需要数据库，个人推荐使用mysql,因为安装和使用比较简单， 需要在配置文件里配置一下路径</p><p>打开目录找到bin , 打开找到自己的操作系统的目录，打开执行start 的脚本文件，就可以了。</p><p>具体步骤参考：<a href="https://blog.csdn.net/hrf368246980/article/details/81330795" target="_blank" rel="noopener">https://blog.csdn.net/hrf368246980/article/details/81330795</a></p><p>另外就是如果内存溢出失败了或者是想自己结束，直接关闭窗口是没有用的，只能找到相应的java进程， 杀死。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;关于sonar&quot;&gt;&lt;a href=&quot;#关于sonar&quot; class=&quot;headerlink&quot; title=&quot;关于sonar&quot;&gt;&lt;/a&gt;关于sonar&lt;/h4&gt;&lt;p&gt;个人很同意这一个人的看法，摘抄至此&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sonar 扫描代码并不
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="sonar" scheme="http://yoursite.com/tags/sonar/"/>
+    
+  </entry>
   
   <entry>
     <title>ssh</title>
@@ -499,29 +526,6 @@
     
     
       <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/08/22/%E6%97%A5%E8%AE%B0/%E6%88%91%E6%83%B3%E5%81%B7%E5%81%B7%E7%9A%84%E6%AD%BB%E5%8E%BB/"/>
-    <id>http://yoursite.com/2019/08/22/日记/我想偷偷的死去/</id>
-    <published>2019-08-22T01:55:50.938Z</published>
-    <updated>2019-08-29T05:28:30.427Z</updated>
-    
-    <content type="html"><![CDATA[<p>死亡到底是什么，它就像是一个 黑洞，让我渴望那一天的到来。</p><p>每一天起床，我都会想，我为什么还活着。如果世界是一个虚构，那么究竟还要持续多久。既然我们不能看清世界的全面貌，那么终结就是一个迷。</p><p>这是一个终点，每个人都有机会去了解。每个人也必须去了解。</p><p>我之前为什么说世界是一个递归，因为，首先来说因为你自己是一个人，所以才有你所看所想的这些东西。这从根本上已经说明了接下来发生的事情就是一个递归。</p><p>而且世界对于人来说，就是一个没有终点的递归，而死亡，就是中间的一个break，或许不是。</p><p>递归的另外一个特点就是相似性。你怎么思考，就会做什么样的事情，就会过什么样的人生。 你在一件事情上的处理方式，反应了你的思维方法，同时影响了以后相似的问题的解决方法。</p><p>递归的另一个特点就是循环，现在做的事情影响着下一个事情，然后不停的影响下去。比如今天因为之前的递归导致没有睡觉，就会困，困到想睡，夜里就有来了精神，接着不睡。这可以用来解释一切的事情，比如为什么没有会上厕所，为什么技术能力提高不上去，为什么不善于和别人说话。最简单的递归是， 因为我是人，所以我更是人。因为我爱说话，所以我就更爱说话。</p><p>死亡常常令我着迷，人一旦死去，就好像没有来到过这个世界。</p><p>如果放下所有的不甘，死，似乎是另一个世界的开启。 而我希望那里是永恒。</p><p>死亡就如同这个世界的起源一样，那么令人着迷。</p><p>如果说这个世界是神创造的，那又是谁创造了神呢。我生而为人，只能用人的角度去思考这个世界，如果我不死去可能永远也找不到答案。</p><p>人会用人到方式留住你，圈住你，让你继续为他们做他们没有完成的工作，解决没有解决的问题。继续作为一个人活着。而且自己也是人，也要继续传承下去这种行为。我们不管是从情感上，还是感官上，都害怕死，拒绝痛苦。</p><p>如果以这个世界就不曾存在过的角度思考这个世界，那么一切都是虚伪的，都是自圆其说，自己诠释自己。一旦你死了，所有顾忌都不在是顾忌。其实这个世界上所有的事情都是这样，因为你处在其中，所以思想就被困在当中。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;死亡到底是什么，它就像是一个 黑洞，让我渴望那一天的到来。&lt;/p&gt;
-&lt;p&gt;每一天起床，我都会想，我为什么还活着。如果世界是一个虚构，那么究竟还要持续多久。既然我们不能看清世界的全面貌，那么终结就是一个迷。&lt;/p&gt;
-&lt;p&gt;这是一个终点，每个人都有机会去了解。每个人也必须去了解
-      
-    
-    </summary>
-    
     
   </entry>
   

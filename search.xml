@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于sonar]]></title>
+    <url>%2F2019%2F09%2F12%2F%E6%8A%80%E6%9C%AF%2Fsonar%2F</url>
+    <content type="text"><![CDATA[关于sonar个人很同意这一个人的看法，摘抄至此 sonar 扫描代码并不是一件很容易的事。为什么这么说呢，出结果出报告，相对来说很容易，但是谁去follow，谁是owner，优先级等等，背后是一个组织，而且是一个高效、认同、执行力强的组织。所以还是慎入。原文链接 自己刚来公司安装实践了一下，过了几个月也没有用上。这里只是说一下怎么使用，安装后的文件打包放到百度云盘上了。 首先这个东西非常吃内存 这个玩意需要数据库，个人推荐使用mysql,因为安装和使用比较简单， 需要在配置文件里配置一下路径 打开目录找到bin , 打开找到自己的操作系统的目录，打开执行start 的脚本文件，就可以了。 具体步骤参考：https://blog.csdn.net/hrf368246980/article/details/81330795 另外就是如果内存溢出失败了或者是想自己结束，直接关闭窗口是没有用的，只能找到相应的java进程， 杀死。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>sonar</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ssh]]></title>
     <url>%2F2019%2F09%2F10%2F%E6%8A%80%E6%9C%AF%2Fssh%2F</url>
     <content type="text"><![CDATA[windows安装一个ssh 客户端和服务器吧我用到了两个软件，各取其长处 ssh 服务器下载（肯定是windows版本啦）http://www.freesshd.com/?ctt=download 安装说明（启动时必须要使用管理员启动）） ssh 客户端下载（肯定也是windows版本啦）https://openssh.en.softonic.com/download scp从linux 向 本机（windows） 推 : [root@localhost ~]£ scp apache-tomcat-8.5.32.tar.gz root@10.10.30.21: root@10.10.30.21's password: apache-tomcat-8.5.32.tar.gz 100% 9360KB 33.4MB/s 00:00 从本地（windows） 向 linux 拉 : C:\Users\Administrator\Desktop>scp root@10.10.110.23:/root/apache-tomcat-8.5.32.tar.gz . root@10.10.110.23's password: apache-tomcat-8.5.32.tar.gz 100% 9360KB 9.1MB/s 00:00]]></content>
@@ -303,7 +314,7 @@
   <entry>
     <title><![CDATA[关于hexo]]></title>
     <url>%2F2019%2F08%2F06%2F%E6%8A%80%E6%9C%AF%2F%E5%85%B3%E4%BA%8Ehexo%2F</url>
-    <content type="text"><![CDATA[如何在文章中引入图片先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下 1 首先，先在网上找了，要安装一个插件 npm install hexo-asset-image –save 不好使，卸载 npm uninstall hexo-asset-image 2 官网看看 https://hexo.io/zh-cn/docs/asset-folders 两种解决方式。 第一种很简单，在about相同层级新建images 目录，然后所有文章都引用里边的图片。缺点是比较死板，image 文件都在一个目录下。 第二种使用标签插件，比较陌生，看完了发现是令人难受的方式，使用 md 不支持的语法，必须要生成页面后才能看到效果 3 最后的解决办法，1 不用手动拷贝图片，2 就用md 的语法，这样md编辑器里也可以看到效果。 其实还是第一种解决办法，只是第一种的插件在hexo 3 里过期了，需用用另个一github上的 解决步骤： 1 修改配置文件_config.yml 为 post_asset_folder: true 2 我使用的是typora . 文件-&gt; 偏好设置 3 npm install https://github.com/CodeFalling/hexo-asset-image --save 如何设置背景图片（next主题）别的主题应该也可以，方法思路就是这样的 打开文档下themes\next\source\css\ _custom\custom.styl // 设置背景图片 body { background:url(/imgs/16pic_5550571_b.jpg); background-repeat: repeat; background-attachment:fixed; background-position:50% 50%; background-size:200px; } 其他一些样式也可以在这文件里设置 尝试更新next 主题2019/8/15 发现hexo 官网的样式比较好看，是不是更新了就有了呢。 先把目录复制了一份备份。然后用idea 打开next 的目录（个人习惯了idea 的git 操作）,先stash change, 然后git pull ，再unstash，再合并冲突。好多的配置都冲突了，合并了大半天。 跑起来后发现还是老样子，没看出来什么变化，搜索功能还不好使了。。 把主题目录还原，更新失败告终。 字数统计与阅读时长https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app 如何置顶$ npm uninstall hexo-generator-index –save$ npm install hexo-generator-index-pin-top –save --- title: hexo+GitHub博客搭建实战 date: 2017-09-08 12:00:25 categories: 博客搭建系列 top: true --- 可有可无的操作：打开：/blog/themes/next/layout/_macro 目录下的post.swig文件，定位到&lt;div class=&quot;post-meta&quot;&gt;标签下，插入如下代码： {% if post.top %} &lt;i class="fa fa-thumb-tack">&lt;/i> &lt;font color="7D26CD">置顶&lt;/font> &lt;span class="post-meta-divider">|&lt;/span> {% endif %} 参考：https://blog.csdn.net/qwerty200696/article/details/79010629]]></content>
+    <content type="text"><![CDATA[如何在文章中引入图片先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下 1 首先，先在网上找了，要安装一个插件 npm install hexo-asset-image –save 不好使，卸载 npm uninstall hexo-asset-image 2 官网看看 https://hexo.io/zh-cn/docs/asset-folders 两种解决方式。 第一种很简单，在about相同层级新建images 目录，然后所有文章都引用里边的图片。缺点是比较死板，image 文件都在一个目录下。 第二种使用标签插件，比较陌生，看完了发现是令人难受的方式，使用 md 不支持的语法，必须要生成页面后才能看到效果 3 最后的解决办法，1 不用手动拷贝图片，2 就用md 的语法，这样md编辑器里也可以看到效果。 其实还是第一种解决办法，只是第一种的插件在hexo 3 里过期了，需用用另个一github上的 解决步骤： 1 修改配置文件_config.yml 为 post_asset_folder: true 2 我使用的是typora . 文件-&gt; 偏好设置 3 npm install https://github.com/CodeFalling/hexo-asset-image --save 如何设置背景图片（next主题）别的主题应该也可以，方法思路就是这样的 打开文档下themes\next\source\css\ _custom\custom.styl // 设置背景图片 body { background:url(/imgs/16pic_5550571_b.jpg); background-repeat: repeat; background-attachment:fixed; background-position:50% 50%; background-size:200px; } 其他一些样式也可以在这文件里设置 尝试更新next 主题2019/8/15 发现hexo 官网的样式比较好看，是不是更新了就有了呢。 先把目录复制了一份备份。然后用idea 打开next 的目录（个人习惯了idea 的git 操作）,先stash change, 然后git pull ，再unstash，再合并冲突。好多的配置都冲突了，合并了大半天。 跑起来后发现还是老样子，没看出来什么变化，搜索功能还不好使了。。 把主题目录还原，更新失败告终。 原来把next主题样式改一下就是了。cnm 我什么也没有做，你什么也没看到！！！ 字数统计与阅读时长https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app 如何置顶$ npm uninstall hexo-generator-index –save$ npm install hexo-generator-index-pin-top –save --- title: hexo+GitHub博客搭建实战 date: 2017-09-08 12:00:25 categories: 博客搭建系列 top: true --- 可有可无的操作：打开：/blog/themes/next/layout/_macro 目录下的post.swig文件，定位到&lt;div class=&quot;post-meta&quot;&gt;标签下，插入如下代码： {% if post.top %} &lt;i class="fa fa-thumb-tack">&lt;/i> &lt;font color="7D26CD">置顶&lt;/font> &lt;span class="post-meta-divider">|&lt;/span> {% endif %} 参考：https://blog.csdn.net/qwerty200696/article/details/79010629]]></content>
       <categories>
         <category>技术</category>
       </categories>
