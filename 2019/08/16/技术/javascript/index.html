@@ -107,11 +107,11 @@
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript">
-<meta property="og:url" content="http://yoursite.com/2019/01/01/技术/javascript/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/16/技术/javascript/index.html">
 <meta property="og:site_name" content="liqwer">
 <meta property="og:description" content="常用技术 如何获取选中的select$(&apos;#yhpc_ipt_id option:selected&apos;)  字符串格式化Date.prototype.Format = function (fmt) { //author: meizz     var o = {         &quot;M+&quot;: this.getMonth() + 1, //月份         &quot;d+&quot;: this.getDate(),">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-05T08:32:41.015Z">
+<meta property="og:updated_time" content="2019-10-29T09:22:30.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript">
 <meta name="twitter:description" content="常用技术 如何获取选中的select$(&apos;#yhpc_ipt_id option:selected&apos;)  字符串格式化Date.prototype.Format = function (fmt) { //author: meizz     var o = {         &quot;M+&quot;: this.getMonth() + 1, //月份         &quot;d+&quot;: this.getDate(),">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/01/技术/javascript/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/16/技术/javascript/">
 
 
 
@@ -392,7 +392,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/技术/javascript/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/技术/javascript/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liqw">
@@ -436,7 +436,7 @@
                 
               
 
-              <time title="创建时间：2019-01-01 01:56:00" itemprop="dateCreated datePublished" datetime="2019-01-01T01:56:00+08:00">2019-01-01</time>
+              <time title="创建时间：2019-08-16 01:56:00" itemprop="dateCreated datePublished" datetime="2019-08-16T01:56:00+08:00">2019-08-16</time>
             
 
             
@@ -453,7 +453,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 16:32:41" itemprop="dateModified" datetime="2019-09-05T16:32:41+08:00">2019-09-05</time>
+                <time title="修改时间：2019-10-29 17:22:30" itemprop="dateModified" datetime="2019-10-29T17:22:30+08:00">2019-10-29</time>
               
             
           </span>
@@ -489,8 +489,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/01/01/技术/javascript/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/技术/javascript/" itemprop="commentCount"></span>
+                <a href="/2019/08/16/技术/javascript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/16/技术/javascript/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -512,7 +512,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">27k</span>
+                <span title="本文字数">70k</span>
               
 
               
@@ -526,7 +526,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">25 分钟</span>
+                <span title="阅读时长">1:04</span>
               
             </div>
           
@@ -662,6 +662,243 @@
 <h4 id="ie8-无响应"><a href="#ie8-无响应" class="headerlink" title="ie8 无响应"></a>ie8 无响应</h4><pre class=" language-JavaScript"><code class="language-JavaScript">sessionStorage.setItem('active1', this.id);
 </code></pre>
 <p><a href="https://www.cnblogs.com/CoffeeEddy/p/8143536.html" target="_blank" rel="noopener">https://www.cnblogs.com/CoffeeEddy/p/8143536.html</a></p>
+<h4 id="onkeydown"><a href="#onkeydown" class="headerlink" title="onkeydown"></a>onkeydown</h4><p>注意使用onkeydown 来屏蔽按键是做不到不能输入的，还是可以使用中文输入法输入或者通过右键复制粘贴输入<br>正常的操作是回车提交表单了。</p>
+<p>来来来，看看什么叫做复制有风险 粘贴需谨慎 特别是网申的东西</p>
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--NOT OK--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">οnkeydown</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(1)<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token comment" spellcheck="true">&lt;!--OK--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">onkeydown</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(1)<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+</code></pre>
+<p>第一个οnkeydown 的o竟然是希腊字母，完全看不出区别。</p>
+<h4 id="匿名方法的使用"><a href="#匿名方法的使用" class="headerlink" title="匿名方法的使用"></a>匿名方法的使用</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> a<span class="token operator">=</span><span class="token string">'1'</span><span class="token operator">+</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> <span class="token string">'1'</span><span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'1'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 111</span>
+
+<span class="token keyword">var</span> a<span class="token operator">=</span><span class="token string">'1'</span><span class="token operator">+</span><span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> e<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token string">'2'</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'1'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 121</span>
+
+<span class="token keyword">var</span> b<span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">var</span> c<span class="token operator">=</span><span class="token string">'1'</span><span class="token operator">+</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> b<span class="token operator">+</span><span class="token string">'1'</span><span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 111</span>
+
+</code></pre>
+<h4 id="和-区别"><a href="#和-区别" class="headerlink" title="==和=== 区别"></a>==和=== 区别</h4><p>== 先转换成相同的类型，然后使用=== 进行比较</p>
+<p>===  false</p>
+<p>具体情况参考 <a href="https://www.cnblogs.com/nelson-hu/p/7922731.html" target="_blank" rel="noopener">https://www.cnblogs.com/nelson-hu/p/7922731.html</a></p>
+<p>延伸： java 中 == 比较的是内存首地址，equals 比较的是相同类型的值，不同类型直接返回false</p>
+<h4 id="jquery-添加属性"><a href="#jquery-添加属性" class="headerlink" title="jquery  添加属性"></a>jquery  添加属性</h4><p><a href="https://www.cnblogs.com/sunylat/p/10276979.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunylat/p/10276979.html</a></p>
+<pre><code>$(&quot;p:first&quot;).addClass(&quot;intro&quot;);
+$(&quot;p&quot;).removeClass(&quot;selected&quot;);
+</code></pre><h4 id="jquery-获取周围的元素"><a href="#jquery-获取周围的元素" class="headerlink" title="jquery 获取周围的元素"></a>jquery 获取周围的元素</h4><p><a href="https://www.jb51.net/article/133319.htm" target="_blank" rel="noopener">https://www.jb51.net/article/133319.htm</a></p>
+<p><strong>获取其父级元素</strong></p>
+<pre><code>$(&quot;#id&quot;).parents()
+</code></pre><p><strong>获取同级元素</strong></p>
+<pre><code>$(&quot;#id&quot;).next(selector)
+jQuery.prev()，返回上一个兄弟节点，不是所有的兄弟节点
+</code></pre><p><strong>获取子元素</strong></p>
+<pre><code>$(&quot;#id&quot;).children(selector)
+</code></pre><p>返回匹配元素的子元素，添加可选参数可通过选择器进行过滤。</p>
+<pre><code>$(&quot;#id&quot;).find(selector)
+</code></pre><h4 id="jquery通过name属性取值的方法"><a href="#jquery通过name属性取值的方法" class="headerlink" title="jquery通过name属性取值的方法"></a>jquery通过name属性取值的方法</h4><pre><code>//input
+$(&quot;input[name=&#39;title&#39;]&quot;).val();
+
+//textarea
+$(&quot;textarea[name=&#39;remark&#39;]&quot;).val();
+
+//select
+$(&quot;select[name=&#39;region[province]&#39;]&quot;).val();*
+
+//checkbox
+$(&quot;input:checkbox[name=&#39;test&#39;]:checked&quot;).each(function() { // 遍历name=test的多选框
+  $(this).val();  // 每一个被选中项的值
+});
+//设置选中 
+$(&#39;#cb&#39;).prop(&#39;checked&#39;, true);
+
+//获取是否选中 
+var isChecked = $(&#39;#cb&#39;).prop(&#39;checked&#39;);
+//或 
+var isChecked = $(&#39;#cb&#39;).is(&quot;:checked&quot;);
+
+$(&quot;[name=&#39;https_origin_type&#39;][value=&#39;1&#39;]&quot;).prop(&quot;checked&quot;, true);//设置值为1的为选中
+//radio
+$(&quot;input[name=&#39;&#39;]:checked&quot;).val();
+$(&#39;input:radio:first&#39;).prop(&#39;checked&#39;, true);
+
+//Jquery清空（获取）当前页面所有的input和textarea的两种写法
+$(&quot;#myform input,#myform textarea&quot;).each(function(){
+    this.value = this.value.replace(/\&amp;/g,&quot;%26&quot;);//也可以清空数据this.value =&quot;&quot;;
+})
+$(&quot;#myform&quot;).find(&quot;input,textarea&quot;).each(function(){
+   this.value = this.value.replace(/\&amp;/g,&quot;%26&quot;);//也可以清空数据this.value =&quot;&quot;;
+});
+</code></pre><p>#### </p>
+<p><strong>操作checked、disabled、selected属性，强制建议只用prop()方法！！，不要用attr()方法。</strong></p>
+<p>$(“#cb1”).prop(‘checked’) // 获取状态 ，返回true/false</p>
+<p>$(“#cb1”).prop(“checked”,<strong>true</strong>); //设置状态</p>
+<p><a href="https://blog.csdn.net/sinat_35172724/article/details/86540269" target="_blank" rel="noopener">https://blog.csdn.net/sinat_35172724/article/details/86540269</a></p>
+<h4 id="jquery-获取某元素在父容器下的位置"><a href="#jquery-获取某元素在父容器下的位置" class="headerlink" title="jquery 获取某元素在父容器下的位置"></a>jquery 获取某元素在父容器下的位置</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>button<span class="token punctuation">'</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>delete<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>button<span class="token punctuation">'</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>delete<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>button<span class="token punctuation">'</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>delete<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>text/javascript<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+$(document).ready(function(){
+  $("table tr td input[value='delete']").click(function(){
+     var trs=$(this).parents('table').find('tr');
+     var tr=$(this).parents('tr');
+      // 获取当前点击的是第几行。 
+     alert(trs.index(tr));
+  })
+});
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scripts</span><span class="token punctuation">></span></span>
+</code></pre>
+<h4 id="jquery-属性模糊匹配元素"><a href="#jquery-属性模糊匹配元素" class="headerlink" title="jquery 属性模糊匹配元素"></a>jquery <a href="https://www.cnblogs.com/qlqwjy/p/8313241.html" target="_blank" rel="noopener">属性模糊匹配元素</a></h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//含有某属性</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"div[id]"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//某属性等于</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='newsletter']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//某属性不等于</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name!='newsletter']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//某属性开头</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name^='news']"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//某属性结尾</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name$='letter']"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//某属性包含</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name*='man']"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//满足多个属性条件</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[id][name$='man']"</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="jquery-添加-删除-元素"><a href="#jquery-添加-删除-元素" class="headerlink" title="jquery 添加 删除 元素"></a>jquery 添加 删除 元素</h4><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 以下对这个代码进行操作 --></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一个段落。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">after</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 1 &lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">after</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 2 &lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>结果</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一个段落。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">before</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 1&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">before</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 2&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一个段落。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 1&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 2&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一个段落。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 1&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">appendTo</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello World! 2&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">appendTo</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一个段落。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello world! 1&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertAfter</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 插入顺序不同于appendTo</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello world! 2&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertAfter</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一个段落。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello world! 1&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 插入到子元素的第一个</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"&lt;span>Hello world! 2&lt;/span>"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Hello World! 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> 这是一个段落。 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
+</code></pre>
+<hr>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>结果 ( 空 白 )</p>
+<pre class=" language-html"><code class="language-html">
+</code></pre>
+<h4 id="jquery-操作属性"><a href="#jquery-操作属性" class="headerlink" title="jquery 操作属性"></a>jquery 操作属性</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//添加属性 或 修改属性</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#home"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"disabled"</span><span class="token punctuation">,</span><span class="token string">"disabled"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//删除属性</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#home"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"disabled"</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 今天在火狐浏览器上不是很好使， 那么这个方式就需要注意了，尽量不要这么写</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#home"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeAttr</span><span class="token punctuation">(</span><span class="token string">"disabled"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="jquery-操作css"><a href="#jquery-操作css" class="headerlink" title="jquery 操作css"></a>jquery 操作css</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 添加一个css  或 修改css</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#home"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"background-color"</span><span class="token punctuation">,</span><span class="token string">"red"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//删除一个css 目前没有别的好办法</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#home"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"background-color"</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="判断一个字符串是不是json"><a href="#判断一个字符串是不是json" class="headerlink" title="判断一个字符串是不是json"></a>判断一个字符串是不是json</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">isJSON</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> str <span class="token operator">==</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> obj<span class="token operator">=</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> obj <span class="token operator">==</span> <span class="token string">'object'</span> <span class="token operator">&amp;&amp;</span> obj <span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'error：'</span><span class="token operator">+</span>str<span class="token operator">+</span><span class="token string">'!!!'</span><span class="token operator">+</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'It is not a string!'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="javascript-删除数组中的所有相同的元素"><a href="#javascript-删除数组中的所有相同的元素" class="headerlink" title="javascript 删除数组中的所有相同的元素"></a>javascript 删除数组中的所有相同的元素</h4><pre class=" language-javascript"><code class="language-javascript">Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>removeAll <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token keyword">this</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> index <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="如何禁用a标签的点击事件？"><a href="#如何禁用a标签的点击事件？" class="headerlink" title="如何禁用a标签的点击事件？"></a>如何禁用a标签的点击事件？</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>test<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>click me <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jquery-compat-3.0.0-alpha1.js<span class="token punctuation">"</span></span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
+    // 点击事件方式1
+    $(document).on('click','#test',function(){
+     // ie8 需要开启ActiveX
+     alert("javascript");
+
+    })
+    // 点击事件方式2
+      $("#test").click(function(){
+       // ie8 需要开启ActiveX
+       alert("jquery");
+      })
+    // google firefox qq 等没有问题，可以禁用掉
+     //ie8 下 方式1 可以被禁用 方式2 依旧坚挺，没有被禁掉
+    $("#test").attr("disabled",true).css("pointer-events","none"); 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
+<h4 id="window-常用的方法"><a href="#window-常用的方法" class="headerlink" title="window 常用的方法"></a>window 常用的方法</h4><pre class=" language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span>location<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 刷新页面</span>
+window<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"header"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//获取页面的元素</span>
+window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>search<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 获取问号之后的参数 包括问号</span>
+window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>href<span class="token operator">=</span><span class="token string">'www.baidu.com'</span> <span class="token comment" spellcheck="true">// 页面跳转</span>
+window<span class="token punctuation">.</span>document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>innerHTML <span class="token comment" spellcheck="true">// 获取或者设置当前页的HTML代码</span>
+window<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 调用浏览器，打印window.document.body.innerHTML</span>
+
+myWindow<span class="token operator">=</span>window<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token string">"width=200,height=100"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 打开窗口</span>
+myWindow<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;p>这是'我的窗口'&lt;/p>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 窗口内容</span>
+myWindow<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 关闭窗口</span>
+
+window<span class="token punctuation">.</span>parent 操作父对象
+</code></pre>
+<p>其他windows属性    <a href="https://www.runoob.com/jsref/obj-window.html" target="_blank" rel="noopener">https://www.runoob.com/jsref/obj-window.html</a></p>
+<p><code>window</code>   大部分情况下可以省略不写</p>
 
       
     </div>
@@ -698,8 +935,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/01/日记/！日记须知/" rel="next" title="日记须知">
-                <i class="fa fa-chevron-left"></i> 日记须知
+              <a href="/2019/08/09/技术/公租房项目重构/" rel="next" title="公租房项目重构">
+                <i class="fa fa-chevron-left"></i> 公租房项目重构
               </a>
             
           </div>
@@ -708,8 +945,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/01/技术/！技术须知/" rel="prev" title="技术须知">
-                技术须知 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/16/技术/mybatis/" rel="prev" title="mybatis">
+                mybatis <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -785,7 +1022,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -859,7 +1096,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -904,7 +1143,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何获取选中的select"><span class="nav-number">1.</span> <span class="nav-text">如何获取选中的select</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串格式化"><span class="nav-number">2.</span> <span class="nav-text">字符串格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间戳字符串和-时间转化"><span class="nav-number">3.</span> <span class="nav-text">时间戳字符串和 时间转化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前日期"><span class="nav-number">4.</span> <span class="nav-text">获取当前日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-操作dom-元素"><span class="nav-number">5.</span> <span class="nav-text">jquery 操作dom 元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-文件上传"><span class="nav-number">6.</span> <span class="nav-text">ajax 文件上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断数组中数据是否重复"><span class="nav-number">7.</span> <span class="nav-text">判断数组中数据是否重复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取变量的类型"><span class="nav-number">8.</span> <span class="nav-text">获取变量的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js-的方式提交form-表单"><span class="nav-number">9.</span> <span class="nav-text">js 的方式提交form 表单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js中对函数设置默认参数值的3种方法"><span class="nav-number">10.</span> <span class="nav-text">js中对函数设置默认参数值的3种方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ie8-无响应"><span class="nav-number">11.</span> <span class="nav-text">ie8 无响应</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何获取选中的select"><span class="nav-number">1.</span> <span class="nav-text">如何获取选中的select</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串格式化"><span class="nav-number">2.</span> <span class="nav-text">字符串格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间戳字符串和-时间转化"><span class="nav-number">3.</span> <span class="nav-text">时间戳字符串和 时间转化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取当前日期"><span class="nav-number">4.</span> <span class="nav-text">获取当前日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-操作dom-元素"><span class="nav-number">5.</span> <span class="nav-text">jquery 操作dom 元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-文件上传"><span class="nav-number">6.</span> <span class="nav-text">ajax 文件上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断数组中数据是否重复"><span class="nav-number">7.</span> <span class="nav-text">判断数组中数据是否重复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取变量的类型"><span class="nav-number">8.</span> <span class="nav-text">获取变量的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js-的方式提交form-表单"><span class="nav-number">9.</span> <span class="nav-text">js 的方式提交form 表单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js中对函数设置默认参数值的3种方法"><span class="nav-number">10.</span> <span class="nav-text">js中对函数设置默认参数值的3种方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ie8-无响应"><span class="nav-number">11.</span> <span class="nav-text">ie8 无响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onkeydown"><span class="nav-number">12.</span> <span class="nav-text">onkeydown</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名方法的使用"><span class="nav-number">13.</span> <span class="nav-text">匿名方法的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和-区别"><span class="nav-number">14.</span> <span class="nav-text">==和=== 区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-添加属性"><span class="nav-number">15.</span> <span class="nav-text">jquery  添加属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-获取周围的元素"><span class="nav-number">16.</span> <span class="nav-text">jquery 获取周围的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery通过name属性取值的方法"><span class="nav-number">17.</span> <span class="nav-text">jquery通过name属性取值的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-获取某元素在父容器下的位置"><span class="nav-number">18.</span> <span class="nav-text">jquery 获取某元素在父容器下的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-属性模糊匹配元素"><span class="nav-number">19.</span> <span class="nav-text">jquery 属性模糊匹配元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-添加-删除-元素"><span class="nav-number">20.</span> <span class="nav-text">jquery 添加 删除 元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-操作属性"><span class="nav-number">21.</span> <span class="nav-text">jquery 操作属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery-操作css"><span class="nav-number">22.</span> <span class="nav-text">jquery 操作css</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断一个字符串是不是json"><span class="nav-number">23.</span> <span class="nav-text">判断一个字符串是不是json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#javascript-删除数组中的所有相同的元素"><span class="nav-number">24.</span> <span class="nav-text">javascript 删除数组中的所有相同的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何禁用a标签的点击事件？"><span class="nav-number">25.</span> <span class="nav-text">如何禁用a标签的点击事件？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#window-常用的方法"><span class="nav-number">26.</span> <span class="nav-text">window 常用的方法</span></a></li></ol></div>
             
 
           </div>
@@ -944,7 +1183,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">46k</span>
+    <span title="站点总字数">65k</span>
   
 
   
@@ -953,7 +1192,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">42 分钟</span>
+    <span title="站点阅读时长">59 分钟</span>
   
 </div>
 
@@ -1018,7 +1257,7 @@
 
   
   
-  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script id="ribbon" size="100" alpha="0.7" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
 
 
 

@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="liqwer">
 <meta property="og:description" content="查询两个时间相差的秒-- 查询两个时间相差的秒 select extract(day from inter) * 24 * 60 * 60 +        extract(hour from inter) * 60 * 60 + extract(minute from inter) * 60 +        extract(second from inter) &quot;seconds&quot; from">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-30T10:05:52.584Z">
+<meta property="og:updated_time" content="2019-09-29T01:07:36.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle">
 <meta name="twitter:description" content="查询两个时间相差的秒-- 查询两个时间相差的秒 select extract(day from inter) * 24 * 60 * 60 +        extract(hour from inter) * 60 * 60 + extract(minute from inter) * 60 +        extract(second from inter) &quot;seconds&quot; from">
@@ -453,7 +453,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-30 18:05:52" itemprop="dateModified" datetime="2019-08-30T18:05:52+08:00">2019-08-30</time>
+                <time title="修改时间：2019-09-29 09:07:36" itemprop="dateModified" datetime="2019-09-29T09:07:36+08:00">2019-09-29</time>
               
             
           </span>
@@ -512,7 +512,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">34k</span>
+                <span title="本文字数">53k</span>
               
 
               
@@ -526,7 +526,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">31 分钟</span>
+                <span title="阅读时长">48 分钟</span>
               
             </div>
           
@@ -740,7 +740,7 @@ quit
 </ol>
 <h4 id="获取最大值"><a href="#获取最大值" class="headerlink" title="获取最大值"></a>获取最大值</h4><p>   max(列名)</p>
 <p>   SELECT MAX (LOTREGIS_DATE) FROM GZF_LOTTERY_BATCHES</p>
-<h3 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h3><pre class=" language-sql"><code class="language-sql">concat
+<h4 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h4><pre class=" language-sql"><code class="language-sql">concat
 </code></pre>
 <p>在根据条件模糊查询的时候，有如下三种写法：</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">from</span> tab1 t <span class="token keyword">where</span> t<span class="token punctuation">.</span>col1 <span class="token operator">like</span> <span class="token string">'%a%'</span><span class="token punctuation">;</span>
@@ -752,7 +752,8 @@ quit
 <p>如上三种写法的等效的，最常用的是第一张写法，第二种第三种使用拼接，但是不同在于 <code>||</code> 可以无限拼接，类似于拼接字符串时候的 <code>+</code>，而<code>concat</code> 是<code>oracle</code>中的函数，<code>CONCAT(char1 , char2)</code>，此函数中有且仅有2个参数，所以第三种写法拼接了2次。</p>
 <p>|| 还可用于查询结果的拼接,无限拼接</p>
 <p>select ‘col=’|| t.col from Table t</p>
-<h4 id="行转列-pivot"><a href="#行转列-pivot" class="headerlink" title="行转列 pivot"></a>行转列 pivot</h4><p>PIVOT</p>
+<h4 id="行转列-pivot"><a href="#行转列-pivot" class="headerlink" title="行转列 pivot"></a>行转列 pivot</h4><p>把多行转成多列，叫做行转列</p>
+<p>行转列 也可用 case when 或 decode 实现</p>
 <pre class=" language-sql"><code class="language-sql">
 <span class="token comment" spellcheck="true">--行转列</span>
 <span class="token keyword">select</span> <span class="token operator">*</span>
@@ -767,7 +768,46 @@ quit
  <span class="token keyword">where</span> <span class="token number">1</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>                          <span class="token comment" spellcheck="true">--这里可以写查询条件，没有可以直接不要where</span>
 
 </code></pre>
-<h3 id="oracle如果列中有数字按照数字排序"><a href="#oracle如果列中有数字按照数字排序" class="headerlink" title="oracle如果列中有数字按照数字排序"></a>oracle如果列中有数字按照数字排序</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> ry<span class="token punctuation">.</span>FMEMO <span class="token keyword">from</span> GZF_APPLY_YHPZ ry <span class="token keyword">group</span> <span class="token keyword">by</span>  ry<span class="token punctuation">.</span>FMEMO
+<h4 id="列转行-unpivot"><a href="#列转行-unpivot" class="headerlink" title="列转行 unpivot"></a>列转行 unpivot</h4><p>把多列转成多行，叫做列转行</p>
+<p>列转行也可用 union all 方式实现</p>
+<pre class=" language-sql"><code class="language-sql">SQL<span class="token operator">></span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> cust_matrix
+  <span class="token number">2</span>  <span class="token operator">/</span>
+
+Puchase Frequency   New York       Conn New Jersey    Florida   Missouri
+<span class="token comment" spellcheck="true">----------------- ---------- ---------- ---------- ---------- ----------</span>
+                <span class="token number">1</span>      <span class="token number">33048</span>        <span class="token number">165</span>          <span class="token number">0</span>          <span class="token number">0</span>          <span class="token number">0</span>
+                <span class="token number">2</span>      <span class="token number">33151</span>        <span class="token number">179</span>          <span class="token number">0</span>          <span class="token number">0</span>          <span class="token number">0</span>
+                <span class="token number">3</span>      <span class="token number">32978</span>        <span class="token number">173</span>          <span class="token number">0</span>          <span class="token number">0</span>          <span class="token number">0</span>
+                <span class="token number">4</span>      <span class="token number">33109</span>        <span class="token number">173</span>          <span class="token number">0</span>          <span class="token number">1</span>          <span class="token number">0</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token keyword">select</span> <span class="token operator">*</span>
+  <span class="token keyword">from</span> cust_matrix
+<span class="token keyword">unpivot</span>
+<span class="token punctuation">(</span>
+  state_counts
+    <span class="token keyword">for</span> state_code <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">"New York"</span><span class="token punctuation">,</span><span class="token string">"Conn"</span><span class="token punctuation">,</span><span class="token string">"New Jersey"</span><span class="token punctuation">,</span><span class="token string">"Florida"</span><span class="token punctuation">,</span><span class="token string">"Missouri"</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token string">"Puchase Frequency"</span><span class="token punctuation">,</span> state_code
+
+
+输出如下：
+
+Puchase Frequency STATE_CODE STATE_COUNTS
+<span class="token comment" spellcheck="true">----------------- ---------- ------------</span>
+                <span class="token number">1</span> Conn                <span class="token number">165</span>
+                <span class="token number">1</span> Florida               <span class="token number">0</span>
+                <span class="token number">1</span> Missouri              <span class="token number">0</span>
+                <span class="token number">1</span> New Jersey            <span class="token number">0</span>
+                <span class="token number">1</span> New York          <span class="token number">33048</span>
+                <span class="token number">2</span> Conn                <span class="token number">179</span>
+                <span class="token number">2</span> Florida               <span class="token number">0</span>
+                <span class="token number">2</span> Missouri              <span class="token number">0</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>  
+</code></pre>
+<p>参考 <a href="https://blog.csdn.net/timothy_mok1989/article/details/83986776" target="_blank" rel="noopener">https://blog.csdn.net/timothy_mok1989/article/details/83986776</a></p>
+<p><a href="https://blog.csdn.net/whandgdh/article/details/80679831" target="_blank" rel="noopener">https://blog.csdn.net/whandgdh/article/details/80679831</a></p>
+<h4 id="oracle如果列中有数字按照数字排序"><a href="#oracle如果列中有数字按照数字排序" class="headerlink" title="oracle如果列中有数字按照数字排序"></a>oracle如果列中有数字按照数字排序</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> ry<span class="token punctuation">.</span>FMEMO <span class="token keyword">from</span> GZF_APPLY_YHPZ ry <span class="token keyword">group</span> <span class="token keyword">by</span>  ry<span class="token punctuation">.</span>FMEMO
   <span class="token keyword">order</span> <span class="token keyword">by</span> to_number<span class="token punctuation">(</span>regexp_substr<span class="token punctuation">(</span>ry<span class="token punctuation">.</span>FMEMO<span class="token punctuation">,</span><span class="token string">'[0-9]*[0-9]'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
 <h4 id="oracle-统计分组-、小计-、合计"><a href="#oracle-统计分组-、小计-、合计" class="headerlink" title="oracle 统计分组 、小计 、合计"></a>oracle 统计分组 、小计 、合计</h4><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 摇号人员统计最终sql</span>
@@ -823,6 +863,116 @@ quit
 </code></pre>
 <h4 id="oracle-根据日期前几位分组"><a href="#oracle-根据日期前几位分组" class="headerlink" title="oracle 根据日期前几位分组"></a>oracle 根据日期前几位分组</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token string">"SUBSTR"</span><span class="token punctuation">(</span>to_char<span class="token punctuation">(</span>LOGtime<span class="token punctuation">,</span><span class="token string">'yyyy-MM-dd'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span>  <span class="token keyword">from</span> SYSTEM_LOG <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> SUBSTR<span class="token punctuation">(</span>to_char<span class="token punctuation">(</span>LOGtime<span class="token punctuation">,</span><span class="token string">'yyyy-MM-dd'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span> 
 </code></pre>
+<h4 id="死锁问题分析"><a href="#死锁问题分析" class="headerlink" title="死锁问题分析"></a>死锁问题分析</h4><p><strong>目前遇到并且重现的死锁分为两种</strong></p>
+<ol>
+<li><p>互相占用对方的资源，然后对被占用的资源进行操作，导致两个会话都进行不下去。——报错</p>
+</li>
+<li><p>事务开启后进行更新操作后没有关闭（提交或者回滚），）——不报错</p>
+<p>以上两个都出现在update操作 中，insert 和select 是不会产生死锁的</p>
+<p>还有一种我目前还没有遇到过，就是索引更新造成的死锁（聚集索引与非聚集索引，外键索引）</p>
+</li>
+</ol>
+<p><strong>死锁该如何避免</strong></p>
+<ol>
+<li><p>所有事务按同一顺序访问对象</p>
+</li>
+<li><p>避免事务中的用户交互</p>
+</li>
+<li><p>使用更低的隔离级别</p>
+</li>
+</ol>
+<p><strong>解决方法</strong></p>
+<p><em>第一种情况</em>：</p>
+<p> 如果oracle 检测到死锁，会返回异常, 同时保存到日志里</p>
+<blockquote>
+<p>ORA-00060: 等待资源时检测到死锁 </p>
+</blockquote>
+<p>这个异常如果是命令行的话，会显示在命令行里，如果是java 程序的话，是一个<code>java.sql.SQLException</code>异常</p>
+<p>分析应用程序的日志文件</p>
+<p>略。tips：接超时异常可能是因为连接池都阻塞了</p>
+<p>分析数据库日志文件</p>
+<p>当出现这个异常时，在 alert_orcl.log 文件（名字根据实例的名字不同）里，可以看到</p>
+<blockquote>
+<p>ORA-00060: Deadlock detected. More info in file D:\APP\ADMINISTRATOR\diag\rdbms\orcl\orcl\trace\orcl_ora_2836.trc.</p>
+</blockquote>
+<p>打开orcl_ora_2836.trc日志  查找关键字： DEADLOCK DETECTED ( ORA-00060 )</p>
+<p>可以看到死锁的会话，sql </p>
+<p><em>第二种情况</em>：</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">--寻找原因</span>
+<span class="token comment" spellcheck="true">--查看哪条SQL 没有提交事务</span>
+ <span class="token keyword">select</span> s<span class="token punctuation">.</span>sid<span class="token punctuation">,</span>s<span class="token punctuation">.</span>username<span class="token punctuation">,</span>s<span class="token punctuation">.</span>osuser<span class="token punctuation">,</span>s<span class="token punctuation">.</span>program<span class="token punctuation">,</span>to_char<span class="token punctuation">(</span>s<span class="token punctuation">.</span>LOGON_TIME<span class="token punctuation">,</span><span class="token string">'yyyymmddhh24:mi:ss'</span><span class="token punctuation">)</span><span class="token keyword">as</span> LOGON_TIME<span class="token punctuation">,</span>
+to_char<span class="token punctuation">(</span>t<span class="token punctuation">.</span>START_DATE<span class="token punctuation">,</span><span class="token string">'yyyymmddhh24:mi:ss'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> START_DATE<span class="token punctuation">,</span>s<span class="token punctuation">.</span><span class="token keyword">status</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">select</span> q<span class="token punctuation">.</span>SQL_TEXT <span class="token keyword">from</span> v$sql q <span class="token keyword">where</span> q<span class="token punctuation">.</span>LAST_ACTIVE_TIME<span class="token operator">=</span>t<span class="token punctuation">.</span>START_DATE
+<span class="token operator">and</span> rownum<span class="token operator">&lt;=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token keyword">as</span> SQL_TEXT
+<span class="token keyword">from</span> v$<span class="token keyword">session</span> s<span class="token punctuation">,</span>v$<span class="token keyword">transaction</span> t
+<span class="token keyword">where</span> s<span class="token punctuation">.</span>sADDR<span class="token operator">=</span>t<span class="token punctuation">.</span>SES_ADDR<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">--如果是用户操作的没有提交，可以让用户提交一下，如果是程序的问题，程序重启即可，但是最好找到问题再重启</span>
+<span class="token comment" spellcheck="true">-- 查看被锁的表和会话</span>
+<span class="token keyword">select</span> l<span class="token punctuation">.</span>session_id sid<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#, </span>
+       l<span class="token punctuation">.</span>locked_mode<span class="token punctuation">,</span> 
+       l<span class="token punctuation">.</span>oracle_username 用户名<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token comment" spellcheck="true">#,     </span>
+       ao<span class="token punctuation">.</span>object_name 表名<span class="token punctuation">,</span>
+       l<span class="token punctuation">.</span>os_user_name 系统用户名<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span>machine 机器名<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span>terminal<span class="token punctuation">,</span> 
+       <span class="token number">a</span><span class="token punctuation">.</span>sql_text 前一个执行过的SQL<span class="token punctuation">,</span> 
+       <span class="token number">a</span><span class="token punctuation">.</span><span class="token keyword">action</span> 
+  <span class="token keyword">from</span> v$sqlarea <span class="token number">a</span><span class="token punctuation">,</span> v$<span class="token keyword">session</span> s<span class="token punctuation">,</span> v$locked_object l<span class="token punctuation">,</span> dba_objects ao 
+<span class="token keyword">where</span> l<span class="token punctuation">.</span>session_id <span class="token operator">=</span> s<span class="token punctuation">.</span>sid 
+   <span class="token operator">and</span> s<span class="token punctuation">.</span>prev_sql_addr <span class="token operator">=</span> <span class="token number">a</span><span class="token punctuation">.</span>address 
+   <span class="token operator">and</span> ao<span class="token punctuation">.</span>object_id <span class="token operator">=</span> l<span class="token punctuation">.</span>object_id
+<span class="token keyword">order</span> <span class="token keyword">by</span> sid<span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#;</span>
+<span class="token comment" spellcheck="true">-- 如果不想重启程序，那么就强行删除死锁的会话</span>
+<span class="token comment" spellcheck="true">-- 删除锁</span>
+<span class="token keyword">alter</span> system <span class="token keyword">kill</span> <span class="token keyword">session</span> 'sid<span class="token punctuation">,</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#';</span>
+spid  <span class="token keyword">serial</span> 是上一个sql 查出来的值，重复操作 直到上面的sql查不到被锁数据
+
+</code></pre>
+<p><strong>问题排查</strong>：</p>
+<p>如果当时现场已经把锁给清除了，问题就不好定位了，只能自己根据历史日志和sql 执行情况进行分析。但已经是比较难了</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 查看今天用户名为 CQGZF01 的update delete truncate 类型的sql。被阻塞的sql 会隔几秒就出现一次，幸运的话可以找到是哪个语句之前发生的死锁。</span>
+<span class="token keyword">SELECT</span> <span class="token number">c</span><span class="token punctuation">.</span>username<span class="token punctuation">,</span>
+         <span class="token number">a</span><span class="token punctuation">.</span>program<span class="token punctuation">,</span>
+         <span class="token number">b</span><span class="token punctuation">.</span>sql_text<span class="token punctuation">,</span>
+         <span class="token number">b</span><span class="token punctuation">.</span>command_type<span class="token punctuation">,</span>
+         <span class="token number">a</span><span class="token punctuation">.</span>sample_time
+    <span class="token keyword">FROM</span> dba_hist_active_sess_history <span class="token number">a</span>
+         <span class="token keyword">JOIN</span> dba_hist_sqltext <span class="token number">b</span>
+            <span class="token keyword">ON</span> <span class="token number">a</span><span class="token punctuation">.</span>sql_id <span class="token operator">=</span> <span class="token number">b</span><span class="token punctuation">.</span>sql_id
+         <span class="token keyword">JOIN</span> dba_users <span class="token number">c</span>
+            <span class="token keyword">ON</span> <span class="token number">a</span><span class="token punctuation">.</span>user_id <span class="token operator">=</span> <span class="token number">c</span><span class="token punctuation">.</span>user_id
+   <span class="token keyword">WHERE</span>     <span class="token number">a</span><span class="token punctuation">.</span>sample_time <span class="token operator">BETWEEN</span> SYSDATE <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">AND</span> SYSDATE
+         <span class="token operator">AND</span> <span class="token number">b</span><span class="token punctuation">.</span>command_type <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">85</span><span class="token punctuation">)</span>
+         <span class="token operator">and</span> <span class="token number">c</span><span class="token punctuation">.</span>username<span class="token operator">=</span><span class="token string">'CQGZF01'</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token number">a</span><span class="token punctuation">.</span>sample_time <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- 查看最近执行的sql (注意这些sql只是模版，相同的请求只会生成一条记录），这些sql 仅限作为执行顺序参考</span>
+ <span class="token keyword">select</span>  t<span class="token punctuation">.</span>last_active_time<span class="token punctuation">,</span> t<span class="token punctuation">.</span>command_type<span class="token punctuation">,</span> t<span class="token punctuation">.</span>SQL_TEXT<span class="token punctuation">,</span> t<span class="token punctuation">.</span>FIRST_LOAD_TIME
+<span class="token keyword">from</span> v$sqlarea t
+ <span class="token keyword">where</span>  t<span class="token punctuation">.</span>command_type<span class="token operator">=</span><span class="token string">'6'</span><span class="token comment" spellcheck="true">/*命令类型*/</span><span class="token punctuation">.</span>parsing_schema_name <span class="token operator">=</span> <span class="token string">'CQGZF01'</span> <span class="token comment" spellcheck="true">-- 用户名区分大小写</span>
+ <span class="token keyword">order</span> <span class="token keyword">by</span> t<span class="token punctuation">.</span>last_active_time <span class="token keyword">desc</span>
+<span class="token comment" spellcheck="true">-- 查询最慢的sql，可惜不是产生死锁的sql</span>
+<span class="token keyword">select</span> <span class="token operator">*</span>
+ <span class="token keyword">from</span> <span class="token punctuation">(</span><span class="token keyword">select</span> sa<span class="token punctuation">.</span>SQL_TEXT<span class="token punctuation">,</span>
+        sa<span class="token punctuation">.</span>SQL_FULLTEXT<span class="token punctuation">,</span>
+        sa<span class="token punctuation">.</span>EXECUTIONS <span class="token string">"执行次数"</span><span class="token punctuation">,</span>
+        <span class="token function">round</span><span class="token punctuation">(</span>sa<span class="token punctuation">.</span>ELAPSED_TIME <span class="token operator">/</span> <span class="token number">1000000</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"总执行时间"</span><span class="token punctuation">,</span>
+        <span class="token function">round</span><span class="token punctuation">(</span>sa<span class="token punctuation">.</span>ELAPSED_TIME <span class="token operator">/</span> <span class="token number">1000000</span> <span class="token operator">/</span> sa<span class="token punctuation">.</span>EXECUTIONS<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"平均执行时间"</span><span class="token punctuation">,</span>
+        sa<span class="token punctuation">.</span>COMMAND_TYPE<span class="token punctuation">,</span>
+        sa<span class="token punctuation">.</span>PARSING_USER_ID <span class="token string">"用户ID"</span><span class="token punctuation">,</span>
+        u<span class="token punctuation">.</span>username <span class="token string">"用户名"</span><span class="token punctuation">,</span>
+        sa<span class="token punctuation">.</span>HASH_VALUE
+     <span class="token keyword">from</span> v$sqlarea sa
+     <span class="token keyword">left</span> <span class="token keyword">join</span> all_users u
+      <span class="token keyword">on</span> sa<span class="token punctuation">.</span>PARSING_USER_ID <span class="token operator">=</span> u<span class="token punctuation">.</span>user_id
+     <span class="token keyword">where</span> sa<span class="token punctuation">.</span>EXECUTIONS <span class="token operator">></span> <span class="token number">0</span>
+     <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token punctuation">(</span>sa<span class="token punctuation">.</span>ELAPSED_TIME <span class="token operator">/</span> sa<span class="token punctuation">.</span>EXECUTIONS<span class="token punctuation">)</span> <span class="token keyword">desc</span><span class="token punctuation">)</span>
+ <span class="token keyword">where</span> rownum <span class="token operator">&lt;=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h4 id="没有重现的死锁"><a href="#没有重现的死锁" class="headerlink" title="没有重现的死锁"></a>没有重现的死锁</h4><p>可能是网络问题或者 数据库问题。 上周五数据库表空间满了，运维人员维护了一下，应该是没有重启。这周一就出现锁表问题了。排查了数据库sql历史，发现是第一个sql 就已经在等待了，程序其他地方均没有找到问题。</p>
+<p>oracle 基础锁详解 <a href="https://blog.csdn.net/vertual/article/details/34540555" target="_blank" rel="noopener">https://blog.csdn.net/vertual/article/details/34540555</a></p>
+<h4 id="使用sqlplus-连接数据库"><a href="#使用sqlplus-连接数据库" class="headerlink" title="使用sqlplus 连接数据库"></a>使用sqlplus 连接数据库</h4><p>sqlplus cqgzf01/cqgzf@localhost:1521/orcl</p>
 
       
     </div>
@@ -946,7 +1096,7 @@ quit
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1020,7 +1170,9 @@ quit
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1065,7 +1217,7 @@ quit
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询两个时间相差的秒"><span class="nav-number">1.</span> <span class="nav-text">查询两个时间相差的秒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定时任务"><span class="nav-number">2.</span> <span class="nav-text">定时任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定时任务2"><span class="nav-number">3.</span> <span class="nav-text">定时任务2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connect-by-的用法"><span class="nav-number">4.</span> <span class="nav-text">connect by 的用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle获取UUID-乱码"><span class="nav-number">5.</span> <span class="nav-text">oracle获取UUID 乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-服务的开启和关闭"><span class="nav-number">6.</span> <span class="nav-text">oracle 服务的开启和关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#windows"><span class="nav-number">6.1.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linux"><span class="nav-number">6.2.</span> <span class="nav-text">linux</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误"><span class="nav-number">7.</span> <span class="nav-text">错误</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ORA-00845-MEMORY-TARGET-not-supported-on-this-system报错解决"><span class="nav-number">7.1.</span> <span class="nav-text">ORA-00845: MEMORY_TARGET not supported on this system报错解决</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join"><span class="nav-number">8.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接条件"><span class="nav-number">9.</span> <span class="nav-text">连接条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接的问题"><span class="nav-number">10.</span> <span class="nav-text">连接的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join的误区"><span class="nav-number">11.</span> <span class="nav-text">join的误区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日期格式化"><span class="nav-number">12.</span> <span class="nav-text">日期格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取最大值"><span class="nav-number">13.</span> <span class="nav-text">获取最大值</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串连接"><span class="nav-number"></span> <span class="nav-text">字符串连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#行转列-pivot"><span class="nav-number">1.</span> <span class="nav-text">行转列 pivot</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#oracle如果列中有数字按照数字排序"><span class="nav-number"></span> <span class="nav-text">oracle如果列中有数字按照数字排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-统计分组-、小计-、合计"><span class="nav-number">1.</span> <span class="nav-text">oracle 统计分组 、小计 、合计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于用rollup-和-grouping-生成合计和小计"><span class="nav-number">2.</span> <span class="nav-text">关于用rollup 和 grouping 生成合计和小计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-between"><span class="nav-number">3.</span> <span class="nav-text">oracle between</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#db-Link"><span class="nav-number">4.</span> <span class="nav-text">db_Link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-sql-长度和in的个数"><span class="nav-number">5.</span> <span class="nav-text">oracle  sql  长度和in的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sequence"><span class="nav-number">6.</span> <span class="nav-text">sequence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#临时表-多个with-写法"><span class="nav-number">7.</span> <span class="nav-text">临时表 多个with 写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-根据日期前几位分组"><span class="nav-number">8.</span> <span class="nav-text">oracle 根据日期前几位分组</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询两个时间相差的秒"><span class="nav-number">1.</span> <span class="nav-text">查询两个时间相差的秒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定时任务"><span class="nav-number">2.</span> <span class="nav-text">定时任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定时任务2"><span class="nav-number">3.</span> <span class="nav-text">定时任务2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connect-by-的用法"><span class="nav-number">4.</span> <span class="nav-text">connect by 的用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle获取UUID-乱码"><span class="nav-number">5.</span> <span class="nav-text">oracle获取UUID 乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-服务的开启和关闭"><span class="nav-number">6.</span> <span class="nav-text">oracle 服务的开启和关闭</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#windows"><span class="nav-number">6.1.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linux"><span class="nav-number">6.2.</span> <span class="nav-text">linux</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误"><span class="nav-number">7.</span> <span class="nav-text">错误</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ORA-00845-MEMORY-TARGET-not-supported-on-this-system报错解决"><span class="nav-number">7.1.</span> <span class="nav-text">ORA-00845: MEMORY_TARGET not supported on this system报错解决</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join"><span class="nav-number">8.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接条件"><span class="nav-number">9.</span> <span class="nav-text">连接条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接的问题"><span class="nav-number">10.</span> <span class="nav-text">连接的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join的误区"><span class="nav-number">11.</span> <span class="nav-text">join的误区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日期格式化"><span class="nav-number">12.</span> <span class="nav-text">日期格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取最大值"><span class="nav-number">13.</span> <span class="nav-text">获取最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串连接"><span class="nav-number">14.</span> <span class="nav-text">字符串连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行转列-pivot"><span class="nav-number">15.</span> <span class="nav-text">行转列 pivot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列转行-unpivot"><span class="nav-number">16.</span> <span class="nav-text">列转行 unpivot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle如果列中有数字按照数字排序"><span class="nav-number">17.</span> <span class="nav-text">oracle如果列中有数字按照数字排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-统计分组-、小计-、合计"><span class="nav-number">18.</span> <span class="nav-text">oracle 统计分组 、小计 、合计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于用rollup-和-grouping-生成合计和小计"><span class="nav-number">19.</span> <span class="nav-text">关于用rollup 和 grouping 生成合计和小计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-between"><span class="nav-number">20.</span> <span class="nav-text">oracle between</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#db-Link"><span class="nav-number">21.</span> <span class="nav-text">db_Link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-sql-长度和in的个数"><span class="nav-number">22.</span> <span class="nav-text">oracle  sql  长度和in的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sequence"><span class="nav-number">23.</span> <span class="nav-text">sequence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#临时表-多个with-写法"><span class="nav-number">24.</span> <span class="nav-text">临时表 多个with 写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle-根据日期前几位分组"><span class="nav-number">25.</span> <span class="nav-text">oracle 根据日期前几位分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#死锁问题分析"><span class="nav-number">26.</span> <span class="nav-text">死锁问题分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#没有重现的死锁"><span class="nav-number">27.</span> <span class="nav-text">没有重现的死锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用sqlplus-连接数据库"><span class="nav-number">28.</span> <span class="nav-text">使用sqlplus 连接数据库</span></a></li></ol></div>
             
 
           </div>
@@ -1105,7 +1257,7 @@ quit
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">46k</span>
+    <span title="站点总字数">65k</span>
   
 
   
@@ -1114,7 +1266,7 @@ quit
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">42 分钟</span>
+    <span title="站点阅读时长">59 分钟</span>
   
 </div>
 
@@ -1179,7 +1331,7 @@ quit
 
   
   
-  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script id="ribbon" size="100" alpha="0.7" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
 
 
 
