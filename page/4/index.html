@@ -393,6 +393,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/技术/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liqw">
+      <meta itemprop="description" content="千里之行始于足下">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liqwer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/16/技术/mysql/" class="post-title-link" itemprop="url">mysql</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-16 15:11:00" itemprop="dateCreated datePublished" datetime="2019-08-16T15:11:00+08:00">2019-08-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-19 09:35:36" itemprop="dateModified" datetime="2019-09-19T09:35:36+08:00">2019-09-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/16/技术/mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/16/技术/mysql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>mysql 5.7.11 , win 10</p>
+</li>
+<li><p>安装文件压缩包解压到C:\mysql-5.7.11-winx64</p>
+</li>
+<li><p>C:\mysql-5.7.11-winx64目录下新建配置文件 my.ini</p>
+<pre><code>[mysql]
+
+# 设置mysql客户端默认字符集
+
+default-character-set=utf8 
+
+[mysqld]
+
+#设置3306端口
+
+port = 3306 
+
+# 设置mysql的安装目录
+
+basedir=C:\mysql-5.7.11-winx64
+
+# 设置mysql数据库的数据的存放目录
+
+datadir=C:\mysql-5.7.11-winx64\data
+
+# 允许最大连接数
+
+max_connections=200
+
+# 服务端使用的字符集默认为8比特编码的latin1字符集
+
+character-set-server=utf8
+
+# 创建新表时将使用的默认存储引擎
+
+default-storage-engine=INNODB 
+</code></pre></li>
+</ol>
+<ol start="4">
+<li><p><strong>管理员</strong>运行cmd</p>
+</li>
+<li><p>C:\mysql-5.7.11-winx64\bin&gt;mysqld install</p>
+</li>
+<li><p>mysqld  –initialize</p>
+</li>
+<li><p>net start mysql</p>
+</li>
+<li><p>mysql -uroot -p 需要密码</p>
+</li>
+</ol>
+<ol start="9">
+<li><p>原因在于5.7版本在安装时自动给了一个随机密码，需要手动在mysql目录下搜索*.err，以文本形式打开才能看到如下内容：</p>
+<p>016-02-25T15:09:43.033062Z 1 [Note] A temporary password is generated for root@localhost: &gt;mso&lt;k70mrWe</p>
+<p>冒号后边即为第一次的登陆密码，记得加双引号。</p>
+</li>
+<li><p>登录成功后执行任何命令会提示</p>
+<pre><code>ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+</code></pre></li>
+</ol>
+<ol start="11">
+<li><p>ALTER USER USER() IDENTIFIED BY ‘123456’;</p>
+</li>
+<li></li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      	
+    
+    	
+      		
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/技术/spring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1715,7 +1997,7 @@ Map<span class="token operator">&lt;</span>String<span class="token punctuation"
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-29 17:22:30" itemprop="dateModified" datetime="2019-10-29T17:22:30+08:00">2019-10-29</time>
+                <time title="修改时间：2019-11-12 17:46:33" itemprop="dateModified" datetime="2019-11-12T17:46:33+08:00">2019-11-12</time>
               
             
           </span>
@@ -1774,7 +2056,7 @@ Map<span class="token operator">&lt;</span>String<span class="token punctuation"
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">70k</span>
+                <span title="本文字数">73k</span>
               
 
               
@@ -1788,7 +2070,7 @@ Map<span class="token operator">&lt;</span>String<span class="token punctuation"
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1:04</span>
+                <span title="阅读时长">1:07</span>
               
             </div>
           
@@ -2030,6 +2312,8 @@ $(document).ready(function(){
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name*='man']"</span><span class="token punctuation">)</span>
 <span class="token comment" spellcheck="true">//满足多个属性条件</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[id][name$='man']"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//只找属性</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"[data='idNo']"</span><span class="token punctuation">)</span>
 </code></pre>
 <h4 id="jquery-添加-删除-元素"><a href="#jquery-添加-删除-元素" class="headerlink" title="jquery 添加 删除 元素"></a>jquery 添加 删除 元素</h4><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 以下对这个代码进行操作 --></span>
 
@@ -2163,6 +2447,24 @@ window<span class="token punctuation">.</span>parent 操作父对象
 </code></pre>
 <p>其他windows属性    <a href="https://www.runoob.com/jsref/obj-window.html" target="_blank" rel="noopener">https://www.runoob.com/jsref/obj-window.html</a></p>
 <p><code>window</code>   大部分情况下可以省略不写</p>
+<p>jquery 里的promise 写法</p>
+<p>需要注意的点是 </p>
+<p>只针对单独的方法， a方法里边的调用b方法,b 方法依然是异步执行的</p>
+<p>1 2 3 步是必须写的 缺一不可</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> defer <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">Deferred</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//1步</span>
+    <span class="token comment" spellcheck="true">//做一些异步操作</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行完成'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        defer<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'异步请求成功之后返回的数据'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//2步</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> defer<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//3步</span>
+<span class="token punctuation">}</span>
+<span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//上边返回的数据</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 
           
         
@@ -2654,7 +2956,7 @@ IE8 以及更早的版本使用滤镜 filter:alpha(opacity=x)。x 能够取的�
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-29 09:07:36" itemprop="dateModified" datetime="2019-09-29T09:07:36+08:00">2019-09-29</time>
+                <time title="修改时间：2019-11-26 15:00:33" itemprop="dateModified" datetime="2019-11-26T15:00:33+08:00">2019-11-26</time>
               
             
           </span>
@@ -2713,7 +3015,7 @@ IE8 以及更早的版本使用滤镜 filter:alpha(opacity=x)。x 能够取的�
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">53k</span>
+                <span title="本文字数">54k</span>
               
 
               
@@ -2727,7 +3029,7 @@ IE8 以及更早的版本使用滤镜 filter:alpha(opacity=x)。x 能够取的�
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">48 分钟</span>
+                <span title="阅读时长">49 分钟</span>
               
             </div>
           
@@ -3176,6 +3478,14 @@ spid  <span class="token keyword">serial</span> 是上一个sql 查出来的值�
 <h4 id="没有重现的死锁"><a href="#没有重现的死锁" class="headerlink" title="没有重现的死锁"></a>没有重现的死锁</h4><p>可能是网络问题或者 数据库问题。 上周五数据库表空间满了，运维人员维护了一下，应该是没有重启。这周一就出现锁表问题了。排查了数据库sql历史，发现是第一个sql 就已经在等待了，程序其他地方均没有找到问题。</p>
 <p>oracle 基础锁详解 <a href="https://blog.csdn.net/vertual/article/details/34540555" target="_blank" rel="noopener">https://blog.csdn.net/vertual/article/details/34540555</a></p>
 <h4 id="使用sqlplus-连接数据库"><a href="#使用sqlplus-连接数据库" class="headerlink" title="使用sqlplus 连接数据库"></a>使用sqlplus 连接数据库</h4><p>sqlplus cqgzf01/cqgzf@localhost:1521/orcl</p>
+<h4 id="为什么表名大写字段名大写"><a href="#为什么表名大写字段名大写" class="headerlink" title="为什么表名大写字段名大写"></a>为什么表名大写字段名大写</h4><p>为了方便。因为如果sql 语句中的字段就算是小写的，没有添加双引号的话，oracle 服务器默认为他就是大写</p>
+<p>而如果数据库中的字段是小写的，这时候没有添加双引号就会有 表名不存在 字段不存在的错误。为了方便在创建表的时候尽量大写，这样在写sql 语句的时候就可以不用那么费事了。</p>
+<p>建议在写创建表的sql  时 不用双引号，这样创建出来的都是大写的。</p>
+<h4 id="oracle-汉字排序"><a href="#oracle-汉字排序" class="headerlink" title="oracle 汉字排序"></a>oracle 汉字排序</h4><p>oracle9i中新增了按照拼音、部首、笔画排序功能</p>
+<p>拼音 SELECT * FROM TEAM ORDER BY NLSSORT(队名,’NLS_SORT = SCHINESE_PINYIN_M’)</p>
+<p>笔划 SELECT * FROM TEAM ORDER BY NLSSORT(队名,’NLS_SORT = SCHINESE_STROKE_M’)</p>
+<p>部首 SELECT * FROM TEAM ORDER BY NLSSORT(队名,’NLS_SORT = SCHINESE_RADICAL_M’)</p>
+<p><a href="https://blog.csdn.net/qq_25214695/article/details/50321223" target="_blank" rel="noopener">https://blog.csdn.net/qq_25214695/article/details/50321223</a></p>
 
           
         
@@ -3520,7 +3830,7 @@ spid  <span class="token keyword">serial</span> 是上一个sql 查出来的值�
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-30 13:50:59" itemprop="dateModified" datetime="2019-09-30T13:50:59+08:00">2019-09-30</time>
+                <time title="修改时间：2019-11-22 14:44:25" itemprop="dateModified" datetime="2019-11-22T14:44:25+08:00">2019-11-22</time>
               
             
           </span>
@@ -3579,7 +3889,7 @@ spid  <span class="token keyword">serial</span> 是上一个sql 查出来的值�
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">506</span>
+                <span title="本文字数">827</span>
               
 
               
@@ -3615,289 +3925,14 @@ spid  <span class="token keyword">serial</span> 是上一个sql 查出来的值�
       
         
           
-            <h4 id="我自己觉得比较好用的插件"><a href="#我自己觉得比较好用的插件" class="headerlink" title="我自己觉得比较好用的插件"></a>我自己觉得比较好用的插件</h4><p>Maven helper(右键maven选项)<br>Free Mybatis plugin (mapper跳转)<br>lombok(自动get set)<br>rainbow brackets(彩虹括号)<br>Background Image plus(设置背景)<br>Nyan Progress Bar （进度条美化成彩虹和猫）<br>Alibaba Java Coding Guidelines(阿里巴巴编码手册)<br>Translation（翻译）</p>
+            <h4 id="我自己觉得比较好用的插件"><a href="#我自己觉得比较好用的插件" class="headerlink" title="我自己觉得比较好用的插件"></a>我自己觉得比较好用的插件</h4><p>Maven helper(右键maven选项)<br>Free Mybatis plugin (mapper跳转)<br>lombok(自动get set)  除了配置插件 项目中还要引用jar 包，才能编译成功<br>rainbow brackets(彩虹括号)<br>Background Image plus(设置背景)<br>Nyan Progress Bar （进度条美化成彩虹和猫）<br>Alibaba Java Coding Guidelines(阿里巴巴编码手册)<br>Translation（翻译）</p>
 <p>GSonFormat</p>
+<h4 id="生成相关"><a href="#生成相关" class="headerlink" title="生成相关"></a>生成相关</h4><p>generateallsetter 初始化生成set方法</p>
+<p>robopojogenerator 根据json 字符串 生成各种json类库的bean</p>
+<p>generateserialversionuid 不多说，用到了自然知道，省得每次都配置一遍idea了</p>
+<p>builder generator </p>
+<p>sql generator 用于在idea 自带的数据连接工具中生成sql</p>
 <h4 id="最近的一个项目问题"><a href="#最近的一个项目问题" class="headerlink" title="最近的一个项目问题"></a>最近的一个项目问题</h4><p>controller里 点击模板字符串 不能跳转到模版了，目前没有找到问题。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      	
-    
-    	
-      		
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/技术/关于hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liqw">
-      <meta itemprop="description" content="千里之行始于足下">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liqwer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/06/技术/关于hexo/" class="post-title-link" itemprop="url">关于hexo</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-06 10:48:00" itemprop="dateCreated datePublished" datetime="2019-08-06T10:48:00+08:00">2019-08-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-09-19 09:35:36" itemprop="dateModified" datetime="2019-09-19T09:35:36+08:00">2019-09-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/06/技术/关于hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/06/技术/关于hexo/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">6.5k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">6 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/2019/08/06/技术/关于hexo/1565069237465.png" alt="1565069237465"></p>
-<h4 id="如何在文章中引入图片"><a href="#如何在文章中引入图片" class="headerlink" title="如何在文章中引入图片"></a>如何在文章中引入图片</h4><p>先说一下问题，在about 目录或者在这个一个层级新建一个目录，往里边放图片是可以生成的。但是在_post 里放图片，最后生成的目录里没有图片，只有一个html页面。 想改源码，但是找找没有找到。后来找了下既然官方都没有支持，那肯定也是不好改或者有它的想法，考虑到时间上的投入，就自己先按照自己的思路改下</p>
-<p>1</p>
-<p>首先，先在网上找了，要安装一个插件</p>
-<p> npm install hexo-asset-image –save</p>
-<p>不好使，卸载</p>
-<p>npm uninstall hexo-asset-image</p>
-<p>2</p>
-<p>官网看看 <a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/asset-folders</a></p>
-<p>两种解决方式。</p>
-<p>第一种很简单，在about相同层级新建images 目录，然后所有文章都引用里边的图片。缺点是比较死板，image 文件都在一个目录下。</p>
-<p>第二种使用标签插件，比较陌生，看完了发现是令人难受的方式，使用 md 不支持的语法，必须要生成页面后才能看到效果</p>
-<p>3</p>
-<p>最后的解决办法，1 不用手动拷贝图片，2 就用md 的语法，这样md编辑器里也可以看到效果。</p>
-<p>其实还是第一种解决办法，只是第一种的插件在hexo 3 里过期了，需用用另个一github上的</p>
-<p>解决步骤：</p>
-<p>1</p>
-<p>修改配置文件_config.yml 为</p>
-<p>post_asset_folder: true</p>
-<p>2 </p>
-<p>我使用的是typora .  文件-&gt; 偏好设置</p>
-<p><img src="/2019/08/06/技术/关于hexo/1565071459765.png" alt="1565071459765"></p>
-<p>3</p>
-<pre class=" language-javascript"><code class="language-javascript">npm install https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>CodeFalling<span class="token operator">/</span>hexo<span class="token operator">-</span>asset<span class="token operator">-</span>image <span class="token operator">--</span>save
-</code></pre>
-<h4 id="如何设置背景图片（next主题）"><a href="#如何设置背景图片（next主题）" class="headerlink" title="如何设置背景图片（next主题）"></a>如何设置背景图片（next主题）</h4><p>别的主题应该也可以，方法思路就是这样的</p>
-<p>打开文档下themes\next\source\css\ _custom\custom.styl</p>
-<pre class=" language-css"><code class="language-css"><span class="token selector">// 设置背景图片
-body </span><span class="token punctuation">{</span>
-    <span class="token property">background</span><span class="token punctuation">:</span><span class="token url">url(/imgs/16pic_5550571_b.jpg)</span><span class="token punctuation">;</span>
-    <span class="token property">background-repeat</span><span class="token punctuation">:</span> repeat<span class="token punctuation">;</span>
-    <span class="token property">background-attachment</span><span class="token punctuation">:</span>fixed<span class="token punctuation">;</span>
-    <span class="token property">background-position</span><span class="token punctuation">:</span><span class="token number">50%</span> <span class="token number">50%</span><span class="token punctuation">;</span>
-    <span class="token property">background-size</span><span class="token punctuation">:</span><span class="token number">200</span>px<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>其他一些样式也可以在这文件里设置</p>
-<h4 id="尝试更新next-主题"><a href="#尝试更新next-主题" class="headerlink" title="尝试更新next 主题"></a>尝试更新next 主题</h4><p>2019/8/15</p>
-<p>发现<a href="https://theme-next.org/archives/" target="_blank" rel="noopener">hexo 官网</a>的样式比较好看，是不是更新了就有了呢。</p>
-<p>先把目录复制了一份备份。然后用idea 打开next 的目录（个人习惯了idea 的git 操作）,先stash change, 然后git pull ，再unstash，再合并冲突。好多的配置都冲突了，合并了大半天。</p>
-<p>跑起来后发现还是老样子，没看出来什么变化，搜索功能还不好使了。。</p>
-<p>把主题目录还原，更新失败告终。</p>
-<p>原来把next主题样式改一下就是了。cnm 我什么也没有做，你什么也没看到！！！</p>
-<h4 id="字数统计与阅读时长"><a href="#字数统计与阅读时长" class="headerlink" title="字数统计与阅读时长"></a>字数统计与阅读时长</h4><p><a href="https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app" target="_blank" rel="noopener">https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app</a></p>
-<h4 id="如何置顶"><a href="#如何置顶" class="headerlink" title="如何置顶"></a>如何置顶</h4><p>$ npm uninstall hexo-generator-index –save<br>$ npm install hexo-generator-index-pin-top –save</p>
-<pre class=" language-markdown"><code class="language-markdown"><span class="token hr punctuation">---</span>
-title: hexo+GitHub博客搭建实战
-date: 2017-09-08 12:00:25
-categories: 博客搭建系列
-<span class="token title important">top: true
-<span class="token punctuation">---</span></span>
-</code></pre>
-<p>可有可无的操作：<br>打开：/blog/themes/next/layout/_macro 目录下的post.swig文件，定位到<code>&lt;div class=&quot;post-meta&quot;&gt;</code>标签下，插入如下代码：</p>
-<pre class=" language-javascript"><code class="language-javascript">      <span class="token punctuation">{</span><span class="token operator">%</span> <span class="token keyword">if</span> post<span class="token punctuation">.</span>top <span class="token operator">%</span><span class="token punctuation">}</span>
-        <span class="token operator">&lt;</span>i <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fa fa-thumb-tack"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>i<span class="token operator">></span>
-        <span class="token operator">&lt;</span>font color<span class="token operator">=</span><span class="token string">"7D26CD"</span><span class="token operator">></span>置顶<span class="token operator">&lt;</span><span class="token operator">/</span>font<span class="token operator">></span>
-        <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"post-meta-divider"</span><span class="token operator">></span><span class="token operator">|</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
-      <span class="token punctuation">{</span><span class="token operator">%</span> endif <span class="token operator">%</span><span class="token punctuation">}</span>
-</code></pre>
-<p>参考：<br><a href="https://blog.csdn.net/qwerty200696/article/details/79010629" target="_blank" rel="noopener">https://blog.csdn.net/qwerty200696/article/details/79010629</a></p>
-<h4 id="ribbon"><a href="#ribbon" class="headerlink" title="ribbon"></a>ribbon</h4><p>发现配置了ribbon 但是没有作用， 看console 里请求不到资源，原来这些东西都没有自带啊（重新下一遍已没有看见）</p>
-<p>然后仔细看配置里，每个配置上边都有该插件的github 地址，点进去按照说明操作就行了，原来如此</p>
-<p>cd themes/next</p>
-<p>git clone <a href="https://github.com/theme-next/theme-next-canvas-ribbon" target="_blank" rel="noopener">https://github.com/theme-next/theme-next-canvas-ribbon</a> source/lib/ca                                                                                                                                                 nvas-ribbon</p>
 
           
         
@@ -3988,7 +4023,7 @@ categories: 博客搭建系列
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4132,7 +4167,7 @@ categories: 博客搭建系列
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">65k</span>
+    <span title="站点总字数">67k</span>
   
 
   
@@ -4141,7 +4176,7 @@ categories: 博客搭建系列
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">59 分钟</span>
+    <span title="站点阅读时长">1:01</span>
   
 </div>
 

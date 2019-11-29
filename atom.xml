@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-17T09:22:28.926Z</updated>
+  <updated>2019-11-29T03:22:24.745Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>年终总结</title>
+    <link href="http://yoursite.com/2019/11/25/%E6%97%A5%E8%AE%B0/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2019/11/25/日记/年终总结/</id>
+    <published>2019-11-25T02:12:24.000Z</published>
+    <updated>2019-11-29T03:22:24.745Z</updated>
+    
+    <content type="html"><![CDATA[<p>最闲的一年<br>头发掉的最多的一年<br>身体最差的一年<br>最放纵的一年<br>最颓废的一年<br>思想变成熟的一年<br>最无牵无挂的一年</p><p>明年期许：</p><p>记性是个好东西，忘掉该忘的， 记住该记住的<br>身体是个好东西，不要在为了工作失去健康<br>自律是个好东西，及时停止脚步，反思自己<br>读过无数的至理名言，那都是别人的东西。看过无数的美景，那都是别人的风景。无所畏惧，敢做敢言，做自己。不管怎样，只要是我发出来的，就是我的。就是我自己。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最闲的一年&lt;br&gt;头发掉的最多的一年&lt;br&gt;身体最差的一年&lt;br&gt;最放纵的一年&lt;br&gt;最颓废的一年&lt;br&gt;思想变成熟的一年&lt;br&gt;最无牵无挂的一年&lt;/p&gt;
+&lt;p&gt;明年期许：&lt;/p&gt;
+&lt;p&gt;记性是个好东西，忘掉该忘的， 记住该记住的&lt;br&gt;身体是个好东西，不要在为了工作失去健
+      
+    
+    </summary>
+    
+      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -273,9 +300,9 @@
     <link href="http://yoursite.com/2019/09/09/%E6%8A%80%E6%9C%AF/git/"/>
     <id>http://yoursite.com/2019/09/09/技术/git/</id>
     <published>2019-09-08T16:00:00.000Z</published>
-    <updated>2019-10-08T02:47:59.669Z</updated>
+    <updated>2019-10-30T02:59:59.160Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="我的常用操作"><a href="#我的常用操作" class="headerlink" title="我的常用操作"></a>我的常用操作</h3><h4 id="1-如何创建"><a href="#1-如何创建" class="headerlink" title="1 如何创建"></a>1 如何创建</h4><p>首先在github 创建项目 比如项目名叫 exportexcel ， 创建完成后，会生成链接 类似：<a href="https://github.com/simple2016/exprotexcel.git" target="_blank" rel="noopener">https://github.com/simple2016/exprotexcel.git</a></p><pre class=" language-shell"><code class="language-shell">git initgit add ./ git commit -m "first commit"## 先删除 再添加git remote remove origingit remote add origin https://github.com/simple2016/exprotexcel.git git push -u origin master</code></pre><h4 id="2-如何提交"><a href="#2-如何提交" class="headerlink" title="2 如何提交"></a>2 如何提交</h4><pre class=" language-shell"><code class="language-shell">###先更新后提交git pullgit commit -m "secondcommit"git push -u origin master ## -u  origin 的解释： 指定origin为默认主机（不知道神么是默认主机#T_T）</code></pre><h4 id="3-如何更新"><a href="#3-如何更新" class="headerlink" title="3 如何更新"></a>3 如何更新</h4><pre class=" language-shell"><code class="language-shell">git pull</code></pre><h4 id="4-如何下载"><a href="#4-如何下载" class="headerlink" title="4 如何下载"></a>4 如何下载</h4><pre class=" language-shell"><code class="language-shell">git clone  https://github.com/simple2016/exprotexcel.git</code></pre><h4 id="5-冲突了怎么办"><a href="#5-冲突了怎么办" class="headerlink" title="5 冲突了怎么办"></a>5 冲突了怎么办</h4><h5 id="5-1-本地更新时冲突："><a href="#5-1-本地更新时冲突：" class="headerlink" title="5.1 本地更新时冲突："></a>5.1 本地更新时冲突：</h5><pre class=" language-shell"><code class="language-shell">git pull这时说有冲突了，更新失败git stashgit pull## stash@{0}是指最后一次stash 的内容git stash pop stash@{0} 这时显示了具体的冲突文件打开文件直接手动解决冲突（这一步可以使用工具，个人直接用idea把该项目打开，使用idea 的冲突解决编辑器），然后 add， commit。## 及时清理掉没有用的stashgit stash drop stash@{0}  </code></pre><h5 id="5-2-分支合并时冲突："><a href="#5-2-分支合并时冲突：" class="headerlink" title="5.2 分支合并时冲突："></a>5.2 分支合并时冲突：</h5><pre class=" language-shell"><code class="language-shell">比如，将bbb分支合并到当前master分支上，先把master 分支下载到本地## 使用--no-ff参数后，会执行正常合并，在Master分支上生成一个新节点git merge --no-ff bbb 冲突之后在当前分支上（master），打开文件直接手动解决冲突，然后 add，commit。</code></pre><h5 id="5-3-强制提交"><a href="#5-3-强制提交" class="headerlink" title="5.3 强制提交"></a>5.3 强制提交</h5><p>冲突最简单的解决办法就是强制提交，直接覆盖。</p><pre class=" language-shell"><code class="language-shell">## 不适用于多人合作项目，自己的项目随便玩，操作需谨慎## 强制提交到远程git add .git commit -m "your comment"git push -u origin master -f## 强制覆盖本地git fetch -all git reset --hard origin/master</code></pre><h4 id="6-查看修改"><a href="#6-查看修改" class="headerlink" title="6 查看修改"></a>6 查看修改</h4><pre class=" language-shell"><code class="language-shell">## 查看文件修改情况git status## 文件修改对比git diff</code></pre><p>参考 <a href="https://www.cnblogs.com/ldj3/p/9172804.html" target="_blank" rel="noopener">https://www.cnblogs.com/ldj3/p/9172804.html</a></p><p><a href="https://www.cnblogs.com/lifexy/p/8353040.html" target="_blank" rel="noopener">https://www.cnblogs.com/lifexy/p/8353040.html</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="我的常用操作"><a href="#我的常用操作" class="headerlink" title="我的常用操作"></a>我的常用操作</h3><h4 id="1-如何创建"><a href="#1-如何创建" class="headerlink" title="1 如何创建"></a>1 如何创建</h4><p>首先在github 创建项目 比如项目名叫 exportexcel ， 创建完成后，会生成链接 类似：<a href="https://github.com/simple2016/exprotexcel.git" target="_blank" rel="noopener">https://github.com/simple2016/exprotexcel.git</a></p><pre class=" language-shell"><code class="language-shell">git initgit add ./ git commit -m "first commit"## 先删除 再添加git remote remove origingit remote add origin https://github.com/simple2016/exprotexcel.git git push -u origin master</code></pre><h4 id="2-如何提交"><a href="#2-如何提交" class="headerlink" title="2 如何提交"></a>2 如何提交</h4><pre class=" language-shell"><code class="language-shell">###先更新后提交git pullgit commit -m "secondcommit"git push -u origin master ## -u  origin 的解释： 指定origin为默认主机（不知道神么是默认主机#T_T）</code></pre><h4 id="3-如何更新"><a href="#3-如何更新" class="headerlink" title="3 如何更新"></a>3 如何更新</h4><pre class=" language-shell"><code class="language-shell">git pull</code></pre><h4 id="4-如何下载"><a href="#4-如何下载" class="headerlink" title="4 如何下载"></a>4 如何下载</h4><pre class=" language-shell"><code class="language-shell">git clone  https://github.com/simple2016/exprotexcel.git</code></pre><h4 id="5-冲突了怎么办"><a href="#5-冲突了怎么办" class="headerlink" title="5 冲突了怎么办"></a>5 冲突了怎么办</h4><h5 id="5-1-本地更新时冲突："><a href="#5-1-本地更新时冲突：" class="headerlink" title="5.1 本地更新时冲突："></a>5.1 本地更新时冲突：</h5><pre class=" language-shell"><code class="language-shell">git pull这时说有冲突了，更新失败git stashgit pull## stash@{0}是指最后一次stash 的内容git stash pop stash@{0} 这时显示了具体的冲突文件打开文件直接手动解决冲突（这一步可以使用工具，个人直接用idea把该项目打开，使用idea 的冲突解决编辑器），然后 add， commit。## 及时清理掉没有用的stashgit stash drop stash@{0}  </code></pre><h5 id="5-2-分支合并时冲突："><a href="#5-2-分支合并时冲突：" class="headerlink" title="5.2 分支合并时冲突："></a>5.2 分支合并时冲突：</h5><pre class=" language-shell"><code class="language-shell">比如，将bbb分支合并到当前master分支上，先把master 分支下载到本地## 使用--no-ff参数后，会执行正常合并，在Master分支上生成一个新节点git merge --no-ff bbb 冲突之后在当前分支上（master），打开文件直接手动解决冲突，然后 add，commit。</code></pre><h5 id="5-3-强制提交"><a href="#5-3-强制提交" class="headerlink" title="5.3 强制提交"></a>5.3 强制提交</h5><p>冲突最简单的解决办法就是强制提交，直接覆盖。</p><pre class=" language-shell"><code class="language-shell">## 不适用于多人合作项目，自己的项目随便玩，操作需谨慎## 强制提交到远程git add .git commit -m "your comment"git push -u origin master -f## 强制覆盖本地git fetch -all git reset --hard origin/master</code></pre><h4 id="6-查看修改"><a href="#6-查看修改" class="headerlink" title="6 查看修改"></a>6 查看修改</h4><pre class=" language-shell"><code class="language-shell">## 查看文件修改情况git status## 文件修改对比git diff</code></pre><p>参考 <a href="https://www.cnblogs.com/ldj3/p/9172804.html" target="_blank" rel="noopener">https://www.cnblogs.com/ldj3/p/9172804.html</a></p><p><a href="https://www.cnblogs.com/lifexy/p/8353040.html" target="_blank" rel="noopener">https://www.cnblogs.com/lifexy/p/8353040.html</a></p><h4 id="7-记住密码"><a href="#7-记住密码" class="headerlink" title="7 记住密码"></a>7 记住密码</h4><p>长期存储密码：</p><p><code>git config --global credential.helper store</code></p><p>使用<code>git config --list</code>查看已设配置</p>]]></content>
     
     <summary type="html">
     
@@ -500,36 +527,6 @@
       <category term="ftp" scheme="http://yoursite.com/tags/ftp/"/>
     
       <category term="sftp" scheme="http://yoursite.com/tags/sftp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你先是自己</title>
-    <link href="http://yoursite.com/2019/09/01/%E6%97%A5%E8%AE%B0/%E4%BD%A0%E5%B0%B1%E6%98%AF%E8%87%AA%E5%B7%B1/"/>
-    <id>http://yoursite.com/2019/09/01/日记/你就是自己/</id>
-    <published>2019-08-31T16:00:00.000Z</published>
-    <updated>2019-09-19T01:35:36.460Z</updated>
-    
-    <content type="html"><![CDATA[<p>（这是一篇自己缺点认知的文章）</p><p>你先是自己</p><p>然后才是孩子，朋友，软件工程师，不爱说话的人…</p><p>过去，你纠结于自己的家庭，长相，经历，习惯，伤害。</p><p>那些东西都不会再改变，无论他是什么样子。</p><p>同样，现在的生活也是没有办法立即改变。</p><p>你能做的，就是做自己。让自己更像自己，而不是像别人。</p><p>你的所作所为，是独一无二的，任何人也替代不了。</p><p>你喜欢什么，自己如何获得反馈，如何约束自己，如何成长。</p><p>每过一天，自己有没有什么变化。自己的思想觉悟有没有什么提高</p><p>自己有没有作出了什么可以和别人分享的成绩。</p><p>大脑的兴奋，用一点少一点。不要只是兴奋一下就完了，趁热打铁。</p><p>养成习惯，不断重复，每次想到就重复一般，平时在大脑里重复。才能成为习惯</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;（这是一篇自己缺点认知的文章）&lt;/p&gt;
-&lt;p&gt;你先是自己&lt;/p&gt;
-&lt;p&gt;然后才是孩子，朋友，软件工程师，不爱说话的人…&lt;/p&gt;
-&lt;p&gt;过去，你纠结于自己的家庭，长相，经历，习惯，伤害。&lt;/p&gt;
-&lt;p&gt;那些东西都不会再改变，无论他是什么样子。&lt;/p&gt;
-&lt;p&gt;同样，现在的生活也
-      
-    
-    </summary>
-    
-      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
