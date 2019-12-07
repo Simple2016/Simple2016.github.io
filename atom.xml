@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-29T03:22:24.745Z</updated>
+  <updated>2019-12-07T10:29:06.091Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,21 +17,160 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>年终总结</title>
-    <link href="http://yoursite.com/2019/11/25/%E6%97%A5%E8%AE%B0/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2019/11/25/日记/年终总结/</id>
-    <published>2019-11-25T02:12:24.000Z</published>
-    <updated>2019-11-29T03:22:24.745Z</updated>
+    <title>nginx</title>
+    <link href="http://yoursite.com/2019/12/07/%E6%8A%80%E6%9C%AF/nginx/"/>
+    <id>http://yoursite.com/2019/12/07/技术/nginx/</id>
+    <published>2019-12-07T10:27:07.000Z</published>
+    <updated>2019-12-07T10:29:06.091Z</updated>
     
-    <content type="html"><![CDATA[<p>最闲的一年<br>头发掉的最多的一年<br>身体最差的一年<br>最放纵的一年<br>最颓废的一年<br>思想变成熟的一年<br>最无牵无挂的一年</p><p>明年期许：</p><p>记性是个好东西，忘掉该忘的， 记住该记住的<br>身体是个好东西，不要在为了工作失去健康<br>自律是个好东西，及时停止脚步，反思自己<br>读过无数的至理名言，那都是别人的东西。看过无数的美景，那都是别人的风景。无所畏惧，敢做敢言，做自己。不管怎样，只要是我发出来的，就是我的。就是我自己。</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="nginx转发socket"><a href="#nginx转发socket" class="headerlink" title="nginx转发socket"></a>nginx转发socket</h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">worker_processes</span> <span class="token attr-value"> 1;</span><span class="token comment" spellcheck="true">#error_log  logs/error.log;</span><span class="token comment" spellcheck="true">#error_log  logs/error.log  notice;</span><span class="token comment" spellcheck="true">#error_log  logs/error.log  info;</span><span class="token comment" spellcheck="true">#pid        logs/nginx.pid;</span><span class="token attr-name">events</span> <span class="token attr-value">{</span><span class="token attr-name">    worker_connections</span> <span class="token attr-value"> 1024;</span>}stream{<span class="token attr-name">    upstream</span> <span class="token attr-value">abc{</span><span class="token attr-name">        server</span> <span class="token attr-value">172.18.8.196:11911;</span>    }    server{<span class="token attr-name">        listen</span> <span class="token attr-value">11911;</span><span class="token attr-name">        proxy_pass</span> <span class="token attr-value">abc;</span>    }}</code></pre>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;最闲的一年&lt;br&gt;头发掉的最多的一年&lt;br&gt;身体最差的一年&lt;br&gt;最放纵的一年&lt;br&gt;最颓废的一年&lt;br&gt;思想变成熟的一年&lt;br&gt;最无牵无挂的一年&lt;/p&gt;
-&lt;p&gt;明年期许：&lt;/p&gt;
-&lt;p&gt;记性是个好东西，忘掉该忘的， 记住该记住的&lt;br&gt;身体是个好东西，不要在为了工作失去健
+        &lt;h4 id=&quot;nginx转发socket&quot;&gt;&lt;a href=&quot;#nginx转发socket&quot; class=&quot;headerlink&quot; title=&quot;nginx转发socket&quot;&gt;&lt;/a&gt;nginx转发socket&lt;/h4&gt;&lt;pre class=&quot; language-propert
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ajax</title>
+    <link href="http://yoursite.com/2019/12/06/%E6%8A%80%E6%9C%AF/ajax/"/>
+    <id>http://yoursite.com/2019/12/06/技术/ajax/</id>
+    <published>2019-12-06T07:35:08.000Z</published>
+    <updated>2019-12-07T10:42:32.184Z</updated>
+    
+    <content type="html"><![CDATA[<p>你可能需要引用一下这个</p><pre class=" language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre><h4 id="ajax-测试跨域"><a href="#ajax-测试跨域" class="headerlink" title="ajax 测试跨域"></a>ajax 测试跨域</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>                url<span class="token punctuation">:</span> <span class="token string">"http://localhost:8081/"</span><span class="token punctuation">,</span>                <span class="token comment" spellcheck="true">//url: "http://gzf.zfcxjw.cq.gov.cn:9091/site/cqgzf/sso/callback?goto=http://gzf.zfcxjw.cq.gov.cn:9091/site/cqgzf/user/applyProtocol",</span>                <span class="token comment" spellcheck="true">//url: "http://183.66.171.90:9091/site/cqgzf/sso/callback?goto=http://gzf.zfcxjw.cq.gov.cn:9091/site/cqgzf/user/applyProtocol",</span>                method<span class="token punctuation">:</span> <span class="token string">"POST"</span><span class="token punctuation">,</span>                <span class="token comment" spellcheck="true">//contentType: "application/json; charset=utf-8"</span>            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> status<span class="token punctuation">,</span> jqxhr<span class="token punctuation">)</span> <span class="token punctuation">{</span>                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h4 id="ajax-重定向"><a href="#ajax-重定向" class="headerlink" title="ajax 重定向"></a>ajax 重定向</h4><pre class=" language-javascript"><code class="language-javascript"> <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            $<span class="token punctuation">.</span><span class="token function">ajaxSetup</span><span class="token punctuation">(</span><span class="token punctuation">{</span>                complete<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>XMLHttpRequest<span class="token punctuation">,</span> textStatus<span class="token punctuation">)</span> <span class="token punctuation">{</span>                    <span class="token keyword">var</span> redirect <span class="token operator">=</span> XMLHttpRequest<span class="token punctuation">.</span><span class="token function">getResponseHeader</span><span class="token punctuation">(</span><span class="token string">"Redirect"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                    <span class="token keyword">if</span> <span class="token punctuation">(</span>redirect <span class="token operator">==</span> <span class="token string">"true"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>                        <span class="token function">alert</span><span class="token punctuation">(</span>XMLHttpRequest<span class="token punctuation">.</span><span class="token function">getResponseHeader</span><span class="token punctuation">(</span><span class="token string">"RedirectUrl"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                        <span class="token comment" spellcheck="true">//window.location.href = XMLHttpRequest.getResponseHeader("RedirectUrl");</span>                    <span class="token punctuation">}</span>                <span class="token punctuation">}</span>            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>                url<span class="token punctuation">:</span> <span class="token string">"http://localhost:8081/testAjaxRedirect"</span><span class="token punctuation">,</span>                              method<span class="token punctuation">:</span> <span class="token string">"GET"</span><span class="token punctuation">,</span>                <span class="token comment" spellcheck="true">//contentType: "application/json; charset=utf-8"</span>            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> status<span class="token punctuation">,</span> jqxhr<span class="token punctuation">)</span> <span class="token punctuation">{</span>                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>如果重定向的地址跨域了，一样会报跨域访问错误， 代码中在getResponseHeader之前就报错不继续执行了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;你可能需要引用一下这个&lt;/p&gt;
+&lt;pre class=&quot; language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;tok
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+      <category term="ajax" scheme="http://yoursite.com/tags/ajax/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iframe</title>
+    <link href="http://yoursite.com/2019/12/06/%E6%8A%80%E6%9C%AF/iframe/"/>
+    <id>http://yoursite.com/2019/12/06/技术/iframe/</id>
+    <published>2019-12-06T07:17:47.000Z</published>
+    <updated>2019-12-07T10:52:39.318Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="iframe-到底有没有跨域问题"><a href="#iframe-到底有没有跨域问题" class="headerlink" title="iframe 到底有没有跨域问题"></a>iframe 到底有没有跨域问题</h4><p>分情况： 只是嵌入看x-frame-options是否允许嵌入，如果允许嵌入的话，嵌入没有问题<br>然后，如果要在父页面访问iframe里的东西，需要考虑跨域问题。</p><p>跨域了有很多的解决方案。可以参考 <a href="https://www.jianshu.com/p/b1de3e05bfb6" target="_blank" rel="noopener">https://www.jianshu.com/p/b1de3e05bfb6</a></p><p>跨域问题的解决方法的本质，就是你跨域访问的资源允许你跨域访问了，你才能访问成功，否则根据同源策略，是不可能让一个陌生的网页直接获取本网页的数据的，这是同源策略的规范，浏览器实现了这个规范，为了网站的安全。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;iframe-到底有没有跨域问题&quot;&gt;&lt;a href=&quot;#iframe-到底有没有跨域问题&quot; class=&quot;headerlink&quot; title=&quot;iframe 到底有没有跨域问题&quot;&gt;&lt;/a&gt;iframe 到底有没有跨域问题&lt;/h4&gt;&lt;p&gt;分情况： 只是嵌入看x-fr
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="iframe" scheme="http://yoursite.com/tags/iframe/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cors</title>
+    <link href="http://yoursite.com/2019/12/06/%E6%8A%80%E6%9C%AF/cors/"/>
+    <id>http://yoursite.com/2019/12/06/技术/cors/</id>
+    <published>2019-12-06T07:15:28.000Z</published>
+    <updated>2019-12-06T08:03:14.514Z</updated>
+    
+    <content type="html"><![CDATA[<p>测试页面 cors.html</p><pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Hello CORS<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">        <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>                url<span class="token punctuation">:</span> <span class="token string">"https://www.baidu.com/"</span><span class="token punctuation">,</span>                          method<span class="token punctuation">:</span> <span class="token string">"POST"</span><span class="token punctuation">,</span>                <span class="token comment" spellcheck="true">//contentType: "application/json; charset=utf-8"</span>            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> status<span class="token punctuation">,</span> jqxhr<span class="token punctuation">)</span> <span class="token punctuation">{</span>                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre><p>注意1 ： ajax 跨域请求的时候，contentType 也会影响跨域。所以如果出现问题可以考虑contentType  是否与资源匹配，或者直接去掉。ps: 这个问题一度导致我一度怀疑人生，在后端配置好跨域后却依旧提示跨域访问。话费了大约4个小时才发现是这个问题</p><p>注意2 ： 浏览器直接打开这个文件也是可以的，这时候ajax访问任何页面都算是跨域，不过跨域提示的文字显示本地址为null</p><blockquote><p>Access to XMLHttpRequest at ‘<a href="https://www.baidu.com/&#39;" target="_blank" rel="noopener">https://www.baidu.com/&#39;</a> (redirected from ‘<a href="http://www.baidu.com/&#39;" target="_blank" rel="noopener">http://www.baidu.com/&#39;</a>) from origin ‘null’ has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</p></blockquote><p>所以如果后端需要配置ip的话，建议把这个页面放到容器中，tomcat 或者iis 都可</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;测试页面 cors.html&lt;/p&gt;
+&lt;pre class=&quot; language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token doctype&quot;&gt;&amp;lt;!DOCTYPE html&gt;&lt;/span&gt;
+&lt;span cl
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="springmvc" scheme="http://yoursite.com/tags/springmvc/"/>
+    
+      <category term="cors" scheme="http://yoursite.com/tags/cors/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>httpclient</title>
+    <link href="http://yoursite.com/2019/12/05/%E6%8A%80%E6%9C%AF/httpclient/"/>
+    <id>http://yoursite.com/2019/12/05/技术/httpclient/</id>
+    <published>2019-12-05T08:15:26.000Z</published>
+    <updated>2019-12-07T10:24:15.199Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般工具类的写法，仅供参考。 其实httpclient 已经封装的很好了，直接用就行。写成工具类就限制的太死了</p><p>maven 依赖， 版本如果太低差别还是比较大的</p><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.httpcomponents<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>httpclient<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.5.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre><p>1，创建一个基本的返回结果类</p><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HttpResult</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//状态码</span>    <span class="token keyword">final</span> <span class="token keyword">public</span> <span class="token keyword">int</span> code<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//内容</span>    <span class="token keyword">final</span> <span class="token keyword">public</span> String content<span class="token punctuation">;</span>    <span class="token keyword">public</span> <span class="token function">HttpResult</span><span class="token punctuation">(</span><span class="token keyword">int</span> code<span class="token punctuation">,</span> String content<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>        <span class="token keyword">this</span><span class="token punctuation">.</span>content <span class="token operator">=</span> content<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre><p>2  get 和post 的写法。</p><pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>Consts<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>NameValuePair<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>config<span class="token punctuation">.</span>RequestConfig<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>entity<span class="token punctuation">.</span>UrlEncodedFormEntity<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>methods<span class="token punctuation">.</span>CloseableHttpResponse<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>methods<span class="token punctuation">.</span>HttpGet<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>methods<span class="token punctuation">.</span>HttpPost<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>client<span class="token punctuation">.</span>CloseableHttpClient<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>client<span class="token punctuation">.</span>HttpClients<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>message<span class="token punctuation">.</span>BasicNameValuePair<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>util<span class="token punctuation">.</span>EntityUtils<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Map<span class="token punctuation">;</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RequestClient</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">/**     * 带参数的post请求     *     * @param url     * @param map     * @return     * @throws Exception     */</span>    <span class="token keyword">public</span> <span class="token keyword">static</span> HttpResult <span class="token function">doPost</span><span class="token punctuation">(</span>String url<span class="token punctuation">,</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>        CloseableHttpClient httpClient <span class="token operator">=</span> HttpClients<span class="token punctuation">.</span><span class="token function">createDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 声明httpPost请求</span>        HttpPost httpPost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpPost</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>        RequestConfig requestConfig <span class="token operator">=</span> RequestConfig<span class="token punctuation">.</span><span class="token function">custom</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                <span class="token punctuation">.</span><span class="token function">setConnectTimeout</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setConnectionRequestTimeout</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">)</span>                <span class="token punctuation">.</span><span class="token function">setSocketTimeout</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        httpPost<span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span>requestConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 判断map不为空</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>map <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>            <span class="token comment" spellcheck="true">// 声明存放参数的List集合</span>            List<span class="token operator">&lt;</span>NameValuePair<span class="token operator">></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>NameValuePair<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">// 遍历map，设置参数到list中</span>            <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> entry <span class="token operator">:</span> map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>                params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BasicNameValuePair</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span>            <span class="token comment" spellcheck="true">// 创建form表单对象</span>            UrlEncodedFormEntity formEntity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UrlEncodedFormEntity</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">// 把表单对象设置到httpPost中</span>            httpPost<span class="token punctuation">.</span><span class="token function">setEntity</span><span class="token punctuation">(</span>formEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token comment" spellcheck="true">// 使用HttpClient发起请求，返回response</span>        CloseableHttpResponse response <span class="token operator">=</span> httpClient<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>httpPost<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 解析response封装返回对象httpResult</span>        HttpResult httpResult <span class="token operator">=</span> <span class="token function">getHttpResult</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 返回结果</span>        <span class="token keyword">return</span> httpResult<span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">/**     * 带参数的get请求     *     * @param url     * @param map     * @return     * @throws Exception     */</span>    <span class="token keyword">public</span> <span class="token keyword">static</span> HttpResult <span class="token function">doGet</span><span class="token punctuation">(</span>String url<span class="token punctuation">,</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>        CloseableHttpClient httpClient <span class="token operator">=</span> HttpClients<span class="token punctuation">.</span><span class="token function">createDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        String paramsStr <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 判断map不为空</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>map <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>            <span class="token comment" spellcheck="true">// 声明存放参数的List集合</span>            List<span class="token operator">&lt;</span>BasicNameValuePair<span class="token operator">></span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>BasicNameValuePair<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">// 遍历map，设置参数到list中</span>            <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> entry <span class="token operator">:</span> map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>                params<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BasicNameValuePair</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span>            paramsStr <span class="token operator">=</span> EntityUtils<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UrlEncodedFormEntity</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> Consts<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token comment" spellcheck="true">// 声明httpGet请求</span>        HttpGet httpGet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpGet</span><span class="token punctuation">(</span>url <span class="token operator">+</span> <span class="token string">"?"</span> <span class="token operator">+</span> paramsStr<span class="token punctuation">)</span><span class="token punctuation">;</span>        RequestConfig requestConfig <span class="token operator">=</span> RequestConfig<span class="token punctuation">.</span><span class="token function">custom</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                <span class="token punctuation">.</span><span class="token function">setConnectTimeout</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setConnectionRequestTimeout</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">)</span>                <span class="token punctuation">.</span><span class="token function">setSocketTimeout</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        httpGet<span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span>requestConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 使用HttpClient发起请求，返回response</span>        CloseableHttpResponse response <span class="token operator">=</span> httpClient<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>httpGet<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 解析response封装返回对象httpResult</span>        HttpResult httpResult <span class="token operator">=</span> <span class="token function">getHttpResult</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 返回结果</span>        <span class="token keyword">return</span> httpResult<span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token keyword">private</span> <span class="token keyword">static</span> HttpResult <span class="token function">getHttpResult</span><span class="token punctuation">(</span>CloseableHttpResponse response<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>        HttpResult httpResult <span class="token operator">=</span> null<span class="token punctuation">;</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>            httpResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpResult</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getStatusLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getStatusCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>                    EntityUtils<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>            httpResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpResult</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getStatusLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getStatusCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token keyword">return</span> httpResult<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一般工具类的写法，仅供参考。 其实httpclient 已经封装的很好了，直接用就行。写成工具类就限制的太死了&lt;/p&gt;
+&lt;p&gt;maven 依赖， 版本如果太低差别还是比较大的&lt;/p&gt;
+&lt;pre class=&quot; language-xml&quot;&gt;&lt;code class=&quot;langu
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>年终总结</title>
+    <link href="http://yoursite.com/2019/11/25/%E6%97%A5%E8%AE%B0/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2019/11/25/日记/年终总结/</id>
+    <published>2019-11-25T02:12:24.000Z</published>
+    <updated>2019-11-29T09:57:51.135Z</updated>
+    
+    <content type="html"><![CDATA[<p>最闲的一年</p><blockquote><p>相比之下，可能算是比较正常的一年吧，除了因为上线通宵，准时上下班</p></blockquote><p>头发掉的最多的一年</p><blockquote><p>年龄到了，加上自己干的这个职业，早想到了</p></blockquote><p>身体最差的一年</p><blockquote><p>生的病一次比一次重</p></blockquote><p>最放纵的一年</p><blockquote><p>虽然下班早了，但是基本没干过正式，不是玩就是看直播</p></blockquote><p>最颓废的一年</p><blockquote><p>所有的计划都没有实现，所有的梦想都是成了泡沫</p></blockquote><p>思想变成熟的一年</p><blockquote><p>想的最多的一年，发现自己在很多方面认识的更深了，也更能理解一些现象</p></blockquote><p>最无牵无挂的一年</p><blockquote><p>如果以后我想自杀了，可能会后悔没有在今年自杀，因为今年是最好的时候，父母健在，有我哥哥和嫂子和两个可爱的孙子陪着。没有自己的家庭，不用担心死后让人伤心。基本没有欠别人钱，可以安心的死去。</p></blockquote><p>明年期许：</p><p>记性是个好东西，忘掉该忘的， 记住该记住的<br>身体是个好东西，不要在为了工作失去健康<br>自律是个好东西，及时停止脚步，反思自己<br>读过无数的至理名言，那都是别人的东西。看过无数的美景，那都是别人的风景。无所畏惧，敢做敢言，做自己。不管怎样，只要是我发出来的，就是我的。就是我自己。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最闲的一年&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;相比之下，可能算是比较正常的一年吧，除了因为上线通宵，准时上下班&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;头发掉的最多的一年&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;年龄到了，加上自己干的这个职业，早想到了&lt;/p&gt;
+&lt;/
       
     
     </summary>
@@ -167,7 +306,7 @@
     <link href="http://yoursite.com/2019/09/19/%E6%8A%80%E6%9C%AF/maven/"/>
     <id>http://yoursite.com/2019/09/19/技术/maven/</id>
     <published>2019-09-18T16:00:00.000Z</published>
-    <updated>2019-09-19T08:19:27.053Z</updated>
+    <updated>2019-12-07T10:15:59.631Z</updated>
     
     <content type="html"><![CDATA[<h4 id="查看项目依赖"><a href="#查看项目依赖" class="headerlink" title="查看项目依赖"></a>查看项目依赖</h4><pre class=" language-shell"><code class="language-shell">mvn dependency:tree</code></pre><h4 id="拷贝依赖jar到lib-目录"><a href="#拷贝依赖jar到lib-目录" class="headerlink" title="拷贝依赖jar到lib 目录"></a>拷贝依赖jar到lib 目录</h4><pre class=" language-shell"><code class="language-shell">mvn dependency:copy-dependencies -DoutputDirectory=lib </code></pre>]]></content>
     
@@ -386,138 +525,6 @@
         &lt;p&gt;比喻恰当&lt;/p&gt;
 &lt;p&gt;棋与时间&lt;/p&gt;
 
-      
-    
-    </summary>
-    
-      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>有意思的摘抄</title>
-    <link href="http://yoursite.com/2019/09/03/%E6%97%A5%E8%AE%B0/%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E6%91%98%E6%8A%84/"/>
-    <id>http://yoursite.com/2019/09/03/日记/有意思的摘抄/</id>
-    <published>2019-09-02T16:00:00.000Z</published>
-    <updated>2019-09-20T09:39:40.790Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="学技术"><a href="#学技术" class="headerlink" title="学技术"></a>学技术</h2><p>话说小白要去美国学技术，大黑劝他说：“你为什么不先到朝鲜，然后从朝鲜再飞到美国”，小白茫然不解。大黑接着说“你想你先到朝鲜再去美国，不是比从中国直接去美国近吗？”小白恍然大悟，“并且你到了朝鲜，那里有金太阳的照耀，你会更明白技术的思想。后面再学任何技术都很快。”于是小白去了朝鲜，然后他才知道原来朝鲜才是最好的地方，他给大黑打了长途电话，大黑问：“你感觉怎么样？”小白激动的说“我在学习用小刀刻芯片呢，听说美国都是动动按钮，学不到真正的东西。”</p><h2 id="小学二年级的一道数学竞赛题"><a href="#小学二年级的一道数学竞赛题" class="headerlink" title="小学二年级的一道数学竞赛题"></a>小学二年级的一道数学竞赛题</h2><p>请你把 10 根放在篮子里的香蕉分给 10 只猴子，每只猴要得到一根，最后篮子里还要留下一根香蕉，你能做到吗？ </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;学技术&quot;&gt;&lt;a href=&quot;#学技术&quot; class=&quot;headerlink&quot; title=&quot;学技术&quot;&gt;&lt;/a&gt;学技术&lt;/h2&gt;&lt;p&gt;话说小白要去美国学技术，大黑劝他说：“你为什么不先到朝鲜，然后从朝鲜再飞到美国”，小白茫然不解。大黑接着说“你想你先到朝鲜再去美国，
-      
-    
-    </summary>
-    
-      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>掉头发</title>
-    <link href="http://yoursite.com/2019/09/02/%E6%97%A5%E8%AE%B0/%E6%8E%89%E5%A4%B4%E5%8F%91/"/>
-    <id>http://yoursite.com/2019/09/02/日记/掉头发/</id>
-    <published>2019-09-01T16:00:00.000Z</published>
-    <updated>2019-09-26T08:43:30.684Z</updated>
-    
-    <content type="html"><![CDATA[<p>掉头发<br>就是洗头时，每次换盆水冲一次，水里就都是头发<br>就是刚洗完头，一梳头，木梳上都是头发<br>就是每天都不敢洗头，怀疑洗发露是不是买到了假货<br>就是快两个月没有理发，感觉头发也没有变很长<br>就是坐着不动，一根头发突然掉了下来，挂在了脸上<br>就是走在路上，一阵风吹过来，头皮感受到了凉意，心想又少了几根<br>就是连续几次在喝着汤的时候看着一根头发掉到了碗里<br>就是每天特别注意自己的刘海，尤其是大风天<br>就是特别在意路人的发际线，每看到一个发量稀少的人，都想象成未来的自己<br>以前从不在意头发的我，突然发现，电梯的广告也从招聘变成了植发，看个综艺也在聊发际线，看个直播也在讨论掉头发，上个班同事也在吐槽掉头发，身边的人突然都开始变得掉头发了。<br>——青年时代彻底过去，步入中年，晋升油腻大叔了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;掉头发&lt;br&gt;就是洗头时，每次换盆水冲一次，水里就都是头发&lt;br&gt;就是刚洗完头，一梳头，木梳上都是头发&lt;br&gt;就是每天都不敢洗头，怀疑洗发露是不是买到了假货&lt;br&gt;就是快两个月没有理发，感觉头发也没有变很长&lt;br&gt;就是坐着不动，一根头发突然掉了下来，挂在了脸上&lt;br&gt;就是走
-      
-    
-    </summary>
-    
-      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>硬币与灵魂</title>
-    <link href="http://yoursite.com/2019/09/02/%E6%97%A5%E8%AE%B0/%E7%A1%AC%E5%B8%81%E4%B8%8E%E7%81%B5%E9%AD%82/"/>
-    <id>http://yoursite.com/2019/09/02/日记/硬币与灵魂/</id>
-    <published>2019-09-01T16:00:00.000Z</published>
-    <updated>2019-09-19T01:35:36.476Z</updated>
-    
-    <content type="html"><![CDATA[<p>桌子上有一枚硬币，而你是一个灵魂。</p><p>这时候你想把硬币反过来。但是作为灵魂，你是触摸不到任何东西的。</p><p>你多么想把硬币翻过来。让这个世界知道你的存在！</p><p>这个想法在你的思想中不断的重复，任何别的的事情都显得不值一提</p><p>在你万般渴望的时候，灵光一闪，你获得了一秒钟做人的机会！</p><p>你轻松地把硬币翻过来了！这一刻的你，体会到了生命是多么的伟大！</p><p>从此世界中有了你来过的痕迹。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;桌子上有一枚硬币，而你是一个灵魂。&lt;/p&gt;
-&lt;p&gt;这时候你想把硬币反过来。但是作为灵魂，你是触摸不到任何东西的。&lt;/p&gt;
-&lt;p&gt;你多么想把硬币翻过来。让这个世界知道你的存在！&lt;/p&gt;
-&lt;p&gt;这个想法在你的思想中不断的重复，任何别的的事情都显得不值一提&lt;/p&gt;
-&lt;p&gt;在你万般
-      
-    
-    </summary>
-    
-      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>还债</title>
-    <link href="http://yoursite.com/2019/09/01/%E6%97%A5%E8%AE%B0/%E8%BF%98%E5%80%BA/"/>
-    <id>http://yoursite.com/2019/09/01/日记/还债/</id>
-    <published>2019-09-01T13:23:00.000Z</published>
-    <updated>2019-09-19T01:35:36.483Z</updated>
-    
-    <content type="html"><![CDATA[<p>债有很多种, 金钱债，人情债，技术债..  我要还的，却是时间债。</p><p>我每天都在透支着未来，因为在我的心中，我的未来是一个无比美好的世界。所以，我把太多的事情都放到了未来。每一天。我都说这个事情以后再做。直到今天我整理我电脑里的东西的时候，发现，我并不是什么都不知道，而是知道的太多了，却没有时间去做。我的电脑里嵌套的存放着各种文件，如果这些文件里的东西都是我之前完成过的作品的话，我一定是一个非常厉害的人，但是这些文件我自己都不记得他们什么时候放进来的。</p><p>我的硬盘了保存着各种之前工作时候学习一般的工程，写了一个简单开头的demo,各种没有看过的书，以及以为以后会用，但是基本忘掉的安装包，以至于每次用到都不敢确定之前的是否能用，最后还是从网上下载。还有各种待整理的照片，还有一些好玩的小软件，比如用一个工具结合英伟达显卡把电脑的屏幕实时不延迟地同步显示在手机上，功能特别强大但从来没有用过的截图软件，制作视频的会声会影。</p><p>以后我要简简单单的活着  ，把工作的基本技能做熟练，确保自己不会饿死的前提下，只看到下一个小时的事情，其他所有的愿望都是不能实现的，长久以来我的所作所为，已经对我来说证明了这一点。如果我在下一个小时完不成的事情，我就不能期望自己能够自觉的在将来的某一个时间点去把他完成。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;债有很多种, 金钱债，人情债，技术债..  我要还的，却是时间债。&lt;/p&gt;
-&lt;p&gt;我每天都在透支着未来，因为在我的心中，我的未来是一个无比美好的世界。所以，我把太多的事情都放到了未来。每一天。我都说这个事情以后再做。直到今天我整理我电脑里的东西的时候，发现，我并不是什么都不
-      
-    
-    </summary>
-    
-      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>鸡汤</title>
-    <link href="http://yoursite.com/2019/09/01/%E6%97%A5%E8%AE%B0/%E9%B8%A1%E6%B1%A4/"/>
-    <id>http://yoursite.com/2019/09/01/日记/鸡汤/</id>
-    <published>2019-08-31T16:00:00.000Z</published>
-    <updated>2019-09-19T01:35:36.484Z</updated>
-    
-    <content type="html"><![CDATA[<p>人总是会皮。把鸡汤天天奉给自己，保持活力和危机感</p><p>太容易倦怠了，只有自己经历了才会知道， 这个时期的我有多么的颓废。每天要给自己打鸡血啊，能够脱离旋涡一点也好。</p><p>我唯一的目标，这辈子好好活，安排好我的这辈子，别让我在痛苦中过完这一生。今天做明天的事，昨天的事都已经过去，不在去想。不确定的东西都抛掉，努力抓住生活中的希望。</p><p>每一刻我的目标是，把下一刻的东西确定成为现实，然后写入历史。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;人总是会皮。把鸡汤天天奉给自己，保持活力和危机感&lt;/p&gt;
-&lt;p&gt;太容易倦怠了，只有自己经历了才会知道， 这个时期的我有多么的颓废。每天要给自己打鸡血啊，能够脱离旋涡一点也好。&lt;/p&gt;
-&lt;p&gt;我唯一的目标，这辈子好好活，安排好我的这辈子，别让我在痛苦中过完这一生。今天做明天的
       
     
     </summary>
