@@ -103,18 +103,18 @@
 
 
 
-  <meta name="description" content="​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。 ​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的">
-<meta name="keywords" content="随笔记录，技术分享">
+  <meta name="description" content="2019.12.10 记一次花费了三天时间的跨域问题  给自己找一下理由： 1 项目刚接手不是很熟悉，2 两地联调，非同事，配合不好，3自己测试没有问题就没有继续深入 4 . 3天时间不都是看这个，穿插做着别的开发任务 好吧，就是我自己菜，以下是解决过程。 @Override public void doFilter(ServletRequest req, ServletResponse res,">
+<meta name="keywords" content="ajax,springmvc,cors,options">
 <meta property="og:type" content="article">
-<meta property="og:title" content="工作了快三个月">
-<meta property="og:url" content="http://yoursite.com/2019/06/28/日记/工作了快三个月/index.html">
+<meta property="og:title" content="cors之options">
+<meta property="og:url" content="http://yoursite.com/2019/12/10/技术/cors之options/index.html">
 <meta property="og:site_name" content="liqwer">
-<meta property="og:description" content="​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。 ​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的">
+<meta property="og:description" content="2019.12.10 记一次花费了三天时间的跨域问题  给自己找一下理由： 1 项目刚接手不是很熟悉，2 两地联调，非同事，配合不好，3自己测试没有问题就没有继续深入 4 . 3天时间不都是看这个，穿插做着别的开发任务 好吧，就是我自己菜，以下是解决过程。 @Override public void doFilter(ServletRequest req, ServletResponse res,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-19T01:35:36.466Z">
+<meta property="og:updated_time" content="2019-12-10T07:21:04.901Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工作了快三个月">
-<meta name="twitter:description" content="​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。 ​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的">
+<meta name="twitter:title" content="cors之options">
+<meta name="twitter:description" content="2019.12.10 记一次花费了三天时间的跨域问题  给自己找一下理由： 1 项目刚接手不是很熟悉，2 两地联调，非同事，配合不好，3自己测试没有问题就没有继续深入 4 . 3天时间不都是看这个，穿插做着别的开发任务 好吧，就是我自己菜，以下是解决过程。 @Override public void doFilter(ServletRequest req, ServletResponse res,">
 
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/28/日记/工作了快三个月/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/10/技术/cors之options/">
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>工作了快三个月 | liqwer</title>
+  <title>cors之options | liqwer</title>
   
 
 
@@ -392,7 +392,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/日记/工作了快三个月/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/技术/cors之options/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liqw">
@@ -409,7 +409,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">工作了快三个月
+          <h1 class="post-title" itemprop="name headline">cors之options
 
               
             
@@ -436,24 +436,12 @@
                 
               
 
-              <time title="创建时间：2019-06-28 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-28T00:00:00+08:00">2019-06-28</time>
+              <time title="创建时间：2019-12-10 15:10:30 / 修改时间：15:21:04" itemprop="dateCreated datePublished" datetime="2019-12-10T15:10:30+08:00">2019-12-10</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-09-19 09:35:36" itemprop="dateModified" datetime="2019-09-19T09:35:36+08:00">2019-09-19</time>
               
             
           </span>
@@ -470,7 +458,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日记/" itemprop="url" rel="index"><span itemprop="name">日记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
 
                 
                 
@@ -489,8 +477,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/06/28/日记/工作了快三个月/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/28/日记/工作了快三个月/" itemprop="commentCount"></span>
+                <a href="/2019/12/10/技术/cors之options/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/10/技术/cors之options/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -512,7 +500,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.2k</span>
+                <span title="本文字数">17k</span>
               
 
               
@@ -526,7 +514,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">15 分钟</span>
               
             </div>
           
@@ -546,12 +534,123 @@
       
 
       
-        <p>​        已经工作了快三个月，刚来的时候每天都有事情做，算是比较忙，最近突然闲下来了，就想发布一些想法。</p>
-<p>​        虽然工作的时候比较忙，但是基本每天都有记录日记，心想着有天可以发布出来。之前有空的时候我也看了看自己的日记，实在是有点多，而且都是杂乱无章的，感觉发出来也只是一个心理上的安慰，不会起到什么作用，所以就不想发了。以后会把一些重要的点整理一下发出来吧。 考虑的是不要太多的文件，那样会比较乱，尽量相同的东西写在一篇文章里，然后不定期的整理更新。</p>
-<p>​        现在在做的一个项目是非常传统的项目，没有用到什么大数据，nosql, 分布式，微服务，区块链等等的技术。用的有数据库oracle sql查询统计，后端 spring mvc, 前端jquery 用的比较多，然后是模版技术 freemarker，这个用的不好，大部分还是用jquery 拼接的页面。这几天自己的感觉自己的基础倒是巩固了不少。因为目前是一个已经做好的一个项目，计划下个月做二期，所以从这个项目中也发现了很多不足，期望在二期中能吸取经验教训，做的更好一些。二期计划用的工作流来处理业务的状态变化了，对我来说还是一个挑战，因为之前只是听说过，但是从来没有用过，也没有见别人用的好的。自己也看了一些工作流的实例， 就是感觉很繁琐，除了oa 系统以外不知道还有什么业务场景能适合。</p>
-<p>​        前些时间有点堕落因为心情不是很好，因为和我一起入职的优秀的小伙伴因为各种原因都离职了。本来都变得熟悉的公司瞬间又陌生了起来。每天自己挤地铁挤公交，来到公司，发现熟悉的面孔仿佛就在昨天 但是心里却知道再也看不到了。毕竟才认识两个月，还不是那么的熟悉，走了也就走了，以后真的可能再也见不着了。可能是自己足够的孤独，才导致这么的伤感吧。怪就怪自己不够优秀，没有自信的和他们多说说话聊聊天，一起吃个饭，也许就都是我的真正的好朋友了。唉 年龄大了</p>
-<p>​        今天好像一天都没有什么重要的事情，就多写一会。因为岁数也不小了，所以越来越感受到时间的宝贵。现在的每一分每一秒，都会成为过往。所有的感受，除了此时此刻，也绝对不会再重复。所以，对自己负责一点。让自己每一分都成为下个时间的铺垫，一步一步的进步而不是堕落。</p>
-<p>​        善于表达的人用语言倾诉自己的内心，优秀的人不用说话用作品来表达自己的能力，成大业者不必自己表达，自然有人把他铭记史册。人总不能默默的活着，我们需要向其他的人分享自己的内心展示自己的能力。这也是我们生存的意义，也是我想把这个文章发布出去的意义，即便我知道不会有几个人看到，我也应当抓紧一切机会表达自己。</p>
+        <p>2019.12.10 记一次花费了三天时间的跨域问题</p>
+<hr>
+<p>给自己找一下理由： 1 项目刚接手不是很熟悉，2 两地联调，非同事，配合不好，3自己测试没有问题就没有继续深入 4 . 3天时间不都是看这个，穿插做着别的开发任务</p>
+<p>好吧，就是我自己菜，以下是解决过程。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest req<span class="token punctuation">,</span> ServletResponse res<span class="token punctuation">,</span> FilterChain chain<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token punctuation">{</span>
+
+    HttpServletRequest request <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletRequest<span class="token punctuation">)</span> req<span class="token punctuation">;</span>
+    HttpServletResponse response <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletResponse<span class="token punctuation">)</span> res<span class="token punctuation">;</span>
+
+    response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Origin"</span><span class="token punctuation">,</span><span class="token string">"http://123.123.123.123:123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"X-Frame-Options"</span><span class="token punctuation">,</span><span class="token string">"allow-from http://123.123.123.123:123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Security-Policy"</span><span class="token punctuation">,</span><span class="token string">"frame-ancestors http://123.123.123.123:123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Credentials"</span><span class="token punctuation">,</span><span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Headers"</span><span class="token punctuation">,</span><span class="token string">"appkey, Content-Type, User-Agent"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Methods"</span><span class="token punctuation">,</span><span class="token string">"POST,OPTIONS,GET"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//System.out.println(request.getMethod());</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"OPTIONS"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        response<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>SC_OK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    chain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这上边的ip是对方服务器的ip,为甚么必须写ip呢，为什么不用 <em> 呢，测试不是更方便呢，因为对方的ajax请求有一个配置<code>xhrFields: {withCredentials: true }</code>。 而且最终的代码中也不建议用 </em>。 这样就导致只能在他们的网站测试了，我没法测试，我只能自己写测试代码。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 我自己的前端测试代码</span>
+<span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>   
+                type <span class="token punctuation">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
+                url <span class="token punctuation">:</span> <span class="token string">"http://localhost:8082/cqgzf_infor_site_war_exploded/cqgzf/UserLogin"</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> status<span class="token punctuation">,</span> jqxhr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>可以看到，非常精简。测试跨域是没有问题的。把这段代码发给他们测试，他们就不配合，一会要开会，一会说运维没来没法改服务器上的代码，最后在他们自己的机器测试又各种ip不对，一点小问题就发截图，我感觉我在给一个刚刚入门的程序员解决问题，于是周末的加班就在没有结果中结束了。</p>
+<p>周一终于告诉我，我发的代码在他们那也是可以的。然后我就让他们自己找问题了，我想很简单啊，照着我发的代码试试看是哪个配置出的问题，不就行了吗。然后我再和他们一起看，到底是谁改一下。问题到这里， 无非就两条路：</p>
+<p>1 他们把调用方式改成我的测试代码</p>
+<p>2 他们继续使用他们的代码，找出跨域的问题，我看能不能通过服务端配置来解决</p>
+<p>中间我有点情绪不稳定，领导一直告诉我要配合他们修改，然后我就配合啊，他们就发这种代码给我，让我加到服务端。折腾了半天，我看是不行了，看了他们没有要使用我的代码的意思，再这样僵持下去也不是个办法。其实可能是我的情绪的问题，原先并不想改我边的代码。现在时间拖了这么久了，后边的开发任务都挺着急呢。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 对方的前端请求的ajax代码</span>
+$<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span>
+
+        <span class="token punctuation">{</span>
+            headers<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"appkey"</span><span class="token punctuation">:</span><span class="token string">"37eb21b33dd74c8baea36bf081ea4a1d"</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            type <span class="token punctuation">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
+            xhrFields<span class="token punctuation">:</span> <span class="token punctuation">{</span>withCredentials<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            url <span class="token punctuation">:</span> url<span class="token punctuation">,</span>
+            dataType <span class="token punctuation">:</span> <span class="token string">"json"</span><span class="token punctuation">,</span>
+            contentType<span class="token punctuation">:</span><span class="token string">"application/x-www-form-urlencoded; charset=UTF-8"</span><span class="token punctuation">,</span>
+            data <span class="token punctuation">:</span> <span class="token string">"json="</span><span class="token operator">+</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>form<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            success <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token operator">...</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            error <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>xhr<span class="token punctuation">,</span>status<span class="token punctuation">,</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">debugger</span><span class="token punctuation">;</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>没时间写具体找问题的过程了，直接上结果，主要是看浏览器请求发现是 option类型的请求，然后用postman 直接请求options到服务端，直接403返回了tomcat 的错误页面，后台根本没有收到options类型的请求。</p>
+<p>说明一下，首先这个项目比较旧了，而且东西杂乱，具体的再深入的原因暂不追究，以下是这次遇到的问题的解决方法，新的springboot项目也许根本不存在这些问题的</p>
+<ol>
+<li><p>参数问题可能会导致跨域 </p>
+<p>看到他们传了json 。所以我后台也是要接收的，不然可能存在跨域问题</p>
+</li>
+<li><p>参数中自定义了headers，导致发送了预请求。</p>
+<p>以下下情况会发送预请求：</p>
+<blockquote>
+<p>1:请求的方法不是GET/HEAD/POST</p>
+<p>2:POST请求的Content-Type并非application/x-www-form-urlencoded, multipart/form-data, 或text/plain</p>
+<p>3:请求设置了自定义的header字段</p>
+<p>来自  <a href="https://www.cnblogs.com/wanghuijie/p/preflighted_request.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghuijie/p/preflighted_request.html</a></p>
+</blockquote>
+<p>解决方法</p>
+<ol>
+<li><p>打开web.xml</p>
+</li>
+<li><p>首先低版本的spring 是默认不接收options 请求的，</p>
+<p>需要开启</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>servlet-class</span><span class="token punctuation">></span></span>org.springframework.web.servlet.DispatcherServlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>servlet-class</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!--在上边的位置加上下边的代码--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>init-param</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">></span></span>dispatchOptionsRequest<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>init-param</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>安全约束(如果开启的话)中放开 OPTIONS</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>security-constraint</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-resource-collection</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-resource-name</span><span class="token punctuation">></span></span>fortune<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web-resource-name</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span>/*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http-method</span><span class="token punctuation">></span></span>PUT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http-method</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http-method</span><span class="token punctuation">></span></span>DELETE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http-method</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http-method</span><span class="token punctuation">></span></span>HEAD<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http-method</span><span class="token punctuation">></span></span>
+        <span class="token comment" spellcheck="true">&lt;!--&lt;http-method>OPTIONS&lt;/http-method>--></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>http-method</span><span class="token punctuation">></span></span>TRACE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>http-method</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web-resource-collection</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>auth-constraint</span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>security-constraint</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>服务端添加判断（参考最上边的代码）</p>
+<pre class=" language-java"><code class="language-java"> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"OPTIONS"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        response<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>SC_OK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
 
       
     </div>
@@ -573,6 +672,18 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ajax/" rel="tag"># ajax</a>
+          
+            <a href="/tags/springmvc/" rel="tag"># springmvc</a>
+          
+            <a href="/tags/cors/" rel="tag"># cors</a>
+          
+            <a href="/tags/options/" rel="tag"># options</a>
+          
+        </div>
+      
 
       
       
@@ -582,8 +693,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/20/日记/在公司的最后一天/" rel="next" title="在公司的最后一天">
-                <i class="fa fa-chevron-left"></i> 在公司的最后一天
+              <a href="/2019/12/07/技术/nginx/" rel="next" title="nginx">
+                <i class="fa fa-chevron-left"></i> nginx
               </a>
             
           </div>
@@ -591,10 +702,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/25/技术/redis 下载/" rel="prev" title="redis下载">
-                redis下载 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

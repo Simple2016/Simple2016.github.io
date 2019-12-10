@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[cors之options]]></title>
+    <url>%2F2019%2F12%2F10%2F%E6%8A%80%E6%9C%AF%2Fcors%E4%B9%8Boptions%2F</url>
+    <content type="text"><![CDATA[2019.12.10 记一次花费了三天时间的跨域问题 给自己找一下理由： 1 项目刚接手不是很熟悉，2 两地联调，非同事，配合不好，3自己测试没有问题就没有继续深入 4 . 3天时间不都是看这个，穿插做着别的开发任务 好吧，就是我自己菜，以下是解决过程。 @Override public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException { HttpServletRequest request = (HttpServletRequest) req; HttpServletResponse response = (HttpServletResponse) res; response.setHeader("Access-Control-Allow-Origin","http://123.123.123.123:123"); response.setHeader("X-Frame-Options","allow-from http://123.123.123.123:123"); response.setHeader("Content-Security-Policy","frame-ancestors http://123.123.123.123:123"); response.setHeader("Access-Control-Allow-Credentials","true"); response.setHeader("Access-Control-Allow-Headers","appkey, Content-Type, User-Agent"); response.setHeader("Access-Control-Allow-Methods","POST,OPTIONS,GET"); //System.out.println(request.getMethod()); if ("OPTIONS".equals(request.getMethod())){ response.setStatus(HttpStatus.SC_OK); } chain.doFilter(req, res); } 这上边的ip是对方服务器的ip,为甚么必须写ip呢，为什么不用 呢，测试不是更方便呢，因为对方的ajax请求有一个配置xhrFields: {withCredentials: true }。 而且最终的代码中也不建议用 。 这样就导致只能在他们的网站测试了，我没法测试，我只能自己写测试代码。 // 我自己的前端测试代码 $(document).ready(function() { $.ajax({ type : "post", url : "http://localhost:8082/cqgzf_infor_site_war_exploded/cqgzf/UserLogin", }).then(function(data, status, jqxhr) { alert(data) }); }); 可以看到，非常精简。测试跨域是没有问题的。把这段代码发给他们测试，他们就不配合，一会要开会，一会说运维没来没法改服务器上的代码，最后在他们自己的机器测试又各种ip不对，一点小问题就发截图，我感觉我在给一个刚刚入门的程序员解决问题，于是周末的加班就在没有结果中结束了。 周一终于告诉我，我发的代码在他们那也是可以的。然后我就让他们自己找问题了，我想很简单啊，照着我发的代码试试看是哪个配置出的问题，不就行了吗。然后我再和他们一起看，到底是谁改一下。问题到这里， 无非就两条路： 1 他们把调用方式改成我的测试代码 2 他们继续使用他们的代码，找出跨域的问题，我看能不能通过服务端配置来解决 中间我有点情绪不稳定，领导一直告诉我要配合他们修改，然后我就配合啊，他们就发这种代码给我，让我加到服务端。折腾了半天，我看是不行了，看了他们没有要使用我的代码的意思，再这样僵持下去也不是个办法。其实可能是我的情绪的问题，原先并不想改我边的代码。现在时间拖了这么久了，后边的开发任务都挺着急呢。 // 对方的前端请求的ajax代码 $.ajax( { headers: { "appkey":"37eb21b33dd74c8baea36bf081ea4a1d" }, type : "post", xhrFields: {withCredentials: true }, url : url, dataType : "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data : "json="+JSON.stringify(form), success : function(data) { ... }, error : function(xhr,status,error) { debugger; console.log(error); } } ); 没时间写具体找问题的过程了，直接上结果，主要是看浏览器请求发现是 option类型的请求，然后用postman 直接请求options到服务端，直接403返回了tomcat 的错误页面，后台根本没有收到options类型的请求。 说明一下，首先这个项目比较旧了，而且东西杂乱，具体的再深入的原因暂不追究，以下是这次遇到的问题的解决方法，新的springboot项目也许根本不存在这些问题的 参数问题可能会导致跨域 看到他们传了json 。所以我后台也是要接收的，不然可能存在跨域问题 参数中自定义了headers，导致发送了预请求。 以下下情况会发送预请求： 1:请求的方法不是GET/HEAD/POST 2:POST请求的Content-Type并非application/x-www-form-urlencoded, multipart/form-data, 或text/plain 3:请求设置了自定义的header字段 来自 https://www.cnblogs.com/wanghuijie/p/preflighted_request.html 解决方法 打开web.xml 首先低版本的spring 是默认不接收options 请求的， 需要开启 &lt;servlet-class>org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class> &lt;!--在上边的位置加上下边的代码--> &lt;init-param> &lt;param-name>dispatchOptionsRequest&lt;/param-name> &lt;param-value>true&lt;/param-value> &lt;/init-param> 安全约束(如果开启的话)中放开 OPTIONS &lt;security-constraint> &lt;web-resource-collection> &lt;web-resource-name>fortune&lt;/web-resource-name> &lt;url-pattern>/*&lt;/url-pattern> &lt;http-method>PUT&lt;/http-method> &lt;http-method>DELETE&lt;/http-method> &lt;http-method>HEAD&lt;/http-method> &lt;!--&lt;http-method>OPTIONS&lt;/http-method>--> &lt;http-method>TRACE&lt;/http-method> &lt;/web-resource-collection> &lt;auth-constraint /> &lt;/security-constraint> 服务端添加判断（参考最上边的代码） if ("OPTIONS".equals(request.getMethod())){ response.setStatus(HttpStatus.SC_OK); }]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+        <tag>springmvc</tag>
+        <tag>cors</tag>
+        <tag>options</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[nginx]]></title>
     <url>%2F2019%2F12%2F07%2F%E6%8A%80%E6%9C%AF%2Fnginx%2F</url>
     <content type="text"><![CDATA[nginx转发socketworker_processes 1; #error_log logs/error.log; #error_log logs/error.log notice; #error_log logs/error.log info; #pid logs/nginx.pid; events { worker_connections 1024; } stream{ upstream abc{ server 172.18.8.196:11911; } server{ listen 11911; proxy_pass abc; } }]]></content>
@@ -14,7 +28,7 @@
   <entry>
     <title><![CDATA[ajax]]></title>
     <url>%2F2019%2F12%2F06%2F%E6%8A%80%E6%9C%AF%2Fajax%2F</url>
-    <content type="text"><![CDATA[你可能需要引用一下这个 &lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js">&lt;/script> ajax 测试跨域$(document).ready(function() { $.ajax({ url: "http://localhost:8081/", //url: "http://gzf.zfcxjw.cq.gov.cn:9091/site/cqgzf/sso/callback?goto=http://gzf.zfcxjw.cq.gov.cn:9091/site/cqgzf/user/applyProtocol", //url: "http://183.66.171.90:9091/site/cqgzf/sso/callback?goto=http://gzf.zfcxjw.cq.gov.cn:9091/site/cqgzf/user/applyProtocol", method: "POST", //contentType: "application/json; charset=utf-8" }).then(function(data, status, jqxhr) { alert(data) }); }); ajax 重定向 $(document).ready(function() { $.ajaxSetup({ complete: function (XMLHttpRequest, textStatus) { var redirect = XMLHttpRequest.getResponseHeader("Redirect"); if (redirect == "true") { alert(XMLHttpRequest.getResponseHeader("RedirectUrl")); //window.location.href = XMLHttpRequest.getResponseHeader("RedirectUrl"); } } }); $.ajax({ url: "http://localhost:8081/testAjaxRedirect", method: "GET", //contentType: "application/json; charset=utf-8" }).then(function(data, status, jqxhr) { alert(data) }); }); 如果重定向的地址跨域了，一样会报跨域访问错误， 代码中在getResponseHeader之前就报错不继续执行了]]></content>
+    <content type="text"><![CDATA[你可能需要引用一下这个 &lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js">&lt;/script> ajax 测试跨域$(document).ready(function() { $.ajax({ url: "http://www.baidu.com/", method: "POST", //contentType: "application/json; charset=utf-8" }).then(function(data, status, jqxhr) { alert(data) }); }); ajax 重定向 $(document).ready(function() { $.ajaxSetup({ complete: function (XMLHttpRequest, textStatus) { var redirect = XMLHttpRequest.getResponseHeader("Redirect"); if (redirect == "true") { alert(XMLHttpRequest.getResponseHeader("RedirectUrl")); //window.location.href = XMLHttpRequest.getResponseHeader("RedirectUrl"); } } }); $.ajax({ url: "http://localhost:8081/testAjaxRedirect", method: "GET", //contentType: "application/json; charset=utf-8" }).then(function(data, status, jqxhr) { alert(data) }); }); 如果重定向的地址跨域了，一样会报跨域访问错误， 上述代码中在getResponseHeader之前就报错不继续执行了]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -37,7 +51,7 @@
   <entry>
     <title><![CDATA[cors]]></title>
     <url>%2F2019%2F12%2F06%2F%E6%8A%80%E6%9C%AF%2Fcors%2F</url>
-    <content type="text"><![CDATA[测试页面 cors.html &lt;!DOCTYPE html> &lt;html> &lt;head> &lt;title>Hello CORS&lt;/title> &lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js">&lt;/script> &lt;script> $(document).ready(function() { $.ajax({ url: "https://www.baidu.com/", method: "POST", //contentType: "application/json; charset=utf-8" }).then(function(data, status, jqxhr) { alert(data) }); }); &lt;/script> &lt;/head> &lt;body> &lt;/body> &lt;/html> 注意1 ： ajax 跨域请求的时候，contentType 也会影响跨域。所以如果出现问题可以考虑contentType 是否与资源匹配，或者直接去掉。ps: 这个问题一度导致我一度怀疑人生，在后端配置好跨域后却依旧提示跨域访问。话费了大约4个小时才发现是这个问题 注意2 ： 浏览器直接打开这个文件也是可以的，这时候ajax访问任何页面都算是跨域，不过跨域提示的文字显示本地址为null Access to XMLHttpRequest at ‘https://www.baidu.com/&#39; (redirected from ‘http://www.baidu.com/&#39;) from origin ‘null’ has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource. 所以如果后端需要配置ip的话，建议把这个页面放到容器中，tomcat 或者iis 都可]]></content>
+    <content type="text"><![CDATA[测试页面 cors.html &lt;!DOCTYPE html> &lt;html> &lt;head> &lt;title>Hello CORS&lt;/title> &lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js">&lt;/script> &lt;script> $(document).ready(function() { $.ajax({ url: "https://www.baidu.com/", method: "POST", //contentType: "application/json; charset=utf-8" }).then(function(data, status, jqxhr) { alert(data) }); }); &lt;/script> &lt;/head> &lt;body> &lt;/body> &lt;/html> 注意1 ： ajax 跨域请求的时候，contentType 也会影响跨域。所以如果出现问题可以考虑contentType 是否与资源匹配，或者直接去掉。ps: 这个问题一度导致我一度怀疑人生，在后端配置好跨域后却依旧提示跨域访问。花费了大约4个小时才发现是这个问题。 注意2 : ajax 的其他参数也可能引起跨域问题，不只是contentType ！！！ 注意3 ： data 参数不对也会有问题！！！ 注意4 ： 浏览器直接打开这个文件也是可以的，这时候ajax访问任何页面都算是跨域，不过跨域提示的文字显示本地址为null Access to XMLHttpRequest at ‘https://www.baidu.com/&#39; (redirected from ‘http://www.baidu.com/&#39;) from origin ‘null’ has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource. 所以如果测试某个ip的话，建议把这个页面放到容器中，tomcat 或者iis 都可]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -173,17 +187,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[认知与真实]]></title>
-    <url>%2F2019%2F09%2F06%2F%E6%97%A5%E8%AE%B0%2F%E8%AE%A4%E7%9F%A5%E4%B8%8E%E7%9C%9F%E5%AE%9E%2F</url>
-    <content type="text"><![CDATA[我觉得我活到现在的最大的失败， 就是没有认识到我自己的位置，在家庭的位置，在公司的位置，在社会的位置。有句话说的好，自知而后知人。因为没有自知，所以我没有做好自己应该成为的样子。我与家人，亲人的联系都不是特别好，但是也不是仇恨，只是很冷漠。我觉得性格是一方面的原因，认知也是一方面的原因。回首过去，我在学校和自己的老师也同样如此，和自己的同学也是如此，之前的和现在的领导，同事，都是如此。而在人生这个走了一半的旅途中，我也没有找到自己的存在感。以后该怎么活，我能不能从过去的事情中得到启发，全看我的觉悟了。甚至，我对自己的身体也一直没有认同。我的牙齿，我的腿，我全身的关节，肌肉，我的手指，我的笑起来的样子，任何地方都令我觉得自己就是个有缺陷的人。但是我直到现在才认识到，这些都是我与众不同的地方。所有我看到的，在这个茫茫的世界中都是如此的肤浅，表面只是一种经验之谈，真正的东西还需要很多深入之后才会了解。同时我现在也开始认识到，规律和混乱，是与否，矛与盾共同组成了这个世界，我们不能只看到其中的一面，而是要两面甚至多面地看，才更接近真实。所以真实，就是我现在的一个价值观。 不管你是什么样子的，世界是什么样子的，我只想知道最真实的是什么样子。 不管你贫穷或者富有，聪明或者不聪明，帅气或者丑陋，不管你曾经做过什么，现在又在做着什么，你都是真实存在的，这就够了。]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[html]]></title>
     <url>%2F2019%2F09%2F06%2F%E6%8A%80%E6%9C%AF%2Fhtml%2F</url>
     <content type="text"><![CDATA[常用HTML标签元素结合及简介常用HTML标签元素结合及简介 &lt;html&gt;&lt;/html&gt; 创建一个HTML文档&lt;head&gt;&lt;/head&gt;设置文档标题和其它在网页中不显示的信息&lt;title&gt;&lt;/title&gt;设置文档的标题&lt;h1&gt;&lt;/h1&gt;最大的标题&lt;pre&gt;&lt;/pre&gt;预格式化文本 (预格式化就是保留文字在源代码中的格式)&lt;u&gt;&lt;/u&gt;下划线&lt;b&gt;&lt;/b&gt;黑体字&lt;i&gt;&lt;/i&gt;斜体字&lt;tt&gt;&lt;/tt&gt;打字机风格的字体&lt;cite&gt;&lt;/cite&gt;引用,通常是斜体&lt;em&gt;&lt;/em&gt;强调文本(通常是斜体加黑体)&lt;strong&gt;&lt;/strong&gt;加重文本(通常是斜体加黑体)&lt;font size=&quot;&quot; color=&quot;&quot;&gt;&lt;/font&gt;设置字体大小从1到7，颜色使用名字或RGB的十六进制值&lt;BASEFONT&gt;&lt;/BASEFONT&gt;基准字体标记&lt;big&gt;&lt;/big&gt;字体加大&lt;SMALL&gt;&lt;/SMALL&gt;字体缩小&lt;STRIKE&gt;&lt;/STRIKE&gt;加删除线&lt;CODE&gt;&lt;/CODE&gt;程式码&lt;KBD&gt;&lt;/KBD&gt;键盘字&lt;SAMP&gt;&lt;/SAMP&gt;范例&lt;VAR&gt;&lt;/VAR&gt;变量 &lt;BLOCKQUOTE&gt;&lt;/BLOCKQUOTE&gt;向右缩排&lt;DFN&gt;&lt;/DFN&gt;述语定义&lt;ADDRESS&gt;&lt;/ADDRESS&gt;地址标记&lt;sup&gt;&lt;/--&gt;上标字&lt;SUB&gt;&lt;/SUB&gt;下标字&lt;xmp&gt;...&lt;/xmp&gt;固定寬度字体(在文件中空白、換行、定位功能有效)&lt;plaintext&gt;...&lt;/plaintext&gt;固定寬度字體(不執行標記符號)&lt;listing&gt;...&lt;/listing&gt;固定寬度小字體&lt;font color=00ff00&gt;...&lt;/font&gt;字體顏色&lt;font size=1&gt;...&lt;/font&gt;最小字體&lt;font style =&#39;font-size:100 px&#39;&gt;...&lt;/font&gt;無限增大 格式标志标签&lt;p&gt;&lt;/p&gt;创建一个段落&lt;p align=&quot;&quot;&gt;将段落按左、中、右对齐 &lt;br&gt;换行 插入换行符&lt;blockquote&gt;&lt;/blockquote&gt;从两边缩进文本&lt;dl&gt;&lt;/dl&gt;定义列表&lt;dt&gt;放在每个定义术语词前&lt;dd&gt;放在每个定义之前&lt;ol&gt;&lt;/ol&gt;创建一个标有数字的列表&lt;ul&gt;&lt;/ul&gt;创建一个标有圆点的列表&lt;li&gt;放在每个列表项之前,若在&lt;ol&gt;&lt;/ol&gt;之间则每个列表项加上一个数字,若在&lt;ul&gt;&lt;/ul&gt;之间则每个列表项加上一个圆点 &lt;div align=&quot;&quot;&gt;&lt;/div&gt;用来排版大块HTML段落,也用于格式化表&lt;MENU&gt;选项清单&lt;DIR&gt;目录清单&lt;nobr&gt;&lt;/nobr&gt;强行不换行&lt;hr size=&#39;9&#39; width=&#39;80%&#39; color=&#39;ff0000&#39;&gt;水平線(設定寬度)&lt;center&gt;&lt;/center&gt;水平居中 链接标志表格标志&lt;a href=&quot;URL&quot;&gt;&lt;/a&gt;创建超文本链接&lt;a href=&quot;mailtEMAIL&quot;&gt;&lt;/a&gt;创建自动发送电子邮件的链接&lt;a name=&quot;name&quot;&gt;&lt;/a&gt;创建位于文档内部的书签&lt;a href=&quot;#name&quot;&gt;&lt;/a&gt;创建指向位于文档内部书签的链接&lt;BASE&gt;文档中不能被该站点辨识的其它所有链接源的URL&lt;LINK&gt;定义一个链接和源之间的相互关系 链接标记注解： ◆target=”…”决定链接源在什么地方显示(用户自定义的名字，_blank,_parent,_self,_top◆rel=”…”发送链接的类型◆rev=”…”保存链接的类型◆accesskey=”…”指定该元素的热键◆shape=”…”允许我们使用已定义的形状定义客户端的图形镜像(default，rect，circle，poly◆coord=”…”使用像素或者长度百分比来定义形状的尺寸◆tabindex=”…”使用定义过的tabindex元素设置在各个元素之间的焦点获取顺序(使用tab键使元素获得焦点) 大部分标签可以运用时候通过CSS控制改变样式达到我们想要的布局效果。]]></content>
@@ -192,6 +195,17 @@
       </categories>
       <tags>
         <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[认知与真实]]></title>
+    <url>%2F2019%2F09%2F06%2F%E6%97%A5%E8%AE%B0%2F%E8%AE%A4%E7%9F%A5%E4%B8%8E%E7%9C%9F%E5%AE%9E%2F</url>
+    <content type="text"><![CDATA[我觉得我活到现在的最大的失败， 就是没有认识到我自己的位置，在家庭的位置，在公司的位置，在社会的位置。有句话说的好，自知而后知人。因为没有自知，所以我没有做好自己应该成为的样子。我与家人，亲人的联系都不是特别好，但是也不是仇恨，只是很冷漠。我觉得性格是一方面的原因，认知也是一方面的原因。回首过去，我在学校和自己的老师也同样如此，和自己的同学也是如此，之前的和现在的领导，同事，都是如此。而在人生这个走了一半的旅途中，我也没有找到自己的存在感。以后该怎么活，我能不能从过去的事情中得到启发，全看我的觉悟了。甚至，我对自己的身体也一直没有认同。我的牙齿，我的腿，我全身的关节，肌肉，我的手指，我的笑起来的样子，任何地方都令我觉得自己就是个有缺陷的人。但是我直到现在才认识到，这些都是我与众不同的地方。所有我看到的，在这个茫茫的世界中都是如此的肤浅，表面只是一种经验之谈，真正的东西还需要很多深入之后才会了解。同时我现在也开始认识到，规律和混乱，是与否，矛与盾共同组成了这个世界，我们不能只看到其中的一面，而是要两面甚至多面地看，才更接近真实。所以真实，就是我现在的一个价值观。 不管你是什么样子的，世界是什么样子的，我只想知道最真实的是什么样子。 不管你贫穷或者富有，聪明或者不聪明，帅气或者丑陋，不管你曾经做过什么，现在又在做着什么，你都是真实存在的，这就够了。]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
       </tags>
   </entry>
   <entry>
@@ -250,6 +264,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[你先是自己]]></title>
+    <url>%2F2019%2F09%2F01%2F%E6%97%A5%E8%AE%B0%2F%E4%BD%A0%E5%B0%B1%E6%98%AF%E8%87%AA%E5%B7%B1%2F</url>
+    <content type="text"><![CDATA[（这是一篇自己缺点认知的文章） 你先是自己 然后才是孩子，朋友，软件工程师，不爱说话的人… 过去，你纠结于自己的家庭，长相，经历，习惯，伤害。 那些东西都不会再改变，无论他是什么样子。 同样，现在的生活也是没有办法立即改变。 你能做的，就是做自己。让自己更像自己，而不是像别人。 你的所作所为，是独一无二的，任何人也替代不了。 你喜欢什么，自己如何获得反馈，如何约束自己，如何成长。 每过一天，自己有没有什么变化。自己的思想觉悟有没有什么提高 自己有没有作出了什么可以和别人分享的成绩。 大脑的兴奋，用一点少一点。不要只是兴奋一下就完了，趁热打铁。 养成习惯，不断重复，每次想到就重复一般，平时在大脑里重复。才能成为习惯]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ftp]]></title>
     <url>%2F2019%2F09%2F01%2F%E6%8A%80%E6%9C%AF%2Fftp%2F</url>
     <content type="text"><![CDATA[ftpwindows下 ftp 命令连接服务器 太不争气， 各种输入密码最后报530 503 参考文献 sftpsftp user@ip 连接 pwd和lpwd 服务器当前路径和本地当前路径 ls和lls 服务器当前文件目录和本地当前文件目录 cd 切换目录 put a.txt 上传到服务器当前目录下 get b.txt 下载到本地当前目录下 !command 在服务器上执行命令 exit和quit 退出 参考文献]]></content>
@@ -265,17 +290,6 @@
     <title><![CDATA[鸡汤]]></title>
     <url>%2F2019%2F09%2F01%2F%E6%97%A5%E8%AE%B0%2F%E9%B8%A1%E6%B1%A4%2F</url>
     <content type="text"><![CDATA[人总是会皮。把鸡汤天天奉给自己，保持活力和危机感 太容易倦怠了，只有自己经历了才会知道， 这个时期的我有多么的颓废。每天要给自己打鸡血啊，能够脱离旋涡一点也好。 我唯一的目标，这辈子好好活，安排好我的这辈子，别让我在痛苦中过完这一生。今天做明天的事，昨天的事都已经过去，不在去想。不确定的东西都抛掉，努力抓住生活中的希望。 每一刻我的目标是，把下一刻的东西确定成为现实，然后写入历史。]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[你先是自己]]></title>
-    <url>%2F2019%2F09%2F01%2F%E6%97%A5%E8%AE%B0%2F%E4%BD%A0%E5%B0%B1%E6%98%AF%E8%87%AA%E5%B7%B1%2F</url>
-    <content type="text"><![CDATA[（这是一篇自己缺点认知的文章） 你先是自己 然后才是孩子，朋友，软件工程师，不爱说话的人… 过去，你纠结于自己的家庭，长相，经历，习惯，伤害。 那些东西都不会再改变，无论他是什么样子。 同样，现在的生活也是没有办法立即改变。 你能做的，就是做自己。让自己更像自己，而不是像别人。 你的所作所为，是独一无二的，任何人也替代不了。 你喜欢什么，自己如何获得反馈，如何约束自己，如何成长。 每过一天，自己有没有什么变化。自己的思想觉悟有没有什么提高 自己有没有作出了什么可以和别人分享的成绩。 大脑的兴奋，用一点少一点。不要只是兴奋一下就完了，趁热打铁。 养成习惯，不断重复，每次想到就重复一般，平时在大脑里重复。才能成为习惯]]></content>
       <categories>
         <category>日记</category>
       </categories>
