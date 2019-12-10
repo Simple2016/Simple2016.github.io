@@ -275,6 +275,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[鸡汤]]></title>
+    <url>%2F2019%2F09%2F01%2F%E6%97%A5%E8%AE%B0%2F%E9%B8%A1%E6%B1%A4%2F</url>
+    <content type="text"><![CDATA[人总是会皮。把鸡汤天天奉给自己，保持活力和危机感 太容易倦怠了，只有自己经历了才会知道， 这个时期的我有多么的颓废。每天要给自己打鸡血啊，能够脱离旋涡一点也好。 我唯一的目标，这辈子好好活，安排好我的这辈子，别让我在痛苦中过完这一生。今天做明天的事，昨天的事都已经过去，不在去想。不确定的东西都抛掉，努力抓住生活中的希望。 每一刻我的目标是，把下一刻的东西确定成为现实，然后写入历史。]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ftp]]></title>
     <url>%2F2019%2F09%2F01%2F%E6%8A%80%E6%9C%AF%2Fftp%2F</url>
     <content type="text"><![CDATA[ftpwindows下 ftp 命令连接服务器 太不争气， 各种输入密码最后报530 503 参考文献 sftpsftp user@ip 连接 pwd和lpwd 服务器当前路径和本地当前路径 ls和lls 服务器当前文件目录和本地当前文件目录 cd 切换目录 put a.txt 上传到服务器当前目录下 get b.txt 下载到本地当前目录下 !command 在服务器上执行命令 exit和quit 退出 参考文献]]></content>
@@ -284,17 +295,6 @@
       <tags>
         <tag>ftp</tag>
         <tag>sftp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[鸡汤]]></title>
-    <url>%2F2019%2F09%2F01%2F%E6%97%A5%E8%AE%B0%2F%E9%B8%A1%E6%B1%A4%2F</url>
-    <content type="text"><![CDATA[人总是会皮。把鸡汤天天奉给自己，保持活力和危机感 太容易倦怠了，只有自己经历了才会知道， 这个时期的我有多么的颓废。每天要给自己打鸡血啊，能够脱离旋涡一点也好。 我唯一的目标，这辈子好好活，安排好我的这辈子，别让我在痛苦中过完这一生。今天做明天的事，昨天的事都已经过去，不在去想。不确定的东西都抛掉，努力抓住生活中的希望。 每一刻我的目标是，把下一刻的东西确定成为现实，然后写入历史。]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
       </tags>
   </entry>
   <entry>
