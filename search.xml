@@ -3,14 +3,14 @@
   <entry>
     <title><![CDATA[cors之options]]></title>
     <url>%2F2019%2F12%2F10%2F%E6%8A%80%E6%9C%AF%2Fcors%E4%B9%8Boptions%2F</url>
-    <content type="text"><![CDATA[2019.12.10 记一次花费了三天时间的跨域问题 给自己找一下理由： 1 项目刚接手不是很熟悉，2 两地联调，非同事，配合不好，3自己测试没有问题就没有继续深入 4 . 3天时间不都是看这个，穿插做着别的开发任务 好吧，就是我自己菜，以下是解决过程。 @Override public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException { HttpServletRequest request = (HttpServletRequest) req; HttpServletResponse response = (HttpServletResponse) res; response.setHeader("Access-Control-Allow-Origin","http://123.123.123.123:123"); response.setHeader("X-Frame-Options","allow-from http://123.123.123.123:123"); response.setHeader("Content-Security-Policy","frame-ancestors http://123.123.123.123:123"); response.setHeader("Access-Control-Allow-Credentials","true"); response.setHeader("Access-Control-Allow-Headers","appkey, Content-Type, User-Agent"); response.setHeader("Access-Control-Allow-Methods","POST,OPTIONS,GET"); //System.out.println(request.getMethod()); if ("OPTIONS".equals(request.getMethod())){ response.setStatus(HttpStatus.SC_OK); } chain.doFilter(req, res); } 这上边的ip是对方服务器的ip,为甚么必须写ip呢，为什么不用 呢，测试不是更方便呢，因为对方的ajax请求有一个配置xhrFields: {withCredentials: true }。 而且最终的代码中也不建议用 。 这样就导致只能在他们的网站测试了，我没法测试，我只能自己写测试代码。 // 我自己的前端测试代码 $(document).ready(function() { $.ajax({ type : "post", url : "http://localhost:8082/cqgzf_infor_site_war_exploded/cqgzf/UserLogin", }).then(function(data, status, jqxhr) { alert(data) }); }); 可以看到，非常精简。测试跨域是没有问题的。把这段代码发给他们测试，他们就不配合，一会要开会，一会说运维没来没法改服务器上的代码，最后在他们自己的机器测试又各种ip不对，一点小问题就发截图，我感觉我在给一个刚刚入门的程序员解决问题，于是周末的加班就在没有结果中结束了。 周一终于告诉我，我发的代码在他们那也是可以的。然后我就让他们自己找问题了，我想很简单啊，照着我发的代码试试看是哪个配置出的问题，不就行了吗。然后我再和他们一起看，到底是谁改一下。问题到这里， 无非就两条路： 1 他们把调用方式改成我的测试代码 2 他们继续使用他们的代码，找出跨域的问题，我看能不能通过服务端配置来解决 中间我有点情绪不稳定，领导一直告诉我要配合他们修改，然后我就配合啊，他们就发这种代码给我，让我加到服务端。折腾了半天，我看是不行了，看了他们没有要使用我的代码的意思，再这样僵持下去也不是个办法。其实可能是我的情绪的问题，原先并不想改我边的代码。现在时间拖了这么久了，后边的开发任务都挺着急呢。 // 对方的前端请求的ajax代码 $.ajax( { headers: { "appkey":"37eb21b33dd74c8baea36bf081ea4a1d" }, type : "post", xhrFields: {withCredentials: true }, url : url, dataType : "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data : "json="+JSON.stringify(form), success : function(data) { ... }, error : function(xhr,status,error) { debugger; console.log(error); } } ); 没时间写具体找问题的过程了，直接上结果，主要是看浏览器请求发现是 option类型的请求，然后用postman 直接请求options到服务端，直接403返回了tomcat 的错误页面，后台根本没有收到options类型的请求。 说明一下，首先这个项目比较旧了，而且东西杂乱，具体的再深入的原因暂不追究，以下是这次遇到的问题的解决方法，新的springboot项目也许根本不存在这些问题的 参数问题可能会导致跨域 看到他们传了json 。所以我后台也是要接收的，不然可能存在跨域问题 参数中自定义了headers，导致发送了预请求。 以下下情况会发送预请求： 1:请求的方法不是GET/HEAD/POST 2:POST请求的Content-Type并非application/x-www-form-urlencoded, multipart/form-data, 或text/plain 3:请求设置了自定义的header字段 来自 https://www.cnblogs.com/wanghuijie/p/preflighted_request.html 解决方法 打开web.xml 首先低版本的spring 是默认不接收options 请求的， 需要开启 &lt;servlet-class>org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class> &lt;!--在上边的位置加上下边的代码--> &lt;init-param> &lt;param-name>dispatchOptionsRequest&lt;/param-name> &lt;param-value>true&lt;/param-value> &lt;/init-param> 安全约束(如果开启的话)中放开 OPTIONS &lt;security-constraint> &lt;web-resource-collection> &lt;web-resource-name>fortune&lt;/web-resource-name> &lt;url-pattern>/*&lt;/url-pattern> &lt;http-method>PUT&lt;/http-method> &lt;http-method>DELETE&lt;/http-method> &lt;http-method>HEAD&lt;/http-method> &lt;!--&lt;http-method>OPTIONS&lt;/http-method>--> &lt;http-method>TRACE&lt;/http-method> &lt;/web-resource-collection> &lt;auth-constraint /> &lt;/security-constraint> 服务端添加判断（参考最上边的代码） if ("OPTIONS".equals(request.getMethod())){ response.setStatus(HttpStatus.SC_OK); }]]></content>
+    <content type="text"><![CDATA[记一次花费了三天时间的跨域问题 给自己找一下理由： 1 项目刚接手不是很熟悉，2 两地联调，非同事，配合不好，3自己测试没有问题就没有继续深入 4 . 3天时间不都是看这个，穿插着别的开发任务 好吧，就是我自己菜，以下是解决过程。 ※ 测试@Override public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException { HttpServletRequest request = (HttpServletRequest) req; HttpServletResponse response = (HttpServletResponse) res; response.setHeader("Access-Control-Allow-Origin","http://123.123.123.123:123"); response.setHeader("X-Frame-Options","allow-from http://123.123.123.123:123"); response.setHeader("Content-Security-Policy","frame-ancestors http://123.123.123.123:123"); response.setHeader("Access-Control-Allow-Credentials","true"); response.setHeader("Access-Control-Allow-Headers","appkey, Content-Type, User-Agent"); response.setHeader("Access-Control-Allow-Methods","POST,OPTIONS,GET"); //System.out.println(request.getMethod()); if ("OPTIONS".equals(request.getMethod())){ response.setStatus(HttpStatus.SC_OK); } chain.doFilter(req, res); } 这上边的ip是对方服务器的ip , 为甚么必须写ip呢，为什么不用 * 呢，测试不是更方便呢，因为对方的ajax请求有一个配置xhrFields: {withCredentials: true }。 而且最终的代码中也不建议用 *。 这样就导致只能在他们的网站测试了，我没法测试，我只能自己写测试代码。 // 我自己的前端测试代码 $(document).ready(function() { $.ajax({ type : "post", url : "http://localhost:8082/cqgzf_infor_site_war_exploded/cqgzf/UserLogin", }).then(function(data, status, jqxhr) { alert(data) }); }); 我用最简单的代码，测试跨域是没有问题的。把这段代码发给他们测试，他们就不配合，一会要开会，一会说运维没来没法改服务器上的代码，最后在他们自己的机器测试又各种ip不对，一点小问题就发截图，我感觉我在给一个刚刚入门的程序员解决问题，于是周末的加班就在没有结果中结束了。 ※ 沟通周一终于告诉我，我发的代码在他们那也是可以的。然后我就让他们自己找问题了，我想很简单啊，照着我发的代码试试看是哪个配置出的问题，不就行了吗。然后我再和他们一起看，到底是谁改一下。问题到这里， 无非就两条路： 1 他们把调用方式改成我的测试代码 2 他们继续使用他们的代码，找出跨域的问题，我看能不能通过服务端配置来解决 中间我有点情绪不稳定，领导过来说我就配合他们修改就行了，说话客气点，然后我就配合啊，他们就发各种代码给我，让我加到服务端。折腾了半天，我看是不行了，看了他们没有要使用我的代码的意思，再这样僵持下去也不是个办法。其实可能是我的情绪的问题，原先并不想改我边的代码。现在时间拖了这么久了，后边的开发任务都挺着急呢。怒要过来前端代码 // 对方的前端请求的ajax代码 $.ajax( { headers: { "appkey":"37eb21b33dd74c8baea36bf081ea4a1d" }, type : "post", xhrFields: {withCredentials: true }, url : url, dataType : "json", contentType:"application/x-www-form-urlencoded; charset=UTF-8", data : "json="+JSON.stringify(form), success : function(data) { ... }, error : function(xhr,status,error) { debugger; console.log(error); } } ); 没时间写具体找问题的过程了，直接上结果，主要是看浏览器请求发现是 option类型的请求，然后用postman 直接请求options到服务端，直接403返回了tomcat 的错误页面，后台根本没有收到options类型的请求。所以找到问题的终极病根是为什么options 的请求被拦截了 ※ 解决说明一下，首先这个项目比较旧了，而且东西杂乱，具体的再深入的原因暂不追究，以下是这次遇到的问题的解决方法，新的springboot项目也许根本不存在这些问题的 以下是这次遇到的两个问题的解决方法，第二个问题解决比较麻烦，花的时间也最多 参数问题可能会导致跨域 看到他们传了json 。所以我后台也是要接收的，不然可能存在跨域问题 参数中自定义了headers，导致发送了预请求。 以下下情况会发送预请求： 1:请求的方法不是GET/HEAD/POST 2:POST请求的Content-Type并非application/x-www-form-urlencoded, multipart/form-data, 或text/plain 3:请求设置了自定义的header字段 来自 https://www.cnblogs.com/wanghuijie/p/preflighted_request.html 解决方法 打开web.xml 首先低版本的spring 是默认不接收options 请求的， 需要开启 &lt;servlet-class>org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class> &lt;!--在上边的位置加上下边的代码--> &lt;init-param> &lt;param-name>dispatchOptionsRequest&lt;/param-name> &lt;param-value>true&lt;/param-value> &lt;/init-param> 安全约束(如果开启的话)中放开 OPTIONS &lt;security-constraint> &lt;web-resource-collection> &lt;web-resource-name>fortune&lt;/web-resource-name> &lt;url-pattern>/*&lt;/url-pattern> &lt;http-method>PUT&lt;/http-method> &lt;http-method>DELETE&lt;/http-method> &lt;http-method>HEAD&lt;/http-method> &lt;!--&lt;http-method>OPTIONS&lt;/http-method>--> &lt;http-method>TRACE&lt;/http-method> &lt;/web-resource-collection> &lt;auth-constraint /> &lt;/security-constraint> 服务端添加判断（参考最上边的代码） if ("OPTIONS".equals(request.getMethod())){ response.setStatus(HttpStatus.SC_OK); }]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>ajax</tag>
         <tag>springmvc</tag>
         <tag>cors</tag>
+        <tag>ajax</tag>
         <tag>options</tag>
       </tags>
   </entry>
@@ -74,7 +74,7 @@
   <entry>
     <title><![CDATA[年终总结]]></title>
     <url>%2F2019%2F11%2F25%2F%E6%97%A5%E8%AE%B0%2F%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93%2F</url>
-    <content type="text"><![CDATA[最闲的一年 相比之下，可能算是比较正常的一年吧，除了因为上线通宵，准时上下班 头发掉的最多的一年 年龄到了，加上自己干的这个职业，早想到了 身体最差的一年 生的病一次比一次重 最放纵的一年 虽然下班早了，但是基本没干过正式，不是玩就是看直播 最颓废的一年 所有的计划都没有实现，所有的梦想都是成了泡沫 思想变成熟的一年 想的最多的一年，发现自己在很多方面认识的更深了，也更能理解一些现象 最无牵无挂的一年 如果以后我想自杀了，可能会后悔没有在今年自杀，因为今年是最好的时候，父母健在，有我哥哥和嫂子和两个可爱的孙子陪着。没有自己的家庭，不用担心死后让人伤心。基本没有欠别人钱，可以安心的死去。 明年期许： 记性是个好东西，忘掉该忘的， 记住该记住的身体是个好东西，不要在为了工作失去健康自律是个好东西，及时停止脚步，反思自己读过无数的至理名言，那都是别人的东西。看过无数的美景，那都是别人的风景。无所畏惧，敢做敢言，做自己。不管怎样，只要是我发出来的，就是我的。就是我自己。]]></content>
+    <content type="text"><![CDATA[最闲的一年 相比之下，可能算是比较正常的一年吧，除了因为上线通宵，准时上下班 头发掉的最多的一年 年龄到了，加上自己干的这个职业，早想到了 身体最差的一年 生的病一次比一次重 最放纵的一年 虽然下班早了，但是基本没干过正事，不是玩就是看直播 最颓废的一年 所有的计划都没有实现，所有的梦想都是成了泡沫 思想变成熟的一年 想的最多的一年，发现自己在很多方面认识的更深了，也更能理解一些现象 最无牵无挂的一年 如果以后我想自杀了，可能会后悔没有在今年自杀，因为今年是最好的时候，父母健在，有我哥哥和嫂子和两个可爱的孙子陪着。没有自己的家庭，不用担心死后让人伤心。基本没有欠别人钱，可以安心的死去。 明年期许： 记性是个好东西，忘掉该忘的， 记住该记住的身体是个好东西，不要在为了工作失去健康自律是个好东西，及时停止脚步，反思自己读过无数的至理名言，那都是别人的东西。看过无数的美景，那都是别人的风景。无所畏惧，敢做敢言，做自己。不管怎样，只要是我发出来的，就是我的。就是我自己。]]></content>
       <categories>
         <category>日记</category>
       </categories>
@@ -231,9 +231,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[掉头发]]></title>
-    <url>%2F2019%2F09%2F02%2F%E6%97%A5%E8%AE%B0%2F%E6%8E%89%E5%A4%B4%E5%8F%91%2F</url>
-    <content type="text"><![CDATA[掉头发就是洗头时，每次换盆水冲一次，水里就都是头发就是刚洗完头，一梳头，木梳上都是头发就是每天都不敢洗头，怀疑洗发露是不是买到了假货就是快两个月没有理发，感觉头发也没有变很长就是坐着不动，一根头发突然掉了下来，挂在了脸上就是走在路上，一阵风吹过来，头皮感受到了凉意，心想又少了几根就是连续几次在喝着汤的时候看着一根头发掉到了碗里就是每天特别注意自己的刘海，尤其是大风天就是特别在意路人的发际线，每看到一个发量稀少的人，都想象成未来的自己以前从不在意头发的我，突然发现，电梯的广告也从招聘变成了植发，看个综艺也在聊发际线，看个直播也在讨论掉头发，上个班同事也在吐槽掉头发，身边的人突然都开始变得掉头发了。——青年时代彻底过去，步入中年，晋升油腻大叔了。]]></content>
+    <title><![CDATA[硬币与灵魂]]></title>
+    <url>%2F2019%2F09%2F02%2F%E6%97%A5%E8%AE%B0%2F%E7%A1%AC%E5%B8%81%E4%B8%8E%E7%81%B5%E9%AD%82%2F</url>
+    <content type="text"><![CDATA[桌子上有一枚硬币，而你是一个灵魂。 这时候你想把硬币反过来。但是作为灵魂，你是触摸不到任何东西的。 你多么想把硬币翻过来。让这个世界知道你的存在！ 这个想法在你的思想中不断的重复，任何别的的事情都显得不值一提 在你万般渴望的时候，灵光一闪，你获得了一秒钟做人的机会！ 你轻松地把硬币翻过来了！这一刻的你，体会到了生命是多么的伟大！ 从此世界中有了你来过的痕迹。]]></content>
       <categories>
         <category>日记</category>
       </categories>
@@ -242,9 +242,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[硬币与灵魂]]></title>
-    <url>%2F2019%2F09%2F02%2F%E6%97%A5%E8%AE%B0%2F%E7%A1%AC%E5%B8%81%E4%B8%8E%E7%81%B5%E9%AD%82%2F</url>
-    <content type="text"><![CDATA[桌子上有一枚硬币，而你是一个灵魂。 这时候你想把硬币反过来。但是作为灵魂，你是触摸不到任何东西的。 你多么想把硬币翻过来。让这个世界知道你的存在！ 这个想法在你的思想中不断的重复，任何别的的事情都显得不值一提 在你万般渴望的时候，灵光一闪，你获得了一秒钟做人的机会！ 你轻松地把硬币翻过来了！这一刻的你，体会到了生命是多么的伟大！ 从此世界中有了你来过的痕迹。]]></content>
+    <title><![CDATA[掉头发]]></title>
+    <url>%2F2019%2F09%2F02%2F%E6%97%A5%E8%AE%B0%2F%E6%8E%89%E5%A4%B4%E5%8F%91%2F</url>
+    <content type="text"><![CDATA[掉头发就是洗头时，每次换盆水冲一次，水里就都是头发就是刚洗完头，一梳头，木梳上都是头发就是每天都不敢洗头，怀疑洗发露是不是买到了假货就是快两个月没有理发，感觉头发也没有变很长就是坐着不动，一根头发突然掉了下来，挂在了脸上就是走在路上，一阵风吹过来，头皮感受到了凉意，心想又少了几根就是连续几次在喝着汤的时候看着一根头发掉到了碗里就是每天特别注意自己的刘海，尤其是大风天就是特别在意路人的发际线，每看到一个发量稀少的人，都想象成未来的自己以前从不在意头发的我，突然发现，电梯的广告也从招聘变成了植发，看个综艺也在聊发际线，看个直播也在讨论掉头发，上个班同事也在吐槽掉头发，身边的人突然都开始变得掉头发了。——青年时代彻底过去，步入中年，晋升油腻大叔了。]]></content>
       <categories>
         <category>日记</category>
       </categories>
@@ -331,6 +331,11 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>%2F2019%2F08%2F28%2F%E6%97%A5%E8%AE%B0%2F%E6%9C%AA%E6%9D%A5%E6%80%BB%E6%98%AF%E8%92%99%E8%94%BD%E7%8E%B0%E5%9C%A8%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[理解和记忆]]></title>
     <url>%2F2019%2F08%2F28%2F%E6%97%A5%E8%AE%B0%2F%E7%90%86%E8%A7%A3%E5%92%8C%E8%AE%B0%E5%BF%86%2F</url>
     <content type="text"><![CDATA[理解和记忆是什么关系。 今天我在尝试解释工作中常见的术语 什么叫做“命名空间”。一番解释下来，发现他就是字面上的意思。 然后我就想，假如一个面试官，问一个求职者这个问题，求职者虽然不懂，但只要把字面意思换个说法重复一下，应该和正确答案差不多。 这让我意识到，语言是抽象的，虽然我们使用 的语言已经能表达我们自己的想法，但是最最内心的想法，还是需要自己告诉自己，并且我们永远不能知道别人心中的最最完全的想法，甚至我们不需要知道，只需要把它用语言抽象出来就行了。 然后我就想到了理解。理解可能就是我们心中最最完全的想法，他让自己的身体上的每个器官都处于一种状态。我们可能是因为之前的经历，然后当某个事物再次以相似的场景出现时，引起了自身的深深的共鸣，我们觉得，我理解了。 而记忆呢，就是自己用自己的回忆的特性记住了那些抽象的语言，然后使用逻辑和排序加到了自己的大脑特有的索引中，但是没有感同身受的那部分记忆。当被人问起时，虽然可以准确回答，但是陌生，冷淡，没有感情。自己可能体验到那种胜利自得的喜悦 有时候，我们可能被一个事情深深的打动，或者自己心中突然来了灵感，但是自己和别人说的时候，就是表达不出来那种真实。 有时候，我们明明get到了那个点，但是说出来没有让别人get 到，或者用词不当，让别人理解错误。 更有些时候，同样的语言，不同经历的人，想到的是不同的事情。]]></content>
@@ -340,11 +345,6 @@
       <tags>
         <tag>日记</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2019%2F08%2F28%2F%E6%97%A5%E8%AE%B0%2F%E6%9C%AA%E6%9D%A5%E6%80%BB%E6%98%AF%E8%92%99%E8%94%BD%E7%8E%B0%E5%9C%A8%2F</url>
-    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[最美的东西]]></title>
